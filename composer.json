@@ -1,7 +1,7 @@
 {
     "name": "ovac/hubtel-payment",
     "description": "A comprehensive PHP Package for consuming the Hubtel Payment API",
-    "licence": "MIT",
+    "license": "MIT",
     "authors": [
         {
             "name": "Ariama Victor (A.K.A. OVAC BOYA)",
