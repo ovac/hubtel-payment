@@ -1,7 +1,12 @@
 {
     "name": "ovac/hubtel-payment",
     "description": "A comprehensive PHP Package for consuming the Hubtel Payment API",
-    "authors": [],
+    "authors": [
+        {
+            "name": "Ariama Victor (A.K.A. OVAC BOYA)",
+            "email": "iamovac@gmail.com"
+        }
+    ],
     "autoload" : {
         "psr-4": {
             "OVAC/HubtelPayment\\" : "src/"
