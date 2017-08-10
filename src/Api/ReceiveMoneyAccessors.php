@@ -25,31 +25,31 @@ class ReceiveMoneyAccessors extends Api
      *
      * @var string
      */
-    private $customerName;
+    protected $customerName;
     /**
      * The customer email address
      *
      * @var string
      */
-    private $customerEmail;
+    protected $customerEmail;
     /**
      * The customer mobile money number.
      *
      * @var string
      */
-    private $customerMsisdn;
+    protected $customerMsisdn;
     /**
      * The mobile money provider channel
      *
      * @var string
      */
-    private $channel;
+    protected $channel;
     /**
      * The mobile money transaction amount
      *
      * @var string
      */
-    private $amount;
+    protected $amount;
     /**
      * A callback URL to receive the transaction
      * status from Hubtel to your API request.
@@ -60,27 +60,27 @@ class ReceiveMoneyAccessors extends Api
      *
      * @var string
      */
-    private $primaryCallbackURL;
+    protected $primaryCallbackURL;
     /**
      * The second URL for callback response in the
      * event of failure of  primary callback URL.
      *
      * @var string
      */
-    private $secondaryCallbackURL;
+    protected $secondaryCallbackURL;
     /**
      * The reference number that is provided by you
      * to reference a transaction from your end.
      *
      * @var string
      */
-    private $clientReference;
+    protected $clientReference;
     /**
      * The short description of the transaction.
      *
      * @var string
      */
-    private $description;
+    protected $description;
     /**
      * The 6 digit unique token required to debit a Vodafone
      * Cash customer.  This token has to be generated and
@@ -90,7 +90,7 @@ class ReceiveMoneyAccessors extends Api
      *
      * @var string
      */
-    private $token;
+    protected $token;
     /**
      * This allows the fees of the transaction to be charged
      * on the customer. If set to true the
@@ -98,7 +98,7 @@ class ReceiveMoneyAccessors extends Api
      *
      * @var boolean
      */
-    private $feesOnCustomer;
+    protected $feesOnCustomer;
 
     /**
      * @return string
