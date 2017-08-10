@@ -21,10 +21,8 @@ namespace OVAC\HubtelPayment\Api;
  * call to the Hubtel Server that makes a request to for payment
  * from a client
  */
-class ReceiveMoney extends Api
+class ReceiveMoney extends ReceiveMoneyAccessors
 {
-    use ReceiveMoneyAccessors;
-
     /**
      * Construct for creating a new instance of the ReceiveMoney Api class
      * @param array $data An array with configurations for the receive money class

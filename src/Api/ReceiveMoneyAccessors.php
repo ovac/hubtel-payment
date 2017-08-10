@@ -15,10 +15,10 @@
 namespace OVAC\HubtelPayment\Api;
 
 /**
- * ReceiveMoneyAccor Trait
+ * ReceiveMoneyAccor Accessors
  * Accessors for the Receive Money Api Properties
  */
-trait ReceiveMoneyAccessors
+class ReceiveMoneyAccessors extends Api
 {
     /**
      * The name of the customer.

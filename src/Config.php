@@ -14,6 +14,8 @@
 
 namespace OVAC\HubtelPayment;
 
+use OVAC\HubtelPayment\ConfigInterface;
+
 /**
  * Config Class
  *
@@ -21,7 +23,7 @@ namespace OVAC\HubtelPayment;
  * and the methods required to update or retrieve
  * required configuration data.
  */
-class Config
+class Config implements ConfigInterface
 {
     /**
      * This OVAC/Hubtel-Payment Package Version.

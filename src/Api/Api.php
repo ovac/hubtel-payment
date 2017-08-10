@@ -51,7 +51,7 @@ abstract class Api implements ApiInterface
     /**
      * Constructor.
      *
-     * @param  \Cartalyst\Stripe\ConfigInterface $config
+     * @param  \OVAC\HubtelPayment\ConfigInterface $config
      * @return void
      */
     public function __construct(Config $config)
