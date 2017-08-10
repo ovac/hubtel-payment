@@ -24,8 +24,8 @@ return new Sami($iterator, array(
     // 'theme' => 'symfony',
     'versions' => '1.0.0',
     'title' => 'OVAC/Hubtel-Payment API',
-    'build_dir' => __DIR__ . '/docs/%version%/documentation',
-    'cache_dir' => __DIR__ . '/docs/%version%/cache',
+    'build_dir' => __DIR__ . '/docs/sami/%version%/documentation',
+    'cache_dir' => __DIR__ . '/docs/sami/%version%/cache',
     'default_opened_level' => 2,
     'remote_repository' => new GitHubRemoteRepository('symfony/symfony', dirname($dir)),
 ));
