@@ -1,5 +1,7 @@
 /vendor
 /build
+/docs
+/.phpintel
 composer.phar
 
 

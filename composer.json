@@ -10,18 +10,20 @@
     ],
     "autoload" : {
         "psr-4": {
-            "OVAC/HubtelPayment\\" : "src/"
+            "OVAC\\HubtelPayment\\" : "src/"
         }
     },
     "require": {
-        "php": ">=5.4.0"
+        "php": ">=5.4.0",
+        "guzzlehttp/guzzle": "^6.3"
     },
     "require-dev": {
         "phpunit/phpunit": "4.4",
         "squizlabs/php_codesniffer": "~2.0.0",
         "leaphub/phpcs-symfony2-standard": "~2.0.0",
         "phpmd/phpmd" : "@stable",
-        "sebastian/phpcpd": "*"
+        "sebastian/phpcpd": "*",
+        "mockery/mockery": "^0.9.9"
     },
     "scripts" : {
         "phpunit"  : "vendor/bin/phpunit",
@@ -32,6 +34,7 @@
         "phpcpd-ci": "vendor/bin/phpcpd --log-pmd=./build/logs/phpcpd-report.xml  ./src",
         "phpmd-ci" : "vendor/bin/phpmd ./src xml phpmd.xml --reportfile ./build/logs/phpmd-report.xml",
         "phpcs-ci" : "vendor/bin/phpcs --standard=./vendor/leaphub/phpcs-symfony2-standard/leaphub/phpcs/Symfony2/ --report=checkstyle --report-file=./build/logs/phpcs-checkstyle-report.xml --extensions=php src",
-        "test"     : "vendor/bin/phpunit; composer phpcs; composer phpmd; composer phpcpd;"
+        "test"     : "vendor/bin/phpunit; composer phpcs; composer phpmd; composer phpcpd;",
+        "sami"     : "bin/sami update ./sami.config.php -v"
     }
 }

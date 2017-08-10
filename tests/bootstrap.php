@@ -12,4 +12,4 @@ EOT
     );
 }
 
-$loader->setPsr4('OVAC/HubtelPayment\\Tests\\', __DIR__);
+$loader->setPsr4('OVAC\\HubtelPayment\\Tests\\', __DIR__);
