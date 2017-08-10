@@ -14,6 +14,8 @@
 
 namespace OVAC\HubtelPayment\Api;
 
+use OVAC\HubtelPayment\Api\Api;
+
 /**
  * ReceiveMoney Class
  *
@@ -21,8 +23,95 @@ namespace OVAC\HubtelPayment\Api;
  * call to the Hubtel Server that makes a request to for payment
  * from a client
  */
-class ReceiveMoney extends ReceiveMoneyAccessors
+class ReceiveMoney extends Api
 {
+    /**
+     * Trait ReceiveMoney Accessors
+     *
+     * Holds all the setters and getters for the receve money
+     * properties
+     */
+    use ReceiveMoneyAccessors;
+
+    /**
+     * The name of the customer.
+     *
+     * @var string
+     */
+    protected $customerName;
+    /**
+     * The customer email address
+     *
+     * @var string
+     */
+    protected $customerEmail;
+    /**
+     * The customer mobile money number.
+     *
+     * @var string
+     */
+    protected $customerMsisdn;
+    /**
+     * The mobile money provider channel
+     *
+     * @var string
+     */
+    protected $channel;
+    /**
+     * The mobile money transaction amount
+     *
+     * @var string
+     */
+    protected $amount;
+    /**
+     * A callback URL to receive the transaction
+     * status from Hubtel to your API request.
+     * Receive  money requests for all mobile
+     * money providers are asynchrounous hence,
+     * Hubtel will send a callback on  the f
+     * inal status of a pending transaction
+     *
+     * @var string
+     */
+    protected $primaryCallbackURL;
+    /**
+     * The second URL for callback response in the
+     * event of failure of  primary callback URL.
+     *
+     * @var string
+     */
+    protected $secondaryCallbackURL;
+    /**
+     * The reference number that is provided by you
+     * to reference a transaction from your end.
+     *
+     * @var string
+     */
+    protected $clientReference;
+    /**
+     * The short description of the transaction.
+     *
+     * @var string
+     */
+    protected $description;
+    /**
+     * The 6 digit unique token required to debit a Vodafone
+     * Cash customer.  This token has to be generated and
+     * provided by the Vodafone customer. The customer
+     * dials *110# and selects menu item 6 to create
+     * the voucher. It  expires after 5 minutes if unused
+     *
+     * @var string
+     */
+    protected $token;
+    /**
+     * This allows the fees of the transaction to be charged
+     * on the customer. If set to true the
+     * AmountCharged = Amount + Charges.
+     *
+     * @var boolean
+     */
+    protected $feesOnCustomer;
     /**
      * Construct for creating a new instance of the ReceiveMoney Api class
      * @param array $data An array with configurations for the receive money class
@@ -49,7 +138,7 @@ class ReceiveMoney extends ReceiveMoneyAccessors
      * (requred by the Hubtel ReceiveMoney Api)
      *
      * @param  string $customerMsisdn This is the Customer Msisdn
-     * @return self                   [description]
+     * @return self
      */
     public function from($customerMsisdn)
     {
@@ -102,7 +191,7 @@ class ReceiveMoney extends ReceiveMoneyAccessors
      * (requred by the Hubtel ReceiveMoney Api)
      *
      * @param  string $channel The mobile network channel (example: mtn-gh)
-     * @return self          [description]
+     * @return self
      */
     public function channel($channel)
     {
@@ -112,7 +201,7 @@ class ReceiveMoney extends ReceiveMoneyAccessors
      * Sets the URL to call when the payment fails or is unsuccessfull
      *
      * @param  string $secondaryCallbackURL Url to call is payment is unsuccessful
-     * @return self                       [description]
+     * @return self
      */
     public function callbackOnFail($secondaryCallbackURL)
     {
@@ -123,7 +212,7 @@ class ReceiveMoney extends ReceiveMoneyAccessors
      * (requred by the Hubtel ReceiveMoney Api)
      *
      * @param  string $primaryCallbackURL Url to callback when payment is successful
-     * @return self                     [description]
+     * @return self
      */
     public function callbackOnSuccess($primaryCallbackURL)
     {
@@ -133,7 +222,7 @@ class ReceiveMoney extends ReceiveMoneyAccessors
      * Sets the 6 digit unique token required to debit a Vodafone Cash
      *
      * @param  string $token the 6 digit unique token required to debit a Vodafone Cash
-     * @return self        [description]
+     * @return self
      */
     public function token($token)
     {
@@ -143,7 +232,7 @@ class ReceiveMoney extends ReceiveMoneyAccessors
      * Sets if the hubtel and mobile money fees is charged on the customer or client
      *
      * @param  boolean $feesOnCustomer If the arguement is not passed in, fees will be charged on customer
-     * @return self                  [description]
+     * @return self
      */
     public function feesOnCustomer($feesOnCustomer)
     {
@@ -153,8 +242,8 @@ class ReceiveMoney extends ReceiveMoneyAccessors
      * This method catches the receive money magic call from the PayClass.
      * It could be used to pass the full config or start the expressive api.
      *
-     * @param  float|array $data [description]
-     * @return self         [description]
+     * @param  float|array $data
+     * @return self
      */
     public function receiveMoney($data = [])
     {
@@ -168,7 +257,7 @@ class ReceiveMoney extends ReceiveMoneyAccessors
      * This method is used to mass assign the properties required by the Hubtel ReceiveMoney Api
      * @param  array  $data
      * @example ['amount' => 10, 'customer' => ['name' => 'victor', ...], 'clientReference' => 123, 'callbackOnSuccess' => 'url', 'amount' => 10, 'description' => 'some description']
-     * @return self       [description]
+     * @return self
      */
     private function massAssign($data = [])
     {
@@ -182,19 +271,23 @@ class ReceiveMoney extends ReceiveMoneyAccessors
             }
 
             if (array_key_exists('amount', $data)) {
-                $this->setToken($data['amount']);
+                $this->setAmount($data['amount']);
             }
 
             if (array_key_exists('description', $data)) {
-                $this->setToken($data['description']);
+                $this->setDescription($data['description']);
             }
 
             if (array_key_exists('clientReference', $data)) {
-                $this->setCustomerName($data['clientReference']);
+                $this->setClientReference($data['clientReference']);
             }
 
             if (array_key_exists('channel', $data)) {
-                $this->setCustomerName($data['channel']);
+                $this->setChannel($data['channel']);
+            }
+
+            if (array_key_exists('feesOnCustomer', $data)) {
+                $this->setFeesOnCustomer($data['feesOnCustomer']);
             }
 
             if (preg_grep('/^callback/i', array_keys($data))) {
@@ -206,7 +299,7 @@ class ReceiveMoney extends ReceiveMoneyAccessors
     }
     /**
      * This method sets the callbacks for the Hubtel Payments
-     * @param array|string $data [description]
+     * @param array|string $data
      * @return self
      */
     public function setCallback($data = [])

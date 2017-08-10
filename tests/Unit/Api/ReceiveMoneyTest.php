@@ -152,25 +152,22 @@ class ReceiveMoneyTest extends \PHPUnit_Framework_TestCase
 
     public function testExpressiveReceiveMoneyMassAssignment()
     {
-        // $api = ReceiveMoney::amount($this->amount)
-        //     ->from($this->customerMsisdn)
-        //     ->description($this->description)
-        //     ->reference($this->clientReference)
-        //     ->customerName($this->customerName)
-        //     ->customerEmail($this->customerEmail)
-        //     ->channel($this->channel)
-        //     ->callbackOnFail($this->secondaryCallbackURL)
-        //     ->callbackOnSuccess($this->primaryCallbackURL)
-        //     ->token($this->token)
-        //     ->feesOnCustomer($this->feesOnCustomer);
-        //
+
         $api = new ReceiveMoney(array(
             'customer' => array(
                 'name' => $this->customerName,
                 'email' => $this->customerEmail,
                 'phone' => $this->customerMsisdn,
             ),
+            'callback' => array(
+                'success' => $this->primaryCallbackURL,
+                'error' => $this->secondaryCallbackURL,
+            ),
             'description' => $this->description,
+            'clientReference' => $this->clientReference,
+            'channel' => $this->channel,
+            'token' => $this->token,
+            'feesOnCustomer' => true,
         ));
 
         $this->assertEquals($api->getAmount(), $this->amount, 'The Amount on instance should be the amount charged');
