@@ -22,7 +22,7 @@ $versions = GitVersionCollection::create($dir)
 
 return new Sami($iterator, array(
     // 'theme' => 'symfony',
-    'versions' => '1.0.0',
+    'versions' => $version,
     'title' => 'OVAC/Hubtel-Payment API',
     'build_dir' => __DIR__ . '/docs/sami/%version%/documentation',
     'cache_dir' => __DIR__ . '/docs/sami/%version%/cache',
