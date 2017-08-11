@@ -14,7 +14,8 @@
 
 namespace Unit\Api;
 
-use OVAC\HubtelPayment\Api\ReceiveMoney;
+use OVAC\HubtelPayment\Api\Transaction;
+use OVAC\HubtelPayment\Api\Transaction\ReceiveMoney;
 use OVAC\HubtelPayment\Pay;
 
 class ReceiveMoneyTest extends \PHPUnit_Framework_TestCase

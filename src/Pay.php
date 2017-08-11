@@ -174,7 +174,7 @@ class Pay implements ConfigInterface
      *
      * @param  string $method
      * @param  array  $parameters
-     * @return \OVAC\HubtelPayment\Api\ApiInterface
+     * @return \OVAC\HubtelPayment\Api\Transaction
      */
     public function __call($method, array $parameters)
     {
@@ -199,12 +199,12 @@ class Pay implements ConfigInterface
      * Returns the Api class instance for the given method.
      *
      * @param  string $method
-     * @return \OVAC\HubtelPayment\Api\ApiInterface
+     * @return \OVAC\HubtelPayment\Api\Transaction
      * @throws \BadMethodCallException
      */
     protected function getApiInstance($method)
     {
-        $class = '\\OVAC\\HubtelPayment\\Api\\' . ucwords($method);
+        $class = '\\OVAC\\HubtelPayment\\Api\\Transaction\\' . ucwords($method);
         if (class_exists($class)) {
             return new $class($this->config);
         }
