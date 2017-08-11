@@ -101,6 +101,7 @@ class Transaction extends Api
 
     /**
      * Sets the name of the customer.
+     *
      * @param string $customerName
      *
      * @return self
@@ -113,7 +114,8 @@ class Transaction extends Api
     }
 
     /**
-     * get the customer's email address
+     * get the customer's email address.
+     *
      * @return string
      */
     public function getCustomerEmail()
@@ -123,6 +125,7 @@ class Transaction extends Api
 
     /**
      * sets the customer's email address.
+     *
      * @param string $customerEmail
      *
      * @return self
@@ -136,6 +139,7 @@ class Transaction extends Api
 
     /**
      * gets the msisdn (Customer's phone number)
+     *
      * @return string
      */
     public function getCustomerMsisdn()
@@ -144,7 +148,8 @@ class Transaction extends Api
     }
 
     /**
-     * Sets the customer
+     * Sets the customer's phone number to be billed or funded.
+     *
      * @param string $customerMsisdn
      *
      * @return self
@@ -157,7 +162,7 @@ class Transaction extends Api
     }
 
     /**
-     * returns the transaction channel (Network)
+     * returns the transaction channel (Mobile Network)
      * @return string
      */
     public function getChannel()
@@ -166,7 +171,8 @@ class Transaction extends Api
     }
 
     /**
-     * sets the client
+     * sets the transaction channel (Mobile Network)
+     *
      * @param string $channel
      *
      * @return self
@@ -180,6 +186,7 @@ class Transaction extends Api
 
     /**
      * Gets the money value for the transaction.
+     *
      * @return string
      */
     public function getAmount()
@@ -189,6 +196,7 @@ class Transaction extends Api
 
     /**
      * sets the money value (Amount) to be sent or received
+     *
      * @param string $amount
      *
      * @return self
@@ -202,6 +210,7 @@ class Transaction extends Api
 
     /**
      * Returns the primary callback URL that has been set on the instance.
+     *
      * @return string
      */
     public function getPrimaryCallbackURL()
@@ -211,6 +220,7 @@ class Transaction extends Api
 
     /**
      * set the callback url to callback if the transaction was successful.
+     *
      * @param string $primaryCallbackURL
      *
      * @return self
@@ -224,6 +234,7 @@ class Transaction extends Api
 
     /**
      * Returns the callback url on the transaction
+     *
      * @return string
      */
     public function getSecondaryCallbackURL()
@@ -233,6 +244,7 @@ class Transaction extends Api
 
     /**
      * Sets the URL to call back if he transaction is unsuccesful.
+     *
      * @param string $secondaryCallbackURL
      *
      * @return self
@@ -246,6 +258,7 @@ class Transaction extends Api
 
     /**
      * get the transaction reference.
+     *
      * @return string
      */
     public function getClientReference()
