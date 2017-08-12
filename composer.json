@@ -36,8 +36,8 @@
         "phpmd-ci" : "vendor/bin/phpmd ./src xml phpmd.xml --reportfile ./build/logs/phpmd-report.xml",
         "phpcs-ci" : "vendor/bin/phpcs --standard=./vendor/leaphub/phpcs-symfony2-standard/leaphub/phpcs/Symfony2/ --report=checkstyle --report-file=./build/logs/phpcs-checkstyle-report.xml --extensions=php src",
         "test"     : "vendor/bin/phpunit; composer phpcs; composer phpmd; composer phpcpd;",
-        "sami"     : "bin/sami update ./sami.config.php -v",
-        "phpdoc"   : "bin/phpDocumentor -d ./src -t ./docs/phpDocumentor --template=clean",
+        "sami"     : "bin/sami.phar update ./sami.config.php -v",
+        "phpdoc"   : "bin/phpDocumentor.phar -d ./src -t ./docs/phpDocumentor --template=clean",
         "document" : "composer sami; composer phpdoc;",
         "coverage" : "vendor/bin/coveralls -v"
     }

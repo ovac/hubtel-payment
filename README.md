@@ -38,13 +38,13 @@ $ composer install
 if you have phpunit installed globally
 
 ```
-$ phpunit 
-```
-
-or use the locally installed version
-
-```
 $ vendor/bin/phpunit
+```
+
+or use the composer script
+
+```
+$ composer phpunit
 ```
 
 ### Code analysis tools
