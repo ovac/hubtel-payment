@@ -1,5 +1,7 @@
 # ovac/hubtel-payment
 ---------------------------------
+[![Build Status](https://travis-ci.org/ovac/hubtel-payment.svg?branch=master)](https://travis-ci.org/ovac/hubtel-payment) [![Coverage Status](https://coveralls.io/repos/github/ovac/hubtel-payment/badge.svg?branch=master)](https://coveralls.io/github/ovac/hubtel-payment?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/ovac/hubtel-payment/badge.svg?branch=master)](https://coveralls.io/github/ovac/hubtel-payment?branch=master)
 
 A comphrehensive PHP Package for consuming the Hubtel Payment API
 
