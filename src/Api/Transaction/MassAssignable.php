@@ -25,6 +25,18 @@ use OVAC\HubtelPayment\Api\Transaction\SendMoney;
  */
 trait MassAssignable
 {
+
+    /**
+     * This method exposes the mass assignment method.
+     *
+     * @param  array $data
+     * @return self
+     */
+    public function make($data = [])
+    {
+        return $this->massAssign($data);
+    }
+
     /**
      * This method is used to mass assign the properties required by the Hubtel ReceiveMoney and SendMoney Api
      * @param  array $data

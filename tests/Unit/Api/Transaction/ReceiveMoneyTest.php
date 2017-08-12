@@ -15,6 +15,7 @@
 namespace OVAC\HubtelPayment\Tests\Unit\Api\Transaction;
 
 use OVAC\HubtelPayment\Api\Transaction\ReceiveMoney;
+use OVAC\HubtelPayment\Config;
 use OVAC\HubtelPayment\Pay;
 
 class ReceiveMoneyTest extends \PHPUnit_Framework_TestCase
@@ -98,6 +99,12 @@ class ReceiveMoneyTest extends \PHPUnit_Framework_TestCase
      * @var boolean
      */
     private $feesOnCustomer;
+    /**
+     * The OVAC/Hubtel-Payment Pay config.
+     *
+     * @var \OVAC\Hubtel\Config
+     */
+    protected $config;
 
     protected function setUp()
     {
@@ -120,6 +127,28 @@ class ReceiveMoneyTest extends \PHPUnit_Framework_TestCase
 
         //Only neccessry for Vodafone Cash users
         $this->token = '123456';
+
+        $this->config = new Config(
+            Pay::VERSION,
+            $accountNumber = 12345,
+            $clientId = 'someClientId',
+            $clientSecret = 'someClientSecret'
+        );
+    }
+
+    public function checkValues($api)
+    {
+        $this->assertEquals($api->getAmount(), $this->amount, 'The Amount on instance should be the amount charged');
+        $this->assertEquals($api->getDescription(), $this->description, 'it should be the description passed in');
+        $this->assertEquals($api->getCustomerMsisdn(), $this->customerMsisdn, 'it should be the reference passed in');
+        $this->assertEquals($api->getClientReference(), $this->clientReference, 'it should be the reference passed in');
+        $this->assertEquals($api->getCustomerName(), $this->customerName, 'it should be the customer name passed in');
+        $this->assertEquals($api->getCustomerEmail(), $this->customerEmail, 'it should be the Email passed in');
+        $this->assertEquals($api->getChannel(), $this->channel, 'it should be the same channel passed in');
+        $this->assertEquals($api->getSecondaryCallbackURL(), $this->secondaryCallbackURL, 'it should be the error callback URL');
+        $this->assertEquals($api->getPrimaryCallbackURL(), $this->primaryCallbackURL, 'it should be the success callback URL');
+        $this->assertEquals($api->getToken(), $this->token, 'it should be the same Token that was passed in');
+        $this->assertTrue($api->isFeesOnCustomer(), 'Fees should be on the customer.');
     }
 
     public function testExpressiveReceiveMoney()
@@ -136,24 +165,38 @@ class ReceiveMoneyTest extends \PHPUnit_Framework_TestCase
             ->token($this->token)
             ->feesOnCustomer($this->feesOnCustomer);
 
-        $this->assertEquals($api->getAmount(), $this->amount, 'The Amount on instance should be the amount charged');
-        $this->assertEquals($api->getDescription(), $this->description, 'it should be the description passed in');
-        $this->assertEquals($api->getClientReference(), $this->clientReference, 'it should be the reference passed in');
-        $this->assertEquals($api->getCustomerName(), $this->customerName, 'it should be the customer name passed in');
-        $this->assertEquals($api->getCustomerEmail(), $this->customerEmail, 'it should be the Email passed in');
-        $this->assertEquals($api->getChannel(), $this->channel, 'it should be the same channel passed in');
-        $this->assertEquals($api->getSecondaryCallbackURL(), $this->secondaryCallbackURL, 'it should be the same URL Passed in');
-        $this->assertEquals($api->getPrimaryCallbackURL(), $this->primaryCallbackURL, 'it should be the same URL Passed in');
-        $this->assertEquals($api->getToken(), $this->token, 'it should be the same Token that was passed in');
-        $this->assertTrue($api->isFeesOnCustomer(), 'Fees should be on the customer.');
-
-        return $api;
+        $this->checkValues($api);
     }
 
-    public function testExpressiveReceiveMoneyMassAssignment()
+    /**
+     * @covers OVAC\HubtelPayment\Api\Transaction\MassAssignable::massAssign
+     */
+    public function testConstructReceiveMoneyMassAssignment()
     {
-
         $api = new ReceiveMoney(array(
+            'customer' => array(
+                'name' => $this->customerName,
+                'email' => $this->customerEmail,
+                'phone' => $this->customerMsisdn,
+            ),
+            'callback' => array(
+                'success' => $this->primaryCallbackURL,
+                'error' => $this->secondaryCallbackURL,
+            ),
+            'description' => $this->description,
+            'clientReference' => $this->clientReference,
+            'channel' => $this->channel,
+            'token' => $this->token,
+            'feesOnCustomer' => true,
+            'amount' => $this->amount,
+        ));
+
+        $this->checkValues($api);
+    }
+
+    public function testPayCanMassAssignReceiveMoney()
+    {
+        $api = Pay::receiveMoney(array(
             'customer' => array(
                 'name' => $this->customerName,
                 'email' => $this->customerEmail,
@@ -170,17 +213,131 @@ class ReceiveMoneyTest extends \PHPUnit_Framework_TestCase
             'feesOnCustomer' => true,
         ));
 
-        $this->assertEquals($api->getAmount(), $this->amount, 'The Amount on instance should be the amount charged');
-        $this->assertEquals($api->getDescription(), $this->description, 'it should be the description passed in');
-        $this->assertEquals($api->getClientReference(), $this->clientReference, 'it should be the reference passed in');
+        $this->checkValues($api);
+    }
+
+    public function testMakeMassAssignmentOnReceiveMoney()
+    {
+        $api = (new ReceiveMoney($this->config))->make(array(
+            'customer' => array(
+                'name' => $this->customerName,
+                'email' => $this->customerEmail,
+                'phone' => $this->customerMsisdn,
+            ),
+            'callback' => array(
+                'success' => $this->primaryCallbackURL,
+                'error' => $this->secondaryCallbackURL,
+            ),
+            'description' => $this->description,
+            'clientReference' => $this->clientReference,
+            'channel' => $this->channel,
+            'token' => $this->token,
+            'feesOnCustomer' => true,
+        ));
+
+        $this->checkValues($api);
+    }
+
+    public function testCallbackAsTextWithMassAssignment()
+    {
+        $api = (new ReceiveMoney)->make(array(
+            'callback' => $this->primaryCallbackURL,
+        ));
+
+        $this->assertEquals($api->getSecondaryCallbackURL(), $this->primaryCallbackURL, 'it should be the success callback URL');
+        $this->assertEquals($api->getPrimaryCallbackURL(), $this->primaryCallbackURL, 'it should be the success callback URL');
+    }
+
+    public function testTransactableMagicMethods()
+    {
+        $api = ReceiveMoney::from($this->customerMsisdn)->amount($this->amount);
+        $this->assertEquals($api->getCustomerMsisdn(), $this->customerMsisdn);
+        $this->assertEquals($api->getAmount(), $this->amount);
+
+        $api = (new ReceiveMoney)->from($this->customerMsisdn)->amount($this->amount);
+        $this->assertEquals($api->getCustomerMsisdn(), $this->customerMsisdn);
+        $this->assertEquals($api->getAmount(), $this->amount);
+
+        $api = (new ReceiveMoney)->amount($this->amount);
+        $this->assertEquals($api->getAmount(), $this->amount);
+    }
+
+    public function testTransactableStaticBadMethodsException()
+    {
+        $this->setExpectedException(\BadMethodCallException::class);
+
+        ReceiveMoney::clientReference($this->customerMsisdn);
+    }
+
+    public function testBadInstanceMethodException()
+    {
+        $this->setExpectedException(\BadMethodCallException::class);
+
+        (new ReceiveMoney)->some_bad_method($this->customerMsisdn);
+    }
+
+    public function testSetCustomer()
+    {
+        $api = ReceiveMoney::amount($this->amount)
+            ->setCustomer(array(
+                'name' => $this->customerName,
+                'email' => $this->customerEmail,
+                'phone' => $this->customerMsisdn,
+            ));
+
+        $this->assertEquals($api->getCustomerMsisdn(), $this->customerMsisdn, 'it should be the reference passed in');
         $this->assertEquals($api->getCustomerName(), $this->customerName, 'it should be the customer name passed in');
         $this->assertEquals($api->getCustomerEmail(), $this->customerEmail, 'it should be the Email passed in');
-        $this->assertEquals($api->getChannel(), $this->channel, 'it should be the same channel passed in');
-        $this->assertEquals($api->getSecondaryCallbackURL(), $this->secondaryCallbackURL, 'it should be the same URL Passed in');
-        $this->assertEquals($api->getPrimaryCallbackURL(), $this->primaryCallbackURL, 'it should be the same URL Passed in');
-        $this->assertEquals($api->getToken(), $this->token, 'it should be the same Token that was passed in');
-        $this->assertTrue($api->isFeesOnCustomer(), 'Fees should be on the customer.');
+    }
 
-        return $api;
+    public function testMassAssignSetCustomerKeyAsMsisdn()
+    {
+        $api = ReceiveMoney::amount($this->amount)
+            ->setCustomer(array(
+                'msisdn' => $this->customerMsisdn,
+            ));
+
+        $this->assertEquals($api->getCustomerMsisdn(), $this->customerMsisdn, 'it should be the  customer number passed in');
+    }
+
+    public function testMassAssignSetCustomerKeyAsNumber()
+    {
+        $api = ReceiveMoney::amount($this->amount)
+            ->setCustomer(array(
+                'number' => $this->customerMsisdn,
+            ));
+
+        $this->assertEquals($api->getCustomerMsisdn(), $this->customerMsisdn, 'it should be the customer number passed in');
+    }
+
+    public function testSetCallbackAsString()
+    {
+        $api = (new ReceiveMoney)->callback($this->secondaryCallbackURL);
+
+        $this->assertEquals($api->getSecondaryCallbackURL(), $this->secondaryCallbackURL, 'it should be the error callback URL');
+    }
+
+    public function testSetCallbackSimpleKeys()
+    {
+
+        $api = ReceiveMoney::from($this->customerMsisdn)
+            ->setCallback(array(
+                'success' => $this->primaryCallbackURL,
+                'error' => $this->secondaryCallbackURL,
+            ));
+        $this->assertEquals($api->getSecondaryCallbackURL(), $this->secondaryCallbackURL, 'it should be the error callback URL');
+        $this->assertEquals($api->getPrimaryCallbackURL(), $this->primaryCallbackURL, 'it should be the success callback URL');
+    }
+
+    public function testSetCalbackExpressiveKeys()
+    {
+        $api = ReceiveMoney::from($this->customerMsisdn)
+            ->setCallback(array(
+                'callbackOnFail' => $this->secondaryCallbackURL,
+                'callbackOnSuccess' => $this->primaryCallbackURL,
+            ));
+
+        $this->assertEquals($api->getSecondaryCallbackURL(), $this->secondaryCallbackURL, 'it should be the error callback URL');
+        $this->assertEquals($api->getPrimaryCallbackURL(), $this->primaryCallbackURL, 'it should be the success callback URL');
     }
 }

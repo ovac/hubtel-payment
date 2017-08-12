@@ -15,6 +15,8 @@
 namespace OVAC\HubtelPayment\Tests\Unit;
 
 use Mockery as m;
+use OVAC\HubtelPayment\Api\Transaction\ReceiveMoney;
+use OVAC\HubtelPayment\Api\Transaction\SendMoney;
 use OVAC\HubtelPayment\Config;
 use OVAC\HubtelPayment\Pay;
 
@@ -22,11 +24,11 @@ class PayTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * The OVAC/Hubtel-Payment Pay instance.
+     * The OVAC/Hubtel-Payment Pay config.
      *
-     * @var \OVAC\Hubtel\Pay
+     * @var \OVAC\Hubtel\Config
      */
-    protected $instance;
+    protected $config;
     /**
      * Setup resources and dependencies
      *
@@ -34,11 +36,12 @@ class PayTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->instance = new Pay([
-            'accountNumber' => 12345,
-            'clientId' => 'someClientId',
-            'clientSecret' => 'someClientSecret',
-        ]);
+        $this->config = new Config(
+            Pay::VERSION,
+            $accountNumber = 12345,
+            $clientId = 'someClientId',
+            $clientSecret = 'someClientSecret'
+        );
     }
     /**
      * Close mockery.
@@ -58,7 +61,7 @@ class PayTest extends \PHPUnit_Framework_TestCase
             'clientSecret' => 'someClientSecret',
         ]);
 
-        $this->assertEquals($pay->getAccountNumber(), 12345, 'Acout Numbe should be 12345');
+        $this->assertEquals($pay->getAccountNumber(), 12345, 'Account Numbe should be 12345');
         $this->assertEquals($pay->getClientId(), 'someClientId', 'Client ID should be someClientId');
         $this->assertEquals($pay->getClientSecret(), 'someClientSecret', 'Client Secret should be someClientSecret');
         $this->assertEquals($pay->getPackageVersion(), Pay::VERSION, 'Package Version should be' . Pay::VERSION);
@@ -152,21 +155,37 @@ class PayTest extends \PHPUnit_Framework_TestCase
     {
         $pay = new Pay;
 
-        $config = new Config(
-            Pay::VERSION,
-            $accountNumber = 12345,
-            $clientId = 'someClientId',
-            $clientSecret = 'someClientSecret'
-        );
+        $pay->setConfig($this->config);
 
-        $pay->setConfig($config);
+        $this->assertEquals($this->config, $pay->getConfig(), 'The config property should be equal to the setConfig value');
+    }
 
-        $this->assertEquals($config, $pay->getConfig(), 'The config property should be equal to the setConfig value');
+    public function testApiStaticMagicMethod()
+    {
+        $sendMoney = Pay::sendMoney()->to('0553577261');
+        $receiveMoney = Pay::receiveMoney()->from('0553577261');
+
+        $this->assertInstanceOf(SendMoney::class, $sendMoney, 'The pay class should create config of SendMoney class');
+        $this->assertInstanceOf(ReceiveMoney::class, $receiveMoney, 'The pay class should create config of ReceiveMoney class');
+    }
+
+    public function testPayCanMassAssignTransactionsNamespaceClasses()
+    {
+        $sendMoney = Pay::sendMoney();
+        $receiveMoney = Pay::receiveMoney()->from('0553577261');
     }
 
     public function testApiMagicMethod()
     {
-        //TODO: Test for Magic Method Calls to the API Methods
+        $receiveMoney = (new Pay)->receiveMoney();
+
+        $this->assertInstanceOf(ReceiveMoney::class, $receiveMoney);
+    }
+
+    public function testApiMagicMethodBadMethod()
+    {
+        $this->setExpectedException(\BadMethodCallException::class);
+        (new Pay)->some_unexisting_random_method();
     }
 
     public function testApiMagicStaticMethod()

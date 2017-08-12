@@ -59,6 +59,18 @@ abstract class Api implements ApiInterface
         $this->config = $config;
     }
     /**
+     * Injects the configuration tot he Api Instance
+     *
+     * @param  \OVAC\HubtelPayment\ConfigInterface $config
+     * @return self
+     */
+    public function injectConfig(Config $config)
+    {
+        $this->config = $config;
+
+        return $this;
+    }
+    /**
      * Change the Default baseUrl defined by hubtel
      *
      * @param string $baseUrl [description]
@@ -130,13 +142,20 @@ abstract class Api implements ApiInterface
      */
     public function execute($httpMethod, $url, array $parameters = [])
     {
-        try {
-            $response = $this->getClient()->{$httpMethod}($url, ['query' => $parameters]);
+        if (Config instanceof $this->config) {
+            try {
+                $response = $this->getClient()->{$httpMethod}($url, ['query' => $parameters]);
 
-            return json_decode((string) $response->getBody(), true);
-        } catch (ClientException $e) {
-            new ClientException($e);
+                return json_decode((string) $response->getBody(), true);
+            } catch (ClientException $e) {
+                new ClientException($e);
+            }
+
+            return;
         }
+
+        throw new \RuntimeException('The API requires a configuration instance.');
+
     }
     /**
      * Returns an Http client instance.

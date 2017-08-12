@@ -161,13 +161,14 @@ class Pay implements ConfigInterface
     /**
      * Dynamically handle missing Static Api Classes and Methods.
      *
-     * @param  string $method
+     * @param  string $className
      * @param  array  $parameters
-     * @return \OVAC\HubtelPayment\Api\ApiInterface
+     * @return \OVAC\HubtelPayment\Api\Transaction\$className
+     * @throws \BadMethodCallException
      */
-    public static function __callStatic($method, array $parameters)
+    public static function __callStatic($className, array $parameters)
     {
-        return (new self)->{$method}(...$parameters);
+        return (new self)->getApiInstance($className, ...$parameters);
     }
     /**
      * Dynamically handle missing Api Classes and Methods.
@@ -178,36 +179,21 @@ class Pay implements ConfigInterface
      */
     public function __call($method, array $parameters)
     {
-        if ($this->isIteratorRequest($method)) {
-            $apiInstance = $this->getApiInstance(substr($method, 0, -8));
-
-            return (new Pager($apiInstance))->fetch($parameters);
-        }
-
-        return $this->getApiInstance($method)->{$method}(...$parameters);
-    }
-    /**
-     * Determines if the request is an iterator request.
-     *
-     * @return bool
-     */
-    protected function isIteratorRequest($method)
-    {
-        return substr($method, -8) === 'Iterator';
+        return $this->getApiInstance($method, ...$parameters);
     }
     /**
      * Returns the Api class instance for the given method.
      *
-     * @param  string $method
+     * @param  string $className
      * @return \OVAC\HubtelPayment\Api\Transaction
      * @throws \BadMethodCallException
      */
-    protected function getApiInstance($method)
+    protected function getApiInstance($className, ...$parameters)
     {
-        $class = '\\OVAC\\HubtelPayment\\Api\\Transaction\\' . ucwords($method);
+        $class = '\\OVAC\\HubtelPayment\\Api\\Transaction\\' . ucwords($className);
         if (class_exists($class)) {
-            return new $class($this->config);
+            return (new $class(...$parameters))->injectConfig($this->config);
         }
-        throw new \BadMethodCallException('Undefined method [ ' . $method . '] called.');
+        throw new \BadMethodCallException('Undefined method [ ' . $className . '] called.');
     }
 }

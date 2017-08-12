@@ -28,6 +28,7 @@ use OVAC\HubtelPayment\Api\Transaction\Transaction;
 class SendMoney extends Transaction
 {
     use MassAssignable;
+    use Transactable;
 
     /**
      * Construct for creating a new instance of the SendMoney Api class
@@ -38,23 +39,12 @@ class SendMoney extends Transaction
         $this->massAssign($data);
     }
     /**
-     * This static method initiates the transaction value with
-     * the amount of money intended to be sent to a customer.
-     * (requred by the Hubtel SendMoney Api)
-     *
-     * @param  float $amount the exact value of the transaction to
-     * @return self
-     */
-    public static function amount($amount)
-    {
-        return (new static )->setAmount($amount);
-    }
-    /**
      * This api method sets the rceiver's phone number.
      * (requred by the Hubtel SendMoney Api)
      *
-     * @param  number $customerMsisdn this is the receiver's phone number
-     * @return self
+     * @param                                   number $customerMsisdn this is the receiver's phone number
+     * @return                                  self
+     * @SuppressWarnings(PHPMD.ShortMethodName)
      */
     public function to($customerMsisdn)
     {
@@ -82,16 +72,6 @@ class SendMoney extends Transaction
     public function customerEmail($customerEmail)
     {
         return $this->setCustomerEmail($customerEmail);
-    }
-    /**
-     * This api method sets the channel (Mobile Network) of the reeceiver.
-     *
-     * @param  string $channel This is the mobile network of the receiver (ex: mtn-gh)
-     * @return self
-     */
-    public function channel($channel)
-    {
-        return $this->setChannel($channel);
     }
     /**
      * This method sets the merchant/client referecne for easy association and

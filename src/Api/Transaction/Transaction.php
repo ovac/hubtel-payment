@@ -333,6 +333,16 @@ class Transaction extends Api
 
         return $this;
     }
+    /**
+     * This method sests a single callback for both the success and Error
+     * @param  string $primaryCallbackURL A url for callbacks from the hubtel server
+     * @return function
+     */
+    public function callback($primaryCallbackURL)
+    {
+        return $this->setPrimaryCallbackURL($primaryCallbackURL)
+            ->setSecondaryCallbackURL($primaryCallbackURL);
+    }
 
     /**
      * This method sets the callbacks for the Hubtel Payments
@@ -341,26 +351,35 @@ class Transaction extends Api
      */
     public function setCallback($data = [])
     {
-
-        if (array_key_exists('callbackOnSuccess', $data)) {
-            $this->setPrimaryCallbackURL($data['callbackOnSuccess']);
-        }
-
-        if (array_key_exists('callbackOnFail', $data)) {
-            $this->setCustomerName($data['callbackOnFail']);
-        }
-
-        if (array_key_exists('callback', $data)) {
-            if (is_array($data['callback']) && array_key_exists('success', $data['callback'])) {
-                $this->setPrimaryCallbackURL($data['callback']['success']);
+        if (is_array($data)) {
+            if (array_key_exists('callbackOnFail', $data)) {
+                $this->setSecondaryCallbackURL($data['callbackOnFail']);
             }
 
-            if (is_array($data['callback']) && array_key_exists('error', $data['callback'])) {
-                $this->setSecondaryCallbackURL($data['callback']['error']);
+            if (array_key_exists('callbackOnSuccess', $data)) {
+                $this->setPrimaryCallbackURL($data['callbackOnSuccess']);
             }
 
-            if (!is_array($data['callback'])) {
-                $this->setPrimaryCallbackURL($data['callback']);
+            if (array_key_exists('error', $data)) {
+                $this->setSecondaryCallbackURL($data['error']);
+            }
+
+            if (array_key_exists('success', $data)) {
+                $this->setPrimaryCallbackURL($data['success']);
+            }
+
+            if (array_key_exists('callback', $data)) {
+                if (is_array($data['callback']) && array_key_exists('success', $data['callback'])) {
+                    $this->setPrimaryCallbackURL($data['callback']['success']);
+                }
+
+                if (is_array($data['callback']) && array_key_exists('error', $data['callback'])) {
+                    $this->setSecondaryCallbackURL($data['callback']['error']);
+                }
+
+                if (is_string($data['callback'])) {
+                    $this->callback($data['callback']);
+                }
             }
         }
 

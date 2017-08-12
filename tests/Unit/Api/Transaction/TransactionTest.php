@@ -14,7 +14,8 @@
 
 namespace OVAC\HubtelPayment\Tests\Unit\Api\Transaction;
 
-use OVAC\HubtelPayment\Api\Transaction;
+use OVAC\HubtelPayment\Api\Transaction\Transaction;
+use OVAC\HubtelPayment\Config;
 use OVAC\HubtelPayment\Pay;
 
 class TransactionTest extends \PHPUnit_Framework_TestCase
@@ -98,6 +99,12 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
      * @var boolean
      */
     private $feesOnCustomer;
+    /**
+     * The OVAC/Hubtel-Payment Pay config.
+     *
+     * @var \OVAC\Hubtel\Config
+     */
+    protected $config;
 
     protected function setUp()
     {
@@ -120,5 +127,24 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
 
         //Only neccessry for Vodafone Cash users
         $this->token = '123456';
+
+        $this->config = new Config(
+            Pay::VERSION,
+            $accountNumber = 12345,
+            $clientId = 'someClientId',
+            $clientSecret = 'someClientSecret'
+        );
+    }
+
+    public function testSetCallbackSimpleKeys()
+    {
+
+        $api = (new Transaction($this->config))
+            ->setCallback(array(
+                'success' => $this->primaryCallbackURL,
+                'error' => $this->secondaryCallbackURL,
+            ));
+        $this->assertEquals($api->getSecondaryCallbackURL(), $this->secondaryCallbackURL, 'it should be the error callback URL');
+        $this->assertEquals($api->getPrimaryCallbackURL(), $this->primaryCallbackURL, 'it should be the success callback URL');
     }
 }

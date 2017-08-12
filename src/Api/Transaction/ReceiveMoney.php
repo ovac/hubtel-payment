@@ -28,6 +28,7 @@ use OVAC\HubtelPayment\Api\Transaction\Transaction;
 class ReceiveMoney extends Transaction
 {
     use MassAssignable;
+    use Transactable;
 
     /**
      * The 6 digit unique token required to debit a Vodafone
@@ -56,26 +57,13 @@ class ReceiveMoney extends Transaction
         $this->massAssign($data);
     }
     /**
-     * This function uses the accessors to set the amount to be billed
-     * to the customer
-     *
-     * @param float|string $amount This is the actual amount intended to be charged.
-     * (requred by the Hubtel ReceiveMoney Api)
-     *
-     * @return self
-     */
-    public static function amount($amount)
-    {
-        return (new self)->setAmount($amount);
-    }
-    /**
      * The phone number of the customer you want to bill (Send Pompt)
      * (requred by the Hubtel ReceiveMoney Api)
      *
      * @param  string $customerMsisdn This is the Customer Msisdn
      * @return self
      */
-    public function from($customerMsisdn)
+    protected function from($customerMsisdn)
     {
         return $this->setCustomerMsisdn($customerMsisdn);
     }
@@ -122,17 +110,6 @@ class ReceiveMoney extends Transaction
         return $this->setCustomerEmail($customerEmail);
     }
     /**
-     * Sets the channel (Mobile Network)
-     * (requred by the Hubtel ReceiveMoney Api)
-     *
-     * @param  string $channel The mobile network channel (example: mtn-gh)
-     * @return self
-     */
-    public function channel($channel)
-    {
-        return $this->setChannel($channel);
-    }
-    /**
      * Sets the 6 digit unique token required to debit a Vodafone Cash
      *
      * @param  string $token the 6 digit unique token required to debit a Vodafone Cash
@@ -151,21 +128,6 @@ class ReceiveMoney extends Transaction
     public function feesOnCustomer($feesOnCustomer)
     {
         return $this->setFeesOnCustomer($feesOnCustomer);
-    }
-    /**
-     * This method catches the receive money magic call from the PayClass.
-     * It could be used to pass the full config or start the expressive api.
-     *
-     * @param  float|array $data
-     * @return self
-     */
-    public function receiveMoney($data = [])
-    {
-        if (is_array($data)) {
-            return $this->massAssign($data);
-        }
-
-        return $this->setAmount($data);
     }
 
     /**

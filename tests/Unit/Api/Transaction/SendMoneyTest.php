@@ -15,6 +15,7 @@
 namespace OVAC\HubtelPayment\Tests\Unit\Api\Transaction;
 
 use OVAC\HubtelPayment\Api\Transaction\SendMoney;
+use OVAC\HubtelPayment\Pay;
 
 class SendMoneyTest extends \PHPUnit_Framework_TestCase
 {
@@ -113,6 +114,7 @@ class SendMoneyTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($api->getAmount(), $this->amount, 'The Amount on instance should be the amount charged');
         $this->assertEquals($api->getDescription(), $this->description, 'it should be the description passed in');
         $this->assertEquals($api->getClientReference(), $this->clientReference, 'it should be the reference passed in');
+        $this->assertEquals($api->getCustomerMsisdn(), $this->customerMsisdn, 'it should be the reference passed in');
         $this->assertEquals($api->getCustomerName(), $this->customerName, 'it should be the customer name passed in');
         $this->assertEquals($api->getCustomerEmail(), $this->customerEmail, 'it should be the Email passed in');
         $this->assertEquals($api->getChannel(), $this->channel, 'it should be the same channel passed in');
@@ -120,5 +122,11 @@ class SendMoneyTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($api->getPrimaryCallbackURL(), $this->primaryCallbackURL, 'it should be the same URL Passed in');
 
         return $api;
+    }
+
+    public function testPayCanMassAssignTransactions()
+    {
+        $sendMoney = Pay::sendMoney()->amount(10);
+        $receiveMoney = Pay::receiveMoney()->from('0553577261');
     }
 }
