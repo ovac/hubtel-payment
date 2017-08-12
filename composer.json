@@ -23,7 +23,8 @@
         "leaphub/phpcs-symfony2-standard": "~2.0.0",
         "phpmd/phpmd" : "@stable",
         "sebastian/phpcpd": "*",
-        "mockery/mockery": "^0.9.9"
+        "mockery/mockery": "^0.9.9",
+        "satooshi/php-coveralls": "^1.0"
     },
     "scripts" : {
         "phpunit"  : "vendor/bin/phpunit",
