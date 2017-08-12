@@ -12,7 +12,7 @@
  * @copyright   (c) 2017, Rescope Inc
  */
 
-namespace Unit\Api;
+namespace OVAC\HubtelPayment\Tests\Unit\Api\Transaction;
 
 use OVAC\HubtelPayment\Api\Transaction;
 use OVAC\HubtelPayment\Pay;

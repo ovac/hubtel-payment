@@ -2,7 +2,7 @@
 
 use Sami\RemoteRepository\GitHubRemoteRepository;
 use Sami\Sami;
-use Sami\Version\GitVersionCollection;
+// use Sami\Version\GitVersionCollection;
 use Symfony\Component\Finder\Finder;
 
 $iterator = Finder::create()
@@ -14,15 +14,15 @@ $iterator = Finder::create()
 ;
 
 // generate documentation for all v2.0.* tags, the 2.0 branch, and the master one
-$versions = GitVersionCollection::create($dir)
-    ->addFromTags('v1.0.*')
-// ->add('1.0', '1.0 branch')
-    ->add('master', 'master branch')
-;
+// $versions = GitVersionCollection::create($dir)
+//     ->addFromTags('v1.0.*')
+// // ->add('1.0', '1.0 branch')
+//     ->add('master', 'master branch')
+// ;
 
 return new Sami($iterator, array(
     // 'theme' => 'symfony',
-    'versions' => $versions,
+    'versions' => $versions = 'master',
     'title' => 'OVAC/Hubtel-Payment API',
     'build_dir' => __DIR__ . '/docs/sami/%version%/documentation',
     'cache_dir' => __DIR__ . '/docs/sami/%version%/cache',

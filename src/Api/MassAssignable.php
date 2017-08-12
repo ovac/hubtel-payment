@@ -105,7 +105,7 @@ trait MassAssignable
     protected function assignOnSendMoneyInstance($data = [])
     {
         if (get_class($this) === ReceiveMoney::class) {
-            var_dump($data);
+            return $data;
         }
     }
 

@@ -12,9 +12,9 @@
  * @copyright   (c) 2017, Rescope Inc
  */
 
-namespace Unit\Api\Transaction;
+namespace OVAC\HubtelPayment\Tests\Unit\Api\Transaction;
 
-use OVAC\HubtelPayment\Pay;
+use OVAC\HubtelPayment\Api\SendMoney;
 
 class SendMoneyTest extends \PHPUnit_Framework_TestCase
 {
@@ -79,24 +79,6 @@ class SendMoneyTest extends \PHPUnit_Framework_TestCase
      * @var string
      */
     private $description;
-    /**
-     * The 6 digit unique token required to debit a Vodafone
-     * Cash customer.  This token has to be generated and
-     * provided by the Vodafone customer. The customer
-     * dials *110# and selects menu item 6 to create
-     * the voucher. It  expires after 5 minutes if unused
-     *
-     * @var string
-     */
-    private $token;
-    /**
-     * This allows the fees of the transaction to be charged
-     * on the customer. If set to true the
-     * AmountCharged = Amount + Charges.
-     *
-     * @var boolean
-     */
-    private $feesOnCustomer;
 
     protected function setUp()
     {
@@ -114,10 +96,29 @@ class SendMoneyTest extends \PHPUnit_Framework_TestCase
 
         $this->primaryCallbackURL = 'http://www.ovac4u.com/payment/payment-success';
         $this->secondaryCallbackURL = 'http://www.ovac4u.com/payment/payment-failed';
+    }
 
-        $this->feesOnCustomer = true;
+    public function testSendMoneyApi()
+    {
+        $api = SendMoney::amount($this->amount)
+            ->to($this->customerMsisdn)
+            ->customerName($this->customerName)
+            ->customerEmail($this->customerEmail)
+            ->channel($this->channel)
+            ->callbackOnSuccess($this->primaryCallbackURL)
+            ->callbackOnFail($this->secondaryCallbackURL)
+            ->clientReference($this->clientReference)
+            ->description($this->description);
 
-        //Only neccessry for Vodafone Cash users
-        $this->token = '123456';
+        $this->assertEquals($api->getAmount(), $this->amount, 'The Amount on instance should be the amount charged');
+        $this->assertEquals($api->getDescription(), $this->description, 'it should be the description passed in');
+        $this->assertEquals($api->getClientReference(), $this->clientReference, 'it should be the reference passed in');
+        $this->assertEquals($api->getCustomerName(), $this->customerName, 'it should be the customer name passed in');
+        $this->assertEquals($api->getCustomerEmail(), $this->customerEmail, 'it should be the Email passed in');
+        $this->assertEquals($api->getChannel(), $this->channel, 'it should be the same channel passed in');
+        $this->assertEquals($api->getSecondaryCallbackURL(), $this->secondaryCallbackURL, 'it should be the same URL Passed in');
+        $this->assertEquals($api->getPrimaryCallbackURL(), $this->primaryCallbackURL, 'it should be the same URL Passed in');
+
+        return $api;
     }
 }

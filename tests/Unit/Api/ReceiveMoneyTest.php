@@ -12,7 +12,7 @@
  * @copyright   (c) 2017, Rescope Inc
  */
 
-namespace OVAC\HubtelPayment\Tests\Unit\Api\Transaction;
+namespace Unit\Api;
 
 use OVAC\HubtelPayment\Api\Transaction\ReceiveMoney;
 use OVAC\HubtelPayment\Pay;
@@ -150,7 +150,7 @@ class ReceiveMoneyTest extends \PHPUnit_Framework_TestCase
         return $api;
     }
 
-    public function testExpressiveReceiveMoneyMassAssignment()
+    public function testReceiveMoneyMassAssignment()
     {
 
         $api = new ReceiveMoney(array(

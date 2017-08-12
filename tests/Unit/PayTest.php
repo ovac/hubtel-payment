@@ -22,9 +22,9 @@ class PayTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * The Stripe API client instance.
+     * The OVAC/Hubtel-Payment Pay instance.
      *
-     * @var \Cartalyst\Stripe\Stripe
+     * @var \OVAC\Hubtel\Pay
      */
     protected $instance;
     /**
@@ -49,7 +49,7 @@ class PayTest extends \PHPUnit_Framework_TestCase
     {
         m::close();
     }
-    /** @test */
+
     public function testCreateNewInstanceUsingTheMakeMethod()
     {
         $pay = Pay::make([
