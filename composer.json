@@ -38,6 +38,7 @@
         "test"     : "vendor/bin/phpunit; composer phpcs; composer phpmd; composer phpcpd;",
         "sami"     : "bin/sami update ./sami.config.php -v",
         "phpdoc"   : "bin/phpDocumentor -d ./src -t ./docs/phpDocumentor --template=clean",
-        "document" : "composer sami; composer phpdoc;"
+        "document" : "composer sami; composer phpdoc;",
+        "coverage" : "vendor/bin/coveralls -v"
     }
 }
