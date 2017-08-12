@@ -15,7 +15,6 @@
 namespace OVAC\HubtelPayment\Api\Transaction;
 
 use OVAC\HubtelPayment\Api\Api;
-use OVAC\HubtelPayment\Api\MassAssignable;
 
 /**
  * Transaction Class
@@ -26,7 +25,6 @@ use OVAC\HubtelPayment\Api\MassAssignable;
  */
 class Transaction extends Api
 {
-    use MassAssignable;
     /**
      * The name of the customer.
      *
@@ -269,6 +267,7 @@ class Transaction extends Api
     /**
      * Set's a reference on the transaction for easy identification
      * and transaction tracking.
+     *
      * @param string $clientReference
      *
      * @return self
@@ -291,6 +290,7 @@ class Transaction extends Api
 
     /**
      * sets a description for the transaction.
+     *
      * @param string $description
      *
      * @return self
@@ -305,9 +305,9 @@ class Transaction extends Api
     /**
      * This function sets the customer data (name, email and msisdn|number|phone)
      *
-     * @param array $data Customer data
+     * @param   array $data Customer data
      * @example $data = ['name' => 'Victor', 'email' => 'contact@ovac4u.com', 'number' => '0553577261']
-     * @return self
+     * @return  self
      */
     public function setCustomer($data = [])
     {

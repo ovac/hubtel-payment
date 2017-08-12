@@ -14,17 +14,21 @@
 
 namespace OVAC\HubtelPayment\Api\Transaction;
 
+use OVAC\HubtelPayment\Api\Transaction\MassAssignable;
 use OVAC\HubtelPayment\Api\Transaction\Transaction;
 
 /**
  * Class ReceiveMoney
  *
- * This class encapsulates and implements an expressive API set
- * of methods required to place a call to the Hubtel Server
- * that in order to receive money from a customer.
+ * This class encapsulates and implements an expressive API using a
+ * set of methods to implement the required properties to
+ * place a call to the Hubtel Server in order to
+ * receive money from a customer.
  */
 class ReceiveMoney extends Transaction
 {
+    use MassAssignable;
+
     /**
      * The 6 digit unique token required to debit a Vodafone
      * Cash customer.  This token has to be generated and
@@ -55,7 +59,7 @@ class ReceiveMoney extends Transaction
      * This function uses the accessors to set the amount to be billed
      * to the customer
      *
-     * @param  float|string $amount This is the actual amount intended to be charged.
+     * @param float|string $amount This is the actual amount intended to be charged.
      * (requred by the Hubtel ReceiveMoney Api)
      *
      * @return self

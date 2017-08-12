@@ -156,37 +156,43 @@ abstract class Api implements ApiInterface
     /**
      * Create the client handler.
      *
-     * @return \GuzzleHttp\HandlerStack
+     * @return                               \GuzzleHttp\HandlerStack
      * @SuppressWarnings(PHPMD.StaticAccess)
      */
     protected function createHandler()
     {
         $stack = HandlerStack::create();
 
-        $stack->push(Middleware::mapRequest(function (RequestInterface $request) {
-            $config = $this->config;
-            $request = $request->withHeader('User-Agent', 'OVAC-Hubtel-Payment' . $config->getVersion());
-            $request = $request->withHeader('Authorization', 'Basic ' . base64_encode($config->getApiKey()));
+        $stack->push(
+            Middleware::mapRequest(
+                function (RequestInterface $request) {
+                    $config = $this->config;
+                    $request = $request->withHeader('User-Agent', 'OVAC-Hubtel-Payment' . $config->getVersion());
+                    $request = $request->withHeader('Authorization', 'Basic ' . base64_encode($config->getApiKey()));
 
-            return $request;
-        }));
+                    return $request;
+                }
+            )
+        );
 
-        $stack->push(Middleware::retry(
-            function (
-                $retries,
-                RequestInterface $request,
-                ResponseInterface $response = null,
-                TransferException $exception = null
-            ) {
-                return $retries < 3 && ($exception instanceof ConnectException || (
-                    $response && $response->getStatusCode() >= 500
-                ));
-            },
-            function ($retries) {
-                return (int) pow(2, $retries) * 1000;
-            }
-        ));
+            $stack->push(
+                Middleware::retry(
+                    function (
+                        $retries,
+                        RequestInterface $request,
+                        ResponseInterface $response = null,
+                        TransferException $exception = null
+                    ) {
+                        return $retries < 3 && ($exception instanceof ConnectException || (
+                        $response && $response->getStatusCode() >= 500
+                        ));
+                    },
+                    function ($retries) {
+                        return (int) pow(2, $retries) * 1000;
+                    }
+                )
+            );
 
-        return $stack;
+                return $stack;
     }
 }

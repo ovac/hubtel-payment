@@ -12,10 +12,10 @@
  * @copyright   (c) 2017, Rescope Inc
  */
 
-namespace OVAC\HubtelPayment\Api;
+namespace OVAC\HubtelPayment\Api\Transaction;
 
-use OVAC\HubtelPayment\Api\SendMoney;
 use OVAC\HubtelPayment\Api\Transaction\ReceiveMoney;
+use OVAC\HubtelPayment\Api\Transaction\SendMoney;
 
 /**
  * Trait MassAssignable
@@ -27,7 +27,7 @@ trait MassAssignable
 {
     /**
      * This method is used to mass assign the properties required by the Hubtel ReceiveMoney and SendMoney Api
-     * @param  array  $data
+     * @param  array $data
      * @example ['amount' => 10, 'customer' => ['name' => 'victor', ...], 'clientReference' => 123, 'callbackOnSuccess' => 'url', 'amount' => 10, 'description' => 'some description']
      * @return self
      */

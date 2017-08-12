@@ -14,7 +14,7 @@
 
 namespace OVAC\HubtelPayment\Tests\Unit\Api\Transaction;
 
-use OVAC\HubtelPayment\Api\SendMoney;
+use OVAC\HubtelPayment\Api\Transaction\SendMoney;
 
 class SendMoneyTest extends \PHPUnit_Framework_TestCase
 {

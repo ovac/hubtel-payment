@@ -14,16 +14,18 @@ end
 
 def runalert(message)
 
-    title = /FAILURES/i.match(message.to_s) ? "FAILURES" : "PASS"
+    title = /(FAILURES|ERROR)/i.match(message.to_s) ? "FAILURES" : "PASS"
 
     if title == "FAILURES"
         puts message.red
-        info = /^Tests(.+)\.$/i.match(message.to_s)
+        info = /^Tests(.+)\.$/i.match(message.to_s)||/Error(.+)$/i.match(message.to_s)
+        info = (info[0].to_s).split(/\s+/, 9+1)[0...9].join(' ').split(/\w+\\/).join('')
+        puts info
     else
-        puts message.green
         info = /^ok\s\((.+)\)$/i.match(message.to_s)
+        puts message.green
     end
-    system %(`osascript -e 'display notification "#{info}" with title "PHP Unit: #{title}"';`)
+    system %(osascript -e 'display notification "#{info}" with title "#{title}"')
     system %(`say '#{info}';`)
 
     # Update documentation if all tests pass successfully
@@ -31,5 +33,4 @@ def runalert(message)
         document = `#{'composer document'}`
         puts "Documentation Updated".yellow
     end
-
 end
