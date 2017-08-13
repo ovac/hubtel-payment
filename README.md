@@ -5,6 +5,7 @@
 [![Latest Stable Version](https://poser.pugx.org/ovac/hubtel-payment/v/stable)](https://packagist.org/packages/ovac/hubtel-payment)
 [![Total Downloads](https://poser.pugx.org/ovac/hubtel-payment/downloads)](https://packagist.org/packages/ovac/hubtel-payment)
 [![License](https://poser.pugx.org/ovac/hubtel-payment/license)](https://packagist.org/packages/ovac/hubtel-payment)
+[![Dependency Status](https://www.versioneye.com/user/projects/598fccd8368b081653c84e2e/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/598fccd8368b081653c84e2e)
 
 A comphrehensive PHP Package for consuming the Hubtel Payment API
 
