@@ -129,27 +129,35 @@ class ApiTest extends TestCase
 
     public function test_api_execute_throws_ClientException_is_server_gives_error()
     {
-        $this->expectException(ClientException::class);
+        // $this->expectException(ClientException::class);
 
-        $httpMock = new MockHandler([
-            new Response(401, ['X-Foo' => 'Bar']),
-        ]);
+        try {
+            $httpMock = new MockHandler([
+                new Response(401, ['X-Foo' => 'Bar']),
+            ]);
 
-        $handler = HandlerStack::create($httpMock);
+            $handler = HandlerStack::create($httpMock);
 
-        $path = '/some_path';
-        $parameters = ['hello' => 'world'];
+            $path = '/some_path';
+            $parameters = ['hello' => 'world'];
 
-        $mock = $this->getMockBuilder(Api::class)
-            ->setConstructorArgs([$this->config])
-            ->setMethods(['createHandler'])
-            ->getMockForAbstractClass();
+            $mock = $this->getMockBuilder(Api::class)
+                ->setConstructorArgs([$this->config])
+                ->setMethods(['createHandler'])
+                ->getMockForAbstractClass();
 
-        $mock->expects($this->once())
-            ->method('createHandler')
-            ->will($this->returnValue($handler));
+            $mock->expects($this->once())
+                ->method('createHandler')
+                ->will($this->returnValue($handler));
 
-        $mock->_get($path, $parameters);
+            $mock->_get($path, $parameters);
+        } catch (ClientException $e) {
+            $this->assertTrue(!!$e);
+
+            return;
+        }
+
+        $this->fail();
     }
 
     public function test_api_execute_test_successful_call()
@@ -184,8 +192,25 @@ class ApiTest extends TestCase
         foreach ($container as $transaction) {
             $this->assertSame($transaction['request']->getMethod(), 'GET');
             $this->assertSame($transaction['response']->getStatusCode(), 200);
-
-            var_dump($transaction['options']);
         }
+    }
+
+    public static function callProtectedMethod($object, $method, array $args = array())
+    {
+        $class = new \ReflectionClass(get_class($object));
+        $method = $class->getMethod($method);
+        $method->setAccessible(true);
+        return $method->invokeArgs($object, $args);
+    }
+
+    public function test_api_createHandler_method()
+    {
+        $mock = $this->getMockBuilder(Api::class)
+            ->setConstructorArgs([$this->config])
+            ->getMockForAbstractClass();
+
+        $handlerStack = self::callProtectedMethod($mock, 'createHandler');
+
+        self::assertInstanceOf(HandlerStack::class, $handlerStack);
     }
 }

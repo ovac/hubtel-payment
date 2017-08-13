@@ -151,7 +151,7 @@ abstract class Api implements ApiInterface
 
                 return json_decode((string) $response->getBody(), true);
             } catch (RequestInterface $e) {
-                new ClientException($e->getMessage(), $e);
+                throw new ClientException($e->getMessage(), $e);
             }
 
             return;
