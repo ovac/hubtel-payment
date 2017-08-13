@@ -336,12 +336,16 @@ class Transaction extends Api
     /**
      * This method sests a single callback for both the success and Error
      * @param  string $primaryCallbackURL A url for callbacks from the hubtel server
-     * @return function
+     * @return self
      */
     public function callback($primaryCallbackURL)
     {
-        return $this->setPrimaryCallbackURL($primaryCallbackURL)
-            ->setSecondaryCallbackURL($primaryCallbackURL);
+        if (is_string($primaryCallbackURL)) {
+            $this->setPrimaryCallbackURL($primaryCallbackURL)
+                ->setSecondaryCallbackURL($primaryCallbackURL);
+        }
+
+        return $this;
     }
 
     /**
@@ -352,6 +356,7 @@ class Transaction extends Api
     public function setCallback($data = [])
     {
         if (is_array($data)) {
+
             if (array_key_exists('callbackOnFail', $data)) {
                 $this->setSecondaryCallbackURL($data['callbackOnFail']);
             }
@@ -369,21 +374,11 @@ class Transaction extends Api
             }
 
             if (array_key_exists('callback', $data)) {
-                if (is_array($data['callback']) && array_key_exists('success', $data['callback'])) {
-                    $this->setPrimaryCallbackURL($data['callback']['success']);
-                }
-
-                if (is_array($data['callback']) && array_key_exists('error', $data['callback'])) {
-                    $this->setSecondaryCallbackURL($data['callback']['error']);
-                }
-
-                if (is_string($data['callback'])) {
-                    $this->callback($data['callback']);
-                }
+                $this->setCallback($data['callback']);
             }
         }
 
-        return $this;
+        return $this->callback($data);
     }
     /**
      * Sets the URL to call when the payment fails or is unsuccessfull
