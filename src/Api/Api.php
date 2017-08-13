@@ -74,10 +74,13 @@ abstract class Api implements ApiInterface
      * Change the Default baseUrl defined by hubtel
      *
      * @param string $baseUrl [description]
+     * @return self
      */
     public function setBaseUrl($baseUrl)
     {
         $this->baseUrl = $baseUrl;
+
+        return $this;
     }
     /**
      * Get the Hubtel payment Base Url from the Api Instance
@@ -142,13 +145,13 @@ abstract class Api implements ApiInterface
      */
     public function execute($httpMethod, $url, array $parameters = [])
     {
-        if (Config instanceof $this->config) {
+        if ($this->config instanceof Config) {
             try {
                 $response = $this->getClient()->{$httpMethod}($url, ['query' => $parameters]);
 
                 return json_decode((string) $response->getBody(), true);
-            } catch (ClientException $e) {
-                new ClientException($e);
+            } catch (RequestInterface $e) {
+                new ClientException($e->getMessage(), $e);
             }
 
             return;
@@ -168,7 +171,7 @@ abstract class Api implements ApiInterface
 
         return new Client(
             [
-                'base_uri' => $this->baseUrl() . $config->getAccountNumber(), 'handler' => $this->createHandler(),
+                'base_uri' => $this->baseUrl . $config->getAccountNumber(), 'handler' => $this->createHandler(),
             ]
         );
     }
@@ -186,32 +189,32 @@ abstract class Api implements ApiInterface
             Middleware::mapRequest(
                 function (RequestInterface $request) {
                     $config = $this->config;
-                    $request = $request->withHeader('User-Agent', 'OVAC-Hubtel-Payment' . $config->getVersion());
-                    $request = $request->withHeader('Authorization', 'Basic ' . base64_encode($config->getApiKey()));
+                    $request = $request->withHeader('User-Agent', 'OVAC-Hubtel-Payment' . $config->getPackageVersion());
+                    $request = $request->withHeader('Authorization', 'Basic ' . base64_encode($config->getClientId() . ':' . $config->getClientSecret()));
 
                     return $request;
                 }
             )
         );
 
-            $stack->push(
-                Middleware::retry(
-                    function (
-                        $retries,
-                        RequestInterface $request,
-                        ResponseInterface $response = null,
-                        TransferException $exception = null
-                    ) {
-                        return $retries < 3 && ($exception instanceof ConnectException || (
+        $stack->push(
+            Middleware::retry(
+                function (
+                    $retries,
+                    RequestInterface $request,
+                    ResponseInterface $response = null,
+                    TransferException $exception = null
+                ) {
+                    return $retries < 3 && ($exception instanceof ConnectException || (
                         $response && $response->getStatusCode() >= 500
-                        ));
-                    },
-                    function ($retries) {
-                        return (int) pow(2, $retries) * 1000;
-                    }
-                )
-            );
+                    ));
+                },
+                function ($retries) {
+                    return (int) pow(2, $retries) * 1000;
+                }
+            )
+        );
 
-                return $stack;
+        return $stack;
     }
 }

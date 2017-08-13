@@ -17,8 +17,9 @@ namespace OVAC\HubtelPayment\Tests\Unit\Api\Transaction;
 use OVAC\HubtelPayment\Api\Transaction\Transaction;
 use OVAC\HubtelPayment\Config;
 use OVAC\HubtelPayment\Pay;
+use PHPUnit\Framework\TestCase;
 
-class TransactionTest extends \PHPUnit_Framework_TestCase
+class TransactionTest extends TestCase
 {
     /**
      * The name of the customer.

@@ -14,7 +14,7 @@ end
 
 def runalert(message)
 
-    title = /(FAILURES|ERROR)/i.match(message.to_s) ? "FAILURES" : "PASS"
+    title = /(FAILURES|ERROR|WARNINGS)/i.match(message.to_s) ? "FAILURES" : "PASS"
 
     if title == "FAILURES"
         puts message.red
@@ -22,7 +22,7 @@ def runalert(message)
         info = (info[0].to_s).split(/\s+/, 9+1)[0...9].join(' ').split(/\w+\\/).join('')
         puts info
     else
-        info = /^ok\s\((.+)\)$/i.match(message.to_s)
+        info = /^OK(.+)$/.match(message.to_s)
         puts message.green
     end
     system %(osascript -e 'display notification "#{info}" with title "#{title}"')

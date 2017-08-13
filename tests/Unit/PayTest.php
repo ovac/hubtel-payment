@@ -19,8 +19,9 @@ use OVAC\HubtelPayment\Api\Transaction\ReceiveMoney;
 use OVAC\HubtelPayment\Api\Transaction\SendMoney;
 use OVAC\HubtelPayment\Config;
 use OVAC\HubtelPayment\Pay;
+use PHPUnit\Framework\TestCase;
 
-class PayTest extends \PHPUnit_Framework_TestCase
+class PayTest extends TestCase
 {
 
     /**
@@ -169,12 +170,6 @@ class PayTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(ReceiveMoney::class, $receiveMoney, 'The pay class should create config of ReceiveMoney class');
     }
 
-    public function testPayCanMassAssignTransactionsNamespaceClasses()
-    {
-        $sendMoney = Pay::sendMoney();
-        $receiveMoney = Pay::receiveMoney()->from('0553577261');
-    }
-
     public function testApiMagicMethod()
     {
         $receiveMoney = (new Pay)->receiveMoney();
@@ -184,12 +179,7 @@ class PayTest extends \PHPUnit_Framework_TestCase
 
     public function testApiMagicMethodBadMethod()
     {
-        $this->setExpectedException(\BadMethodCallException::class);
+        $this->expectException(\BadMethodCallException::class);
         (new Pay)->some_unexisting_random_method();
-    }
-
-    public function testApiMagicStaticMethod()
-    {
-        //TODO: Test for Static to Instance Magic Calls to the API Methods
     }
 }

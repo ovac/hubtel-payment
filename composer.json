@@ -18,10 +18,10 @@
         "guzzlehttp/guzzle": "^6.3"
     },
     "require-dev": {
-        "phpunit/phpunit": "^4.4",
-        "squizlabs/php_codesniffer": "^2.8.1",
-        "leaphub/phpcs-symfony2-standard": "~2.0.0",
-        "phpmd/phpmd" : "@stable",
+        "phpunit/phpunit": "^6.3.0",
+        "squizlabs/php_codesniffer": "^2.9.1",
+        "leaphub/phpcs-symfony2-standard": "^2.0.3",
+        "phpmd/phpmd" : "^2.6.0",
         "sebastian/phpcpd": "*",
         "mockery/mockery": "^0.9.9",
         "satooshi/php-coveralls": "^1.0"

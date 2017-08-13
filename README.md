@@ -2,6 +2,9 @@
 ---------------------------------
 [![Build Status](https://travis-ci.org/ovac/hubtel-payment.svg?branch=master)](https://travis-ci.org/ovac/hubtel-payment) 
 [![Coverage Status](https://coveralls.io/repos/github/ovac/hubtel-payment/badge.svg?branch=master)](https://coveralls.io/github/ovac/hubtel-payment?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/ovac/hubtel-payment/v/stable)](https://packagist.org/packages/ovac/hubtel-payment)
+[![Total Downloads](https://poser.pugx.org/ovac/hubtel-payment/downloads)](https://packagist.org/packages/ovac/hubtel-payment)
+[![License](https://poser.pugx.org/ovac/hubtel-payment/license)](https://packagist.org/packages/ovac/hubtel-payment)
 
 A comphrehensive PHP Package for consuming the Hubtel Payment API
 

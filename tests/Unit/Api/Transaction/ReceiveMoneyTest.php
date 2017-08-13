@@ -17,8 +17,9 @@ namespace OVAC\HubtelPayment\Tests\Unit\Api\Transaction;
 use OVAC\HubtelPayment\Api\Transaction\ReceiveMoney;
 use OVAC\HubtelPayment\Config;
 use OVAC\HubtelPayment\Pay;
+use PHPUnit\Framework\TestCase;
 
-class ReceiveMoneyTest extends \PHPUnit_Framework_TestCase
+class ReceiveMoneyTest extends TestCase
 {
     /**
      * The name of the customer.
@@ -264,14 +265,14 @@ class ReceiveMoneyTest extends \PHPUnit_Framework_TestCase
 
     public function testTransactableStaticBadMethodsException()
     {
-        $this->setExpectedException(\BadMethodCallException::class);
+        $this->expectException(\BadMethodCallException::class);
 
         ReceiveMoney::clientReference($this->customerMsisdn);
     }
 
     public function testBadInstanceMethodException()
     {
-        $this->setExpectedException(\BadMethodCallException::class);
+        $this->expectException(\BadMethodCallException::class);
 
         (new ReceiveMoney)->some_bad_method($this->customerMsisdn);
     }
