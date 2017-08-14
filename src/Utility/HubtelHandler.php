@@ -66,13 +66,13 @@ class HubtelHandler
     public function createHandler()
     {
         $this->pushHeaderMiddleware(
-            function (RequestInterface $request) {
+            function(RequestInterface $request) {
                 return $request->withHeader('User-Agent', 'OVAC-Hubtel-Payment' . $this->config->getPackageVersion());
             }
         );
 
         $this->pushHeaderMiddleware(
-            function (RequestInterface $request) {
+            function(RequestInterface $request) {
                 return $request->withHeader(
                     'Authorization', 'Basic ' . base64_encode(
                         $this->config->getClientId() . ':' . $this->config->getClientSecret()
@@ -156,7 +156,7 @@ class HubtelHandler
          * @see    http://docs.guzzlephp.org/en/stable/handlers-and-middleware.html Guzzle: Handlers and Middlewares.
          */
 
-        return function (
+        return function(
             $retries,
             RequestInterface $request,
             ResponseInterface $response = null,
@@ -192,7 +192,7 @@ class HubtelHandler
          * @see    http://docs.guzzlephp.org/en/stable/handlers-and-middleware.html Guzzle: Handlers and Middlewares.
          */
 
-        return function ($retries) {
+        return function($retries) {
             return (int) pow(2, $retries) * 1000;
         };
     }
