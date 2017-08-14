@@ -16,6 +16,7 @@ namespace OVAC\HubtelPayment\Tests\Unit\Api\Transaction;
 
 use OVAC\HubtelPayment\Api\Transaction\ReceiveMoney;
 use OVAC\HubtelPayment\Config;
+use OVAC\HubtelPayment\Exception\MissingParameterException;
 use OVAC\HubtelPayment\Pay;
 use PHPUnit\Framework\TestCase;
 
@@ -338,7 +339,19 @@ class ReceiveMoneyTest extends TestCase
                 'callbackOnSuccess' => $this->primaryCallbackURL,
             ));
 
-        $this->assertEquals($api->getSecondaryCallbackURL(), $this->secondaryCallbackURL, 'it should be the error callback URL');
-        $this->assertEquals($api->getPrimaryCallbackURL(), $this->primaryCallbackURL, 'it should be the success callback URL');
+        $this->assertEquals(
+            $api->getSecondaryCallbackURL(), $this->secondaryCallbackURL, 'it should be the error callback URL'
+        );
+
+        $this->assertEquals(
+            $api->getPrimaryCallbackURL(), $this->primaryCallbackURL, 'it should be the success callback URL'
+        );
+    }
+
+    public function test_run_incomplete_required_throws_error_call()
+    {
+        $this->expectException(MissingParameterException::class);
+
+        (new ReceiveMoney)->run();
     }
 }

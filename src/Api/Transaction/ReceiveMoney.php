@@ -16,6 +16,7 @@ namespace OVAC\HubtelPayment\Api\Transaction;
 
 use OVAC\HubtelPayment\Api\Transaction\MassAssignable;
 use OVAC\HubtelPayment\Api\Transaction\Transaction;
+use OVAC\HubtelPayment\Utility\CanCleanParameters;
 
 /**
  * Class ReceiveMoney
@@ -29,6 +30,7 @@ class ReceiveMoney extends Transaction
 {
     use MassAssignable;
     use Transactable;
+    use CanCleanParameters;
 
     /**
      * The 6 digit unique token required to debit a Vodafone
@@ -49,7 +51,29 @@ class ReceiveMoney extends Transaction
      */
     protected $feesOnCustomer;
     /**
+     * {@inheritdoc}
+     */
+    protected $parametersRequired = [
+        'CustomerName',
+        'CustomerMsisdn',
+        'Amount',
+        'PrimaryCallbackURL',
+        'Description',
+        'Channel',
+    ];
+    /**
+     * {@inheritdoc}
+     */
+    protected $parametersOptional = [
+        'CustomerEmail',
+        'SecondaryCallbackURL',
+        'ClientReference',
+        'FeesOnCustomer',
+        'Token',
+    ];
+    /**
      * Construct for creating a new instance of the ReceiveMoney Api class
+     *
      * @param array $data An array with configurations for the receive money class
      */
     public function __construct($data = [])
@@ -131,14 +155,6 @@ class ReceiveMoney extends Transaction
     }
 
     /**
-     * [run description]
-     * @return [type] [description]
-     */
-    public function run()
-    {
-    }
-
-    /**
      * @return string
      */
     public function getToken()
@@ -176,5 +192,16 @@ class ReceiveMoney extends Transaction
         $this->feesOnCustomer = $feesOnCustomer;
 
         return $this;
+    }
+    /**
+     * The method runs the transaction
+     *
+     * @return
+     */
+    public function run()
+    {
+        if ($this->propertiesPassRequired()) {
+            $this->_get('/receive/mobilemoney', $this->propertiesToArray());
+        }
     }
 }

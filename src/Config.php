@@ -36,7 +36,7 @@ class Config implements ConfigInterface
      *
      * @var string
      */
-    protected $accoutNumber;
+    protected $accountNumber;
     /**
      * The Hubtel Developer Applicaton Client Id.
      *

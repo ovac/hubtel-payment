@@ -88,6 +88,27 @@ class Transaction extends Api
     protected $description;
 
     /**
+     * Defines an array of required properties
+     *
+     * Names must correspond with properties/parameters on the class
+     * and the properties must accessors defined on the
+     * instance
+     *
+     * @var array
+     */
+    protected $parametersRequired = [];
+    /**
+     * Defines an array of the names of optional properties/parameters names
+     *
+     * Names must correspond with properties on the class
+     * and the properties must accessors defined on the
+     * instance
+     *
+     * @var array
+     */
+    protected $parametersOptional = [];
+
+    /**
      * returnes the name of the give customer
      *
      * @return string the customer name
@@ -161,6 +182,7 @@ class Transaction extends Api
 
     /**
      * returns the transaction channel (Mobile Network)
+     *
      * @return string
      */
     public function getChannel()
@@ -281,6 +303,7 @@ class Transaction extends Api
 
     /**
      * gets the description of the transaction.
+     *
      * @return string
      */
     public function getDescription()
@@ -335,6 +358,7 @@ class Transaction extends Api
     }
     /**
      * This method sests a single callback for both the success and Error
+     *
      * @param  string $primaryCallbackURL A url for callbacks from the hubtel server
      * @return self
      */
@@ -350,7 +374,8 @@ class Transaction extends Api
 
     /**
      * This method sets the callbacks for the Hubtel Payments
-     * @param array|string $data
+     *
+     * @param  array|string $data
      * @return self
      */
     public function setCallback($data = [])

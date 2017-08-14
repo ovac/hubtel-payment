@@ -16,15 +16,9 @@ namespace OVAC\HubtelPayment\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
-use GuzzleHttp\Exception\ConnectException;
-use GuzzleHttp\Exception\TransferException;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Middleware;
 use OVAC\HubtelPayment\Config;
-use OVAC\HubtelPayment\ConfigInterface;
 use OVAC\HubtelPayment\Exception\Handler;
-use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
+use OVAC\HubtelPayment\Utility\HubtelHandler;
 
 /**
  * Api Class
@@ -73,7 +67,7 @@ abstract class Api implements ApiInterface
     /**
      * Change the Default baseUrl defined by hubtel
      *
-     * @param string $baseUrl [description]
+     * @param  string $baseUrl The hubtel Resource Base URL
      * @return self
      */
     public function setBaseUrl($baseUrl)
@@ -142,6 +136,9 @@ abstract class Api implements ApiInterface
     }
     /**
      * {@inheritdoc}
+     *
+     * @throws \RuntimeException
+     * @throws \Handler
      */
     public function execute($httpMethod, $url, array $parameters = [])
     {
@@ -150,15 +147,14 @@ abstract class Api implements ApiInterface
                 $response = $this->getClient()->{$httpMethod}($url, ['query' => $parameters]);
 
                 return json_decode((string) $response->getBody(), true);
-            } catch (RequestInterface $e) {
-                throw new ClientException($e->getMessage(), $e);
+            } catch (ClientException $e) {
+                throw new Handler($e);
             }
 
             return;
         }
 
         throw new \RuntimeException('The API requires a configuration instance.');
-
     }
     /**
      * Returns an Http client instance.
@@ -171,50 +167,20 @@ abstract class Api implements ApiInterface
 
         return new Client(
             [
-                'base_uri' => $this->baseUrl . $config->getAccountNumber(), 'handler' => $this->createHandler(),
+                'base_uri' => $this->baseUrl . $config->getAccountNumber(),
+                'handler' => $this->createHandler($this->config),
             ]
         );
     }
+
     /**
      * Create the client handler.
      *
-     * @return                               \GuzzleHttp\HandlerStack
-     * @SuppressWarnings(PHPMD.StaticAccess)
+     * @param  \OVAC\HubtelPayment\Config $config
+     * @return \GuzzleHttp\HandlerStack
      */
-    protected function createHandler()
+    protected function createHandler(Config $config)
     {
-        $stack = HandlerStack::create();
-
-        $stack->push(
-            Middleware::mapRequest(
-                function (RequestInterface $request) {
-                    $config = $this->config;
-                    $request = $request->withHeader('User-Agent', 'OVAC-Hubtel-Payment' . $config->getPackageVersion());
-                    $request = $request->withHeader('Authorization', 'Basic ' . base64_encode($config->getClientId() . ':' . $config->getClientSecret()));
-
-                    return $request;
-                }
-            )
-        );
-
-        $stack->push(
-            Middleware::retry(
-                function (
-                    $retries,
-                    RequestInterface $request,
-                    ResponseInterface $response = null,
-                    TransferException $exception = null
-                ) {
-                    return $retries < 3 && ($exception instanceof ConnectException || (
-                        $response && $response->getStatusCode() >= 500
-                    ));
-                },
-                function ($retries) {
-                    return (int) pow(2, $retries) * 1000;
-                }
-            )
-        );
-
-        return $stack;
+        return (new HubtelHandler($config))->createHandler();
     }
 }

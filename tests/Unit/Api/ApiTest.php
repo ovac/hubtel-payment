@@ -14,13 +14,12 @@
 
 namespace OVAC\HubtelPayment\Tests\Unit\Api;
 
-use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Response;
 use OVAC\HubtelPayment\Api\Api;
 use OVAC\HubtelPayment\Config;
+use OVAC\HubtelPayment\Exception\UnauthorizedException;
 use OVAC\HubtelPayment\Pay;
 use PHPUnit\Framework\TestCase;
 
@@ -127,45 +126,33 @@ class ApiTest extends TestCase
         $mock->_get($path, $parameters);
     }
 
-    public function test_api_execute_throws_ClientException_is_server_gives_error()
+    public function test_api_execute_throws_ClientException_if_server_gives_error()
     {
-        // $this->expectException(ClientException::class);
+        $this->expectException(UnauthorizedException::class);
 
-        try {
-            $httpMock = new MockHandler([
-                new Response(401, ['X-Foo' => 'Bar']),
-            ]);
+        $httpMock = new MockHandler([
+            new Response(401, ['X-Foo' => 'Bar']),
+        ]);
 
-            $handler = HandlerStack::create($httpMock);
+        $handler = HandlerStack::create($httpMock);
 
-            $path = '/some_path';
-            $parameters = ['hello' => 'world'];
+        $path = '/some_path';
+        $parameters = ['hello' => 'world'];
 
-            $mock = $this->getMockBuilder(Api::class)
-                ->setConstructorArgs([$this->config])
-                ->setMethods(['createHandler'])
-                ->getMockForAbstractClass();
+        $mock = $this->getMockBuilder(Api::class)
+            ->setConstructorArgs([$this->config])
+            ->setMethods(['createHandler'])
+            ->getMockForAbstractClass();
 
-            $mock->expects($this->once())
-                ->method('createHandler')
-                ->will($this->returnValue($handler));
+        $mock->expects($this->once())
+            ->method('createHandler')
+            ->will($this->returnValue($handler));
 
-            $mock->_get($path, $parameters);
-        } catch (ClientException $e) {
-            $this->assertTrue(!!$e);
-
-            return;
-        }
-
-        $this->fail();
+        $mock->_get($path, $parameters);
     }
 
     public function test_api_execute_test_successful_call()
     {
-
-        $container = [];
-        $history = Middleware::history($container);
-
         $path = '/some_path';
         $parameters = ['hello' => 'world'];
 
@@ -187,12 +174,6 @@ class ApiTest extends TestCase
         $response = $mock->_get($path, $parameters);
 
         $this->assertSame(json_encode($response), json_encode($parameters));
-
-        // Iterate over the requests and responses
-        foreach ($container as $transaction) {
-            $this->assertSame($transaction['request']->getMethod(), 'GET');
-            $this->assertSame($transaction['response']->getStatusCode(), 200);
-        }
     }
 
     public static function callProtectedMethod($object, $method, array $args = array())
@@ -209,7 +190,7 @@ class ApiTest extends TestCase
             ->setConstructorArgs([$this->config])
             ->getMockForAbstractClass();
 
-        $handlerStack = self::callProtectedMethod($mock, 'createHandler');
+        $handlerStack = self::callProtectedMethod($mock, 'createHandler', [$this->config]);
 
         self::assertInstanceOf(HandlerStack::class, $handlerStack);
     }

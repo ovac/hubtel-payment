@@ -32,6 +32,7 @@ class SendMoney extends Transaction
 
     /**
      * Construct for creating a new instance of the SendMoney Api class
+     *
      * @param array $data An array with configurations for the send money class
      */
     public function __construct($data = [])
