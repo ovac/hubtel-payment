@@ -41,8 +41,6 @@ trait CanCleanParameters
             }
 
             throw new MissingParameterException('The ' . $key . ' parameter is required');
-
-            return false;
         }
     }
     /**

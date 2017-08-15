@@ -204,7 +204,7 @@ class ReceiveMoney extends Transaction
     /**
      * The method runs the transaction
      *
-     * @return json
+     * @return Object
      */
     public function run()
     {
