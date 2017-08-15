@@ -14,6 +14,10 @@
 
 namespace OVAC\HubtelPayment\Tests\Unit\Api\Transaction;
 
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\Psr7\Response;
+use OVAC\HubtelPayment\Api\Api;
 use OVAC\HubtelPayment\Api\Transaction\ReceiveMoney;
 use OVAC\HubtelPayment\Config;
 use OVAC\HubtelPayment\Exception\MissingParameterException;
@@ -168,6 +172,8 @@ class ReceiveMoneyTest extends TestCase
             ->feesOnCustomer($this->feesOnCustomer);
 
         $this->checkValues($api);
+
+        return $api;
     }
 
     /**
@@ -353,5 +359,58 @@ class ReceiveMoneyTest extends TestCase
         $this->expectException(MissingParameterException::class);
 
         (new ReceiveMoney)->run();
+    }
+
+    /**
+     * @depends testExpressiveReceiveMoney
+     * @return
+     */
+    public function test_receive_money_e2e($api)
+    {
+        // putenv("HUBTEL_ACCOUNT_NUMBER={$this->config->getAccountNumber()}");
+        // putenv("HUBTEL_CLIENT_ID={$this->config->getClientId()}");
+        // putenv("HUBTEL_CLIENT_SECRET={$this->config->getClientSecret()}");
+        $api
+            ->injectConfig($this->config)
+            // ->run()
+        ;
+        $this->assertEquals($api->getCustomerName(), $this->customerName);
+    }
+
+    public function test_api_createHandler_method()
+    {
+        $httpMock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], json_encode(['X-Foo' => 'Bar'])),
+        ]);
+
+        $handler = HandlerStack::create($httpMock);
+
+        $mock = $this->getMockBuilder(ReceiveMoney::class)
+            ->setMethods(['createHandler'])
+            ->getMock();
+
+        $mock->expects($this->once())->method('createHandler')->will($this->returnValue($handler));
+
+        $mock->injectConfig($this->config);
+
+        $mock->from($this->customerMsisdn)
+            ->description($this->description)
+            ->reference($this->clientReference)
+            ->customerName($this->customerName)
+            ->customerEmail($this->customerEmail)
+            ->channel($this->channel)
+            ->callbackOnFail($this->secondaryCallbackURL)
+            ->callbackOnSuccess($this->primaryCallbackURL)
+            ->token($this->token)
+            ->feesOnCustomer($this->feesOnCustomer);
+
+        $result = $mock->run();
+
+        $this->assertEquals($result, ['X-Foo' => 'Bar']);
+        // $this->assertEquals(
+        //     $mock->getResponse()->getUrl(),
+        //     "https://api.hubtel.com/v1/merchantaccount/merchants/12345/receive/mobilemoney"
+        // );
+
     }
 }

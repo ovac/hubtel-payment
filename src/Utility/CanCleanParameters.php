@@ -41,6 +41,8 @@ trait CanCleanParameters
             }
 
             throw new MissingParameterException('The ' . $key . ' parameter is required');
+
+            return false;
         }
     }
     /**
@@ -89,7 +91,7 @@ trait CanCleanParameters
     protected function accessPropertyByKey($key)
     {
         try {
-            $this->{'get' . ucwords($key)}();
+            return $this->{'get' . ucwords($key)}();
         } catch (BadMethodCallException $e) {
             throw new \RunitimeException('The ' . $key . ' parameter must have a defined get' . ucwords($key) . ' method.');
         }

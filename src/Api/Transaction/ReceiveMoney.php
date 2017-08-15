@@ -183,6 +183,14 @@ class ReceiveMoney extends Transaction
     }
 
     /**
+     * @return boolean
+     */
+    public function getFeesOnCustomer()
+    {
+        return $this->feesOnCustomer;
+    }
+
+    /**
      * @param boolean $feesOnCustomer
      *
      * @return self
@@ -196,12 +204,12 @@ class ReceiveMoney extends Transaction
     /**
      * The method runs the transaction
      *
-     * @return
+     * @return json
      */
     public function run()
     {
-        if ($this->propertiesPassRequired()) {
-            $this->_get('/receive/mobilemoney', $this->propertiesToArray());
-        }
+        $this->propertiesPassRequired();
+
+        return $this->_post('/receive/mobilemoney', $this->propertiesToArray());
     }
 }

@@ -16,7 +16,9 @@ namespace OVAC\HubtelPayment\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Psr7\Response;
 use OVAC\HubtelPayment\Config;
+use OVAC\HubtelPayment\ConfigInterface;
 use OVAC\HubtelPayment\Exception\Handler;
 use OVAC\HubtelPayment\Utility\HubtelHandler;
 
@@ -41,7 +43,13 @@ abstract class Api implements ApiInterface
      *
      * @var string
      */
-    protected $baseUrl = 'https://api.hubtel.com/v1/merchantaccount' . '/merchants';
+    protected $baseUrl = 'https://api.hubtel.com/v1/merchantaccount/merchants/';
+    /**
+     * This is the response received from the hubtel server
+     * if no exception was thrown.
+     * @var \GuzzleHttp\Psr7\Response
+     */
+    protected $response;
     /**
      * Constructor.
      *
@@ -163,11 +171,9 @@ abstract class Api implements ApiInterface
      */
     protected function getClient()
     {
-        $config = $this->config;
-
         return new Client(
             [
-                'base_uri' => $this->baseUrl . $config->getAccountNumber(),
+                'base_uri' => $this->baseUrl . $this->config->getAccountNumber(),
                 'handler' => $this->createHandler($this->config),
             ]
         );
@@ -182,5 +188,45 @@ abstract class Api implements ApiInterface
     protected function createHandler(Config $config)
     {
         return (new HubtelHandler($config))->createHandler();
+    }
+
+    /**
+     * @return \OVAC\HubtelPayment\ConfigInterface
+     */
+    public function getConfig()
+    {
+        return $this->config;
+    }
+
+    /**
+     * @param \OVAC\HubtelPayment\ConfigInterface $config
+     *
+     * @return self
+     */
+    public function setConfig(ConfigInterface $config)
+    {
+        $this->config = $config;
+
+        return $this;
+    }
+
+    /**
+     * @return \GuzzleHttp\Psr7\Response
+     */
+    public function getResponse()
+    {
+        return $this->response;
+    }
+
+    /**
+     * @param \GuzzleHttp\Psr7\Response $response
+     *
+     * @return self
+     */
+    public function setResponse(Response $response)
+    {
+        $this->response = $response;
+
+        return $this;
     }
 }
