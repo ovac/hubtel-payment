@@ -72,7 +72,7 @@ class Pay implements ConfigInterface
      * @param  string|array $account
      * @param  string       $clientId
      * @param  string       $clientSecret
-     * @return void
+     * @return \OVAC\HubtelPayment\Pay
      */
     public static function make($account = null, $clientId = null, $clientSecret = null)
     {
@@ -168,7 +168,7 @@ class Pay implements ConfigInterface
      *
      * @param  string $className
      * @param  array  $parameters
-     * @return \OVAC\HubtelPayment\Api\Transaction\$className
+     * @return \OVAC\HubtelPayment\Api\Transaction
      * @throws \BadMethodCallException
      */
     public static function __callStatic($className, array $parameters)

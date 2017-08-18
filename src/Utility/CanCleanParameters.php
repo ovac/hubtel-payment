@@ -30,7 +30,7 @@ trait CanCleanParameters
      * class object instance
      *
      * @return bool
-     * @throws OVAC\HubtelPayment\Exception\MissingParameterException
+     * @throws \OVAC\HubtelPayment\Exception\MissingParameterException
      */
     protected function propertiesPassRequired()
     {
@@ -95,7 +95,7 @@ trait CanCleanParameters
         try {
             return $this->{'get' . ucwords($key)}();
         } catch (BadMethodCallException $e) {
-            throw new \RunitimeException('The ' . $key . ' parameter must have a defined get' . ucwords($key) . ' method.');
+            throw new \RuntimeException('The ' . $key . ' parameter must have a defined get' . ucwords($key) . ' method.');
         }
     }
 }

@@ -73,7 +73,7 @@ class Handler
      * @param  int    $statusCode
      * @param  string $errorType
      * @param  string $errorCode
-     * @param  string $missingParameter
+     * @param  array $missingParameter
      * @return \OVAC\HubtelPayment\Exception\HubtelException
      */
     protected function handleException($message, $statusCode, $errorType, $errorCode, $missingParameter, $rawOutput)
