@@ -2,7 +2,6 @@
 
 /**
  * @package     OVAC/Hubtel-Payment
- * @version     1.0.0
  * @link        https://github.com/ovac/hubtel-payment
  *
  * @author      Ariama O. Victor (OVAC) <contact@ovac4u.com>
@@ -35,13 +34,18 @@ trait CanCleanParameters
      */
     protected function propertiesPassRequired()
     {
+        $keys = array();
+
         foreach ($this->parametersRequired as $key) {
+
             if ($this->accessPropertyByKey($key)) {
                 return true;
             }
 
-            throw new MissingParameterException('The ' . $key . ' parameter is required');
+            $keys['currentKey'] = $key;
         }
+
+        throw new MissingParameterException('The ' . $keys['currentKey'] . ' parameter is required');
     }
     /**
      * This method picks up all the defined properties the

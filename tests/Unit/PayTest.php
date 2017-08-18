@@ -2,7 +2,6 @@
 
 /**
  * @package     OVAC/Hubtel-Payment
- * @version     1.0.0
  * @link        https://github.com/ovac/hubtel-payment
  *
  * @author      Ariama O. Victor (OVAC) <contact@ovac4u.com>
@@ -71,13 +70,13 @@ class PayTest extends TestCase
     public function testGetPackageVersion()
     {
         $pay = new Pay;
-        $this->assertEquals($pay->getPackageVersion(), '2.1.0');
+        $this->assertEquals($pay->getPackageVersion(), Pay::VERSION);
     }
 
     public function testSetPackageVersion()
     {
         $pay = new Pay;
-        $newVersion = '10.0.0';
+        $newVersion = Pay::VERSION;
         $pay->setPackageVersion($newVersion);
 
         $this->assertEquals($pay->getPackageVersion(), $newVersion);

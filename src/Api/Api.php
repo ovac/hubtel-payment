@@ -2,7 +2,6 @@
 
 /**
  * @package     OVAC/Hubtel-Payment
- * @version     1.0.0
  * @link        https://github.com/ovac/hubtel-payment
  *
  * @author      Ariama O. Victor (OVAC) <contact@ovac4u.com>
@@ -47,6 +46,7 @@ abstract class Api implements ApiInterface
     /**
      * This is the response received from the hubtel server
      * if no exception was thrown.
+     *
      * @var \GuzzleHttp\Psr7\Response
      */
     protected $response;
@@ -68,9 +68,7 @@ abstract class Api implements ApiInterface
      */
     public function injectConfig(Config $config)
     {
-        $this->config = $config;
-
-        return $this;
+        return $this->setConfig($config);
     }
     /**
      * Change the Default baseUrl defined by hubtel
@@ -152,9 +150,12 @@ abstract class Api implements ApiInterface
     {
         if ($this->config instanceof Config) {
             try {
-                $response = $this->getClient()->{$httpMethod}($url, ['query' => $parameters]);
+                $this->response = $this->getClient()->{$httpMethod}($this->config->getAccountNumber() . $url, [
+                    'query' => $parameters,
+                ]);
 
-                return json_decode((string) $response->getBody(), true);
+                return json_decode((string) $this->response->getBody(), true);
+
             } catch (ClientException $e) {
                 throw new Handler($e);
             }
@@ -173,7 +174,7 @@ abstract class Api implements ApiInterface
     {
         return new Client(
             [
-                'base_uri' => $this->baseUrl . $this->config->getAccountNumber(),
+                'base_uri' => $this->baseUrl,
                 'handler' => $this->createHandler($this->config),
             ]
         );
@@ -206,26 +207,6 @@ abstract class Api implements ApiInterface
     public function setConfig(ConfigInterface $config)
     {
         $this->config = $config;
-
-        return $this;
-    }
-
-    /**
-     * @return \GuzzleHttp\Psr7\Response
-     */
-    public function getResponse()
-    {
-        return $this->response;
-    }
-
-    /**
-     * @param \GuzzleHttp\Psr7\Response $response
-     *
-     * @return self
-     */
-    public function setResponse(Response $response)
-    {
-        $this->response = $response;
 
         return $this;
     }

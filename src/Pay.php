@@ -1,7 +1,6 @@
 <?php
 /**
  * @package     OVAC/Hubtel-Payment
- * @version     1.0.0
  * @link        https://github.com/ovac/hubtel-payment
  *
  * @author      Ariama O. Victor (OVAC) <contact@ovac4u.com>
@@ -28,7 +27,13 @@ class Pay implements ConfigInterface
      *
      * @var string
      */
-    const VERSION = '2.1.0';
+    const VERSION = '1.0.0';
+    /**
+     * The package Client Name.
+     *
+     * @var string
+     */
+    const CLIENT = __NAMESPACE__;
     /**
      * The Config repository instance.
      *

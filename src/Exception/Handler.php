@@ -2,7 +2,6 @@
 
 /**
  * @package     OVAC/Hubtel-Payment
- * @version     1.0.0
  * @link        https://github.com/ovac/hubtel-payment
  *
  * @author      Ariama O. Victor (OVAC) <contact@ovac4u.com>
@@ -60,10 +59,13 @@ class Handler
         $errorCode = isset($error['ResponseCode']) ? $error['ResponseCode'] : null;
         $errorType = isset($error['type']) ? $error['type'] : null;
         $message = isset($error['Message']) ? $error['Message'] : null;
-        $missingParameter = isset($error['Errors']) ? $this->getMissingParameters($error['param']) : null;
-        $this->handleException(
+        $missingParameter = isset($error['Error']) ? $this->getMissingParameters($error['Error']) : null;
+
+        $exception = $this->handleException(
             $message, $statusCode, $errorType, $errorCode, $missingParameter, $rawOutput
         );
+
+        throw $exception;
     }
     /**
      * Guesses the FQN of the exception to be thrown.
@@ -89,11 +91,11 @@ class Handler
         $class = '\\OVAC\\HubtelPayment\\Exception\\' . $class . 'Exception';
         $instance = new $class($message, $statusCode);
         $instance->setErrorCode($errorCode);
-        $instance->setErrorType($errorType);
+        $instance->setErrorType($errorType ?: $class);
         $instance->setMissingParameter($missingParameter);
         $instance->setRawOutput($rawOutput);
 
-        throw $instance;
+        return $instance;
     }
 
     protected function getMissingParameters($errors = [])

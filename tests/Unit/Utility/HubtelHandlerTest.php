@@ -2,7 +2,6 @@
 
 /**
  * @package     OVAC/Hubtel-Payment
- * @version     1.0.0
  * @link        https://github.com/ovac/hubtel-payment
  *
  * @author      Ariama O. Victor (OVAC) <contact@ovac4u.com>
@@ -46,7 +45,7 @@ class HubtelHandlerTest extends TestCase
     {
         $mock = $this->getMockBuilder(HubtelHandler::class)
             ->setConstructorArgs([$this->config])
-            ->setMethods(['pushHeaderMiddleware', 'pushRetryMiddleware'])
+            ->setMethods(['pushHeaderMiddleware', 'pushRetryMiddleware', 'pushBasicAuthMiddleware'])
             ->getMockForAbstractClass();
 
         $requestMock = $this->createMock(RequestInterface::class, ['withHeader']);
@@ -55,7 +54,15 @@ class HubtelHandlerTest extends TestCase
 
         $requestMock->expects($this->exactly(2))->method('withHeader');
 
-        $mock->expects($this->exactly(2))->method('pushHeaderMiddleware')->with(
+        $mock->expects($this->once())->method('pushHeaderMiddleware')->with(
+            $this->callback(function (callable $callable) use ($requestMock) {
+                $callable($requestMock);
+
+                return true;
+            })
+        );
+
+        $mock->expects($this->Once())->method('pushBasicAuthMiddleware')->with(
             $this->callback(function (callable $callable) use ($requestMock) {
                 $callable($requestMock);
 

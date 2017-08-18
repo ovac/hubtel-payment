@@ -2,7 +2,6 @@
 
 /**
  * @package     OVAC/Hubtel-Payment
- * @version     1.0.0
  * @link        https://github.com/ovac/hubtel-payment
  *
  * @author      Ariama O. Victor (OVAC) <contact@ovac4u.com>
@@ -16,6 +15,7 @@ namespace OVAC\HubtelPayment\Api\Transaction;
 
 use OVAC\HubtelPayment\Api\Transaction\MassAssignable;
 use OVAC\HubtelPayment\Api\Transaction\Transaction;
+use OVAC\HubtelPayment\Utility\CanCleanParameters;
 
 /**
  * Class SendMoney
@@ -29,6 +29,27 @@ class SendMoney extends Transaction
 {
     use MassAssignable;
     use Transactable;
+    use CanCleanParameters;
+
+    /**
+     * {@inheritdoc}
+     */
+    protected $parametersRequired = [
+        'CustomerName',
+        'CustomerMsisdn',
+        'CustomerEmail',
+        'PrimaryCallbackURL',
+        'Amount',
+        'Description',
+    ];
+    /**
+     * {@inheritdoc}
+     */
+    protected $parametersOptional = [
+        'SecondaryCallbackURL',
+        'ClientReference',
+        'Channel',
+    ];
 
     /**
      * Construct for creating a new instance of the SendMoney Api class
@@ -47,7 +68,7 @@ class SendMoney extends Transaction
      * @return                                  self
      * @SuppressWarnings(PHPMD.ShortMethodName)
      */
-    public function to($customerMsisdn)
+    protected function to($customerMsisdn)
     {
         return $this->setCustomerMsisdn($customerMsisdn);
     }
@@ -60,6 +81,18 @@ class SendMoney extends Transaction
      * @return self
      */
     public function customerName($customerName)
+    {
+        return $this->recepientName($customerName);
+    }
+    /**
+     * This api method sets the receiver's name
+     * (requred by the Hubtel SendMoney Api)
+     *
+     * @param string $customerName This is the name of the receiver
+     *
+     * @return self
+     */
+    public function recepientName($customerName)
     {
         return $this->setCustomerName($customerName);
     }
@@ -75,18 +108,6 @@ class SendMoney extends Transaction
         return $this->setCustomerEmail($customerEmail);
     }
     /**
-     * This method sets the merchant/client referecne for easy association and
-     * recognition on the merchant (client). Easily used to remember the
-     * associate the transaction with a specific user.
-     *
-     * @param  string $clientReference This is a reference to the customer on the client end
-     * @return self
-     */
-    public function clientReference($clientReference)
-    {
-        return $this->setClientReference($clientReference);
-    }
-    /**
      * This method sets the description of the transaction. Best used to describe
      * why the money is being sent for future reference and book keeping.
      * (requred by the Hubtel SendMoney Api)
@@ -97,6 +118,27 @@ class SendMoney extends Transaction
     public function description($description)
     {
         return $this->setDescription($description);
+    }
+    /**
+     * Sets a reference to reference a transaction from your end.
+     *
+     * @param  string|number $reference the reference number
+     * @return self
+     */
+    public function reference($reference)
+    {
+        return $this->setClientReference($reference);
+    }
+    /**
+     * The method runs the transaction
+     *
+     * @return Object
+     */
+    public function run()
+    {
+        $this->propertiesPassRequired();
+
+        return $this->_post('/send/mobilemoney', $this->propertiesToArray());
     }
 
 }

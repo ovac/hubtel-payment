@@ -2,7 +2,6 @@
 
 /**
  * @package     OVAC/Hubtel-Payment
- * @version     1.0.0
  * @link        https://github.com/ovac/hubtel-payment
  *
  * @author      Ariama O. Victor (OVAC) <contact@ovac4u.com>
@@ -193,5 +192,16 @@ class ApiTest extends TestCase
         $handlerStack = self::callProtectedMethod($mock, 'createHandler', [$this->config]);
 
         self::assertInstanceOf(HandlerStack::class, $handlerStack);
+    }
+
+    public function test_inject_config()
+    {
+        $mock = $this->getMockBuilder(Api::class)
+            ->disableOriginalConstructor()
+            ->getMockForAbstractClass();
+
+        $mock->injectConfig($this->config);
+
+        $this->assertSame($this->config, $mock->getConfig(), 'it should inject the configuration on the api');
     }
 }

@@ -2,7 +2,6 @@
 
 /**
  * @package     OVAC/Hubtel-Payment
- * @version     1.0.0
  * @link        https://github.com/ovac/hubtel-payment
  *
  * @author      Ariama O. Victor (OVAC) <contact@ovac4u.com>
@@ -21,6 +20,7 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use OVAC\HubtelPayment\Config;
 use OVAC\HubtelPayment\Exception\Handler;
+use OVAC\HubtelPayment\Pay;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
@@ -51,11 +51,12 @@ class HubtelHandler
      * Constructor for the HubtelHandler class
      *
      * @param \OVAC\HubtelPayment\Config $config
+     * @param \GuzzleHttp\HandlerStack   $stack
      */
-    public function __construct(Config $config)
+    public function __construct(Config $config, HandlerStack $stack = null)
     {
         $this->config = $config;
-        $this->stack = HandlerStack::create();
+        $this->stack = $stack ?: HandlerStack::create();
     }
     /**
      * Create the client handler.
@@ -66,13 +67,13 @@ class HubtelHandler
     public function createHandler()
     {
         $this->pushHeaderMiddleware(
-            function(RequestInterface $request) {
-                return $request->withHeader('User-Agent', 'OVAC-Hubtel-Payment' . $this->config->getPackageVersion());
+            function (RequestInterface $request) {
+                return $request->withHeader('User-Agent', Pay::CLIENT . ' v' . Pay::VERSION);
             }
         );
 
-        $this->pushHeaderMiddleware(
-            function(RequestInterface $request) {
+        $this->pushBasicAuthMiddleware(
+            function (RequestInterface $request) {
                 return $request->withHeader(
                     'Authorization', 'Basic ' . base64_encode(
                         $this->config->getClientId() . ':' . $this->config->getClientSecret()
@@ -85,24 +86,39 @@ class HubtelHandler
 
         return $this->stack;
     }
-
     /**
      * Push the Header Middleware to the Handler Stack
      *
-     * @param  callable $delay Function that accepts a Guzzle RequestInterface
+     * @param  callable $header Function that accepts a Guzzle RequestInterface
      *                     and returns a RequestInterface.
      * @return \GuzzleHttp\HandlerStack
      * @see    http://docs.guzzlephp.org/en/stable/handlers-and-middleware.html Guzzle: Handlers and Middlewares.
      */
-    public function pushHeaderMiddleware(callable $delay)
+    protected function pushHeaderMiddleware(callable $header)
     {
         $this->stack->push(
-            Middleware::mapRequest($delay)
+            Middleware::mapRequest($header), 'hubtel-header-userAgent'
         );
 
         return $this->stack;
     }
+    /**
+     * Push the Header Middleware to the Handler Stack containing the
+     * bacic authentication in base64
+     *
+     * @param  callable $header Function that accepts a Guzzle RequestInterface
+     *                     and returns a RequestInterface.
+     * @return \GuzzleHttp\HandlerStack
+     * @see    http://docs.guzzlephp.org/en/stable/handlers-and-middleware.html Guzzle: Handlers and Middlewares.
+     */
+    protected function pushBasicAuthMiddleware(callable $header)
+    {
+        $this->stack->push(
+            Middleware::mapRequest($header), 'hubtel-header-basicAuth'
+        );
 
+        return $this->stack;
+    }
     /**
      * Pushes a Retry Middleware to the Guzzle Client Handler Stack.
      *
@@ -120,10 +136,10 @@ class HubtelHandler
      * @return \GuzzleHttp\HandlerStack
      * @see    http://docs.guzzlephp.org/en/stable/handlers-and-middleware.html Guzzle: Handlers and Middlewares.
      */
-    public function pushRetryMiddleware(callable $decider, callable $delay = null)
+    protected function pushRetryMiddleware(callable $decider, callable $delay = null)
     {
         $this->stack->push(
-            Middleware::retry($decider, $delay)
+            Middleware::retry($decider, $delay), 'hubtel-retry-request'
         );
 
         return $this->stack;
@@ -156,7 +172,7 @@ class HubtelHandler
          * @see    http://docs.guzzlephp.org/en/stable/handlers-and-middleware.html Guzzle: Handlers and Middlewares.
          */
 
-        return function(
+        return function (
             $retries,
             RequestInterface $request,
             ResponseInterface $response = null,
@@ -192,7 +208,7 @@ class HubtelHandler
          * @see    http://docs.guzzlephp.org/en/stable/handlers-and-middleware.html Guzzle: Handlers and Middlewares.
          */
 
-        return function($retries) {
+        return function ($retries) {
             return (int) pow(2, $retries) * 1000;
         };
     }

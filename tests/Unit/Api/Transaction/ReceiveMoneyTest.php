@@ -2,7 +2,6 @@
 
 /**
  * @package     OVAC/Hubtel-Payment
- * @version     1.0.0
  * @link        https://github.com/ovac/hubtel-payment
  *
  * @author      Ariama O. Victor (OVAC) <contact@ovac4u.com>
@@ -16,12 +15,14 @@ namespace OVAC\HubtelPayment\Tests\Unit\Api\Transaction;
 
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Response;
 use OVAC\HubtelPayment\Api\Api;
 use OVAC\HubtelPayment\Api\Transaction\ReceiveMoney;
 use OVAC\HubtelPayment\Config;
 use OVAC\HubtelPayment\Exception\MissingParameterException;
 use OVAC\HubtelPayment\Pay;
+use OVAC\HubtelPayment\Utility\HubtelHandler;
 use PHPUnit\Framework\TestCase;
 
 class ReceiveMoneyTest extends TestCase
@@ -377,23 +378,29 @@ class ReceiveMoneyTest extends TestCase
         $this->assertEquals($api->getCustomerName(), $this->customerName);
     }
 
-    public function test_api_createHandler_method()
+    public function test_receive_money_end_2_end_successful()
     {
+        $container = [];
+        $history = Middleware::history($container);
+
         $httpMock = new MockHandler([
             new Response(200, ['X-Foo' => 'Bar'], json_encode(['X-Foo' => 'Bar'])),
         ]);
 
-        $handler = HandlerStack::create($httpMock);
+        $handlerStack = (new HubtelHandler($this->config, HandlerStack::create($httpMock)))->createHandler();
+
+        $handlerStack->push($history);
 
         $mock = $this->getMockBuilder(ReceiveMoney::class)
             ->setMethods(['createHandler'])
             ->getMock();
 
-        $mock->expects($this->once())->method('createHandler')->will($this->returnValue($handler));
+        $mock->expects($this->once())->method('createHandler')->will($this->returnValue($handlerStack));
 
         $mock->injectConfig($this->config);
 
-        $mock->from($this->customerMsisdn)
+        $mock
+            ->from($this->customerMsisdn)
             ->description($this->description)
             ->reference($this->clientReference)
             ->customerName($this->customerName)
@@ -407,10 +414,52 @@ class ReceiveMoneyTest extends TestCase
         $result = $mock->run();
 
         $this->assertEquals($result, ['X-Foo' => 'Bar']);
-        // $this->assertEquals(
-        //     $mock->getResponse()->getUrl(),
-        //     "https://api.hubtel.com/v1/merchantaccount/merchants/12345/receive/mobilemoney"
-        // );
 
+        $request = $container[0]['request'];
+
+        $this->assertEquals($request->getMethod(), 'POST', 'it should be a post request.');
+        $this->assertEquals($request->getUri()->getHost(), 'api.hubtel.com', 'Hostname should be api.hubtel.com');
+        $this->assertEquals($request->getHeaderLine('User-Agent'), Pay::CLIENT . ' v' . Pay::VERSION);
+
+        $this->assertEquals($request->getUri()->getScheme(), 'https', 'it should be a https scheme');
+
+        $this->assertContains(
+            "https://api.hubtel.com/v1/merchantaccount/merchants/12345/receive/mobilemoney?",
+            $request->getUri()->__toString()
+        );
+
+    }
+
+    public function test_end_2_end_error()
+    {
+        $this->expectException(MissingParameterException::class);
+
+        $httpMock = new MockHandler([
+            new Response(400, ['X-Foo' => 'Bar'], json_encode(['ResponseCode' => '4010'])),
+        ]);
+
+        $handlerStack = (new HubtelHandler($this->config, HandlerStack::create($httpMock)))->createHandler();
+
+        $mock = $this->getMockBuilder(ReceiveMoney::class)
+            ->setMethods(['createHandler'])
+            ->getMock();
+
+        $mock->expects($this->once())->method('createHandler')->will($this->returnValue($handlerStack));
+
+        $mock->injectConfig($this->config);
+
+        $mock
+            ->from($this->customerMsisdn)
+            ->description($this->description)
+            ->reference($this->clientReference)
+            ->customerName($this->customerName)
+            ->customerEmail($this->customerEmail)
+            ->channel($this->channel)
+            ->callbackOnFail($this->secondaryCallbackURL)
+            ->callbackOnSuccess($this->primaryCallbackURL)
+            ->token($this->token)
+            ->feesOnCustomer($this->feesOnCustomer);
+
+        $result = $mock->run();
     }
 }
