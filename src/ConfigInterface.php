@@ -66,7 +66,7 @@ interface ConfigInterface
     /**
      * Set the current package version
      *
-     * @param [type] $version [description]
+     * @param string $version The version of this package
      */
     public function setPackageVersion($version);
 }
