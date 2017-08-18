@@ -23,7 +23,7 @@ use OVAC\HubtelPayment\Utility\CanCleanParameters;
  * This class encapsulates and implements an expressive API using a
  * set of methods to implement the required properties to
  * place a call to the Hubtel Server in order to
- * receive money from a customer.
+ * send money to a customer.
  */
 class SendMoney extends Transaction
 {

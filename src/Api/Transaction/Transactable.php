@@ -70,7 +70,7 @@ trait Transactable
      */
     public function __call($method, array $parameters)
     {
-        if (in_array($method, ['amount', 'to', 'from'])) {
+        if (in_array($method, ['amount', 'to', 'from', 'transactionId'])) {
             return $this->{$method}(...$parameters);
         }
 
