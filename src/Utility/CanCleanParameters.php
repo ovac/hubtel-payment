@@ -29,7 +29,7 @@ trait CanCleanParameters
      * and all parameters must each have a defined get accessor on the
      * class object instance
      *
-     * @return void
+     * @return bool
      * @throws OVAC\HubtelPayment\Exception\MissingParameterException
      */
     protected function propertiesPassRequired()
