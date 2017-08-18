@@ -47,7 +47,6 @@ class Handler
      * Constructor.
      *
      * @param  \GuzzleHttp\Exception\ClientException $exception
-     * @return void
      * @throws OVAC\HubtelPayment\Exception\HubtelException
      */
     public function __construct(ClientException $exception)
@@ -75,8 +74,7 @@ class Handler
      * @param  string $errorType
      * @param  string $errorCode
      * @param  string $missingParameter
-     * @return void
-     * @throws OVAC\HubtelPayment\Exception\HubtelException
+     * @return OVAC\HubtelPayment\Exception\HubtelException
      */
     protected function handleException($message, $statusCode, $errorType, $errorCode, $missingParameter, $rawOutput)
     {
