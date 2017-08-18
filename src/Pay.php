@@ -54,7 +54,7 @@ class Pay implements ConfigInterface
          * Check if an array was passed and with key and values
          */
         if (is_array($account)) {
-            $this->config = new Config(self::VERSION, $account['accountNumber'], $account['clientId'], $account['clientSecret']);
+            $this->config = new Config($account['accountNumber'], $account['clientId'], $account['clientSecret']);
 
             return;
         }
@@ -64,7 +64,7 @@ class Pay implements ConfigInterface
          * we asume the the data was passed
          * in avalid order
          */
-        $this->config = new Config(self::VERSION, $account, $clientId, $clientSecret);
+        $this->config = new Config($account, $clientId, $clientSecret);
     }
     /**
      * Create a new OVAC\HubtelPayment instance.

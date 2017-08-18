@@ -136,7 +136,6 @@ class ReceiveMoneyTest extends TestCase
         $this->token = '123456';
 
         $this->config = new Config(
-            Pay::VERSION,
             $accountNumber = 12345,
             $clientId = 'someClientId',
             $clientSecret = 'someClientSecret'

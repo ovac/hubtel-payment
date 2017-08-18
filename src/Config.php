@@ -14,6 +14,7 @@
 namespace OVAC\HubtelPayment;
 
 use OVAC\HubtelPayment\ConfigInterface;
+use OVAC\HubtelPayment\Pay;
 
 /**
  * Config Class
@@ -51,15 +52,14 @@ class Config implements ConfigInterface
     /**
      * Constructor
      *
-     * @param  string $version      This is the Package Version (It is appended with the call to the Hubtel Server)
      * @param  string $accoutNumber This is the Merchant Client Account Number
      * @param  string $clientId     This is the Merchant Developer Application client ID
      * @param  string $clientSecret This is the Merchant Developer Application client Secret
      * @return void
      */
-    public function __construct($version, $accoutNumber = null, $clientId = null, $clientSecret = null)
+    public function __construct($accoutNumber = null, $clientId = null, $clientSecret = null)
     {
-        $this->setPackageVersion($version);
+        $this->setPackageVersion(Pay::VERSION);
         $this->setAccountNumber($accoutNumber ?: getenv('HUBTEL_ACCOUNT_NUMBER'));
         $this->setClientId($clientId ?: getenv('HUBTEL_CLIENT_ID'));
         $this->setClientSecret($clientSecret ?: getenv('HUBTEL_CLIENT_SECRET'));

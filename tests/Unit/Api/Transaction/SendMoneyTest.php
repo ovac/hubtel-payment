@@ -113,7 +113,6 @@ class SendMoneyTest extends TestCase
         $this->secondaryCallbackURL = 'http://www.ovac4u.com/payment/payment-failed';
 
         $this->config = new Config(
-            Pay::VERSION,
             $accountNumber = 12345,
             $clientId = 'someClientId',
             $clientSecret = 'someClientSecret'

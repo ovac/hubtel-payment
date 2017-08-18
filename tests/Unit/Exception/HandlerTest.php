@@ -46,7 +46,6 @@ class HandlerTest extends TestCase
     public function setup()
     {
         $this->config = new Config(
-            Pay::VERSION,
             $accountNumber = 12345,
             $clientId = 'someClientId',
             $clientSecret = 'someClientSecret'

@@ -35,7 +35,6 @@ class ApiTest extends TestCase
     protected function setUp()
     {
         $this->config = new Config(
-            Pay::VERSION,
             $accountNumber = 12345,
             $clientId = 'someClientId',
             $clientSecret = 'someClientSecret'
