@@ -26,6 +26,54 @@ trait MassAssignable
 {
 
     /**
+     * This function sets the customer data (name, email and msisdn|number|phone)
+     *
+     * @param   array $data Customer data
+     * @example $data = ['name' => 'Victor', 'email' => 'contact@ovac4u.com', 'number' => '0553577261']
+     * @return  self
+     */
+    abstract public function setCustomer($data = []);
+    /**
+     * sets the money value (Amount) to be sent or received
+     *
+     * @param string $amount
+     *
+     * @return self
+     */
+    abstract public function setAmount($amount);
+    /**
+     * sets a description for the transaction.
+     *
+     * @param string $description
+     *
+     * @return self
+     */
+    abstract public function setDescription($description);
+    /**
+     * Set's a reference on the transaction for easy identification
+     * and transaction tracking.
+     *
+     * @param string $clientReference
+     *
+     * @return self
+     */
+    abstract public function setClientReference($clientReference);
+    /**
+     * sets the transaction channel (Mobile Network)
+     *
+     * @param string $channel
+     *
+     * @return self
+     */
+    abstract public function setChannel($channel);
+    /**
+     * This method sets the callbacks for the Hubtel Payments
+     *
+     * @param  array|string $data
+     * @return self
+     */
+    abstract public function setCallback($data = []);
+    /**
      * This method exposes the mass assignment method.
      *
      * @param  array $data
@@ -35,7 +83,6 @@ trait MassAssignable
     {
         return $this->massAssign($data);
     }
-
     /**
      * This method is used to mass assign the properties required by the Hubtel ReceiveMoney and SendMoney Api
      *

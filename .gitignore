@@ -1,6 +1,7 @@
 /vendor
 /docs
 /.phpintel
+sami.config.php
 composer.phar
 couscous.phar
 
