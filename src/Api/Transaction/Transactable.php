@@ -57,11 +57,7 @@ trait Transactable
      */
     public static function __callStatic($method, array $parameters)
     {
-        if (in_array($method, ['amount', 'to', 'from'])) {
-            return (new self)->{$method}(...$parameters);
-        }
-
-        throw new \BadMethodCallException('Undefined method [ ' . $method . '] called.');
+        return (new self)->__call($method, $parameters);
     }
 
     /**
