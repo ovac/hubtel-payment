@@ -1,0 +1,40 @@
+# Base URL of the published website
+baseUrl: https://www.ovac4u.com/projects/hubtel-payment
+
+# Used to link to the GitHub project
+github:
+    user: ovac
+    repo: hubtel-payment
+
+template:
+    url: https://github.com/CouscousPHP/Template-Dark.git
+
+include:
+    - .
+    - docs/coverage/document
+    - docs/sami/master/documentation
+
+exclude:
+    - vendor
+
+title: OVAC\Hubtel-Payment
+subTitle: Write it as it sounds.
+
+# The left menu bar
+menu:
+    sections:
+        main:
+            name: Main documentation
+            items:
+                home:
+                    text: Home
+                    relativeUrl:
+                foo:
+                    text: Api
+                    relativeUrl: api
+                foo:
+                    text: Coverage
+                    relativeUrl: coverage
+        other:
+            name: Other topics
+            items:
