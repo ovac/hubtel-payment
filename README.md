@@ -8,12 +8,13 @@ The best and most comphrensive PHP Client for consuming the Hubtel Payment API a
 [![License](https://poser.pugx.org/ovac/hubtel-payment/license)](https://packagist.org/packages/ovac/hubtel-payment)
 [![Dependency Status](https://www.versioneye.com/user/projects/598fccd8368b081653c84e2e/badge.svg)](https://www.versioneye.com/user/projects/598fccd8368b081653c84e2e)
 
-```
- _________                          _____
-|   ___   |.-----.--.--.---.-.----.|  |  |.--.--.
-|  |  _   ||  _  |  |  |  _  |  __||__    |  |  |
-|  |______||_____|\___/|___._|____|   |__||_____|
-|_________|
+```md
+ Follow me Anywhere @ovac4u                         | GitHub
+ _________                          _________       | Twitter
+|   ___   |.-----.--.--.---.-.----.|  |  |.--.--.   | Facboook
+|  |  _   ||  _  |  |  |  _  |  __||__    |  |  |   | Instagram
+|  |______||_____|\___/|___._|____|   |__||_____|   | Github + @ovac
+|_________|                                         | Facebook + @ovacposts
 ```
 
 ## What is it?
@@ -174,5 +175,5 @@ $ bin/ci.sh
 - [Laravel framework](http://laravel.com)
 
 - [Repo's wiki](https://github.com/ovac/hubtel-payment/wiki/_pages)
-- [LICENCE: MIT](https://github.com/ovac/hubtel-payment/licence)
+- [LICENCE: MIT](https://github.com/ovac/hubtel-payment/blob/licence)
 - [CHANGELOG](https://github.com/ovac/hubtel-payment/blob/master/CHANGELOG.md)
