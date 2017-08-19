@@ -9,12 +9,12 @@ The best and most comphrensive PHP Client for consuming the Hubtel Payment API a
 [![Dependency Status](https://www.versioneye.com/user/projects/598fccd8368b081653c84e2e/badge.svg)](https://www.versioneye.com/user/projects/598fccd8368b081653c84e2e)
 
 ```md
- Follow me Anywhere @ovac4u                         | GitHub
+ Follow me anywhere @ovac4u                         | GitHub
  _________                          _________       | Twitter
 |   ___   |.-----.--.--.---.-.----.|  |  |.--.--.   | Facboook
 |  |  _   ||  _  |  |  |  _  |  __||__    |  |  |   | Instagram
 |  |______||_____|\___/|___._|____|   |__||_____|   | Github + @ovac
-|_________|                                         | Facebook + @ovacposts
+|_________|                        www.ovac4u.com   | Facebook + @ovacposts
 ```
 
 ## What is it?
