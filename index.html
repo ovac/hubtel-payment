@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>OVAC\Hubtel-Payment</title>
+
+        <link rel="stylesheet" href="https://www.ovac4u.com/projects/hubtel-payment/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://www.ovac4u.com/projects/hubtel-payment/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://www.ovac4u.com/projects/hubtel-payment/css/highlight.tomorrow-night.css">
+        <link rel="stylesheet" href="https://www.ovac4u.com/projects/hubtel-payment/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="https://www.ovac4u.com/projects/hubtel-payment/">
+                OVAC\Hubtel-Payment
+                <small class="hidden-xs hidden-sm">
+                    Write it as it sounds.
+                </small>
+            </a>
+
+                            <a href="https://github.com/ovac/hubtel-payment">
+                    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+                </a>
+            
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                                                    <p class="text-muted">
+                                Main documentation
+                            </p>
+
+                            <ul class="nav nav-pills nav-stacked">
+                                                                    <li class="">
+                                        <a href="https://www.ovac4u.com/projects/hubtel-payment/">
+                                            Home
+                                        </a>
+                                    </li>
+                                                                    <li class="">
+                                        <a href="https://www.ovac4u.com/projects/hubtel-payment/api">
+                                            Api
+                                        </a>
+                                    </li>
+                                                            </ul>
+                                                    <p class="text-muted">
+                                Other topics
+                            </p>
+
+                            <ul class="nav nav-pills nav-stacked">
+                                                            </ul>
+                        
+                    </nav>
+
+                
+                <section class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <h1 id="ovac-hubtel-payment">OVAC Hubtel Payment</h1>
+<p>The best and most comphrensive PHP Client for consuming the Hubtel Payment API and for sending and receiving Mobile Money Payment from a php application with an elegant <strong>Write as it sounds</strong> syntax.</p>
+<p><a href="https://travis-ci.org/ovac/hubtel-payment"><img src="https://travis-ci.org/ovac/hubtel-payment.svg?branch=master" alt="Build Status" /></a>
+<a href="https://coveralls.io/github/ovac/hubtel-payment?branch=master"><img src="https://coveralls.io/repos/github/ovac/hubtel-payment/badge.svg?branch=master" alt="Coverage Status" /></a>
+<a href="https://packagist.org/packages/ovac/hubtel-payment"><img src="https://poser.pugx.org/ovac/hubtel-payment/v/stable" alt="Latest Stable Version" /></a>
+<a href="https://packagist.org/packages/ovac/hubtel-payment"><img src="https://poser.pugx.org/ovac/hubtel-payment/downloads" alt="Total Downloads" /></a>
+<a href="https://packagist.org/packages/ovac/hubtel-payment"><img src="https://poser.pugx.org/ovac/hubtel-payment/license" alt="License" /></a>
+<a href="https://www.versioneye.com/user/projects/598fccd8368b081653c84e2e"><img src="https://www.versioneye.com/user/projects/598fccd8368b081653c84e2e/badge.svg" alt="Dependency Status" /></a></p>
+<pre><code> _________                          _____
+|   ___   |.-----.--.--.---.-.----.|  |  |.--.--.
+|  |  _   ||  _  |  |  |  _  |  __||__    |  |  |
+|  |______||_____|\___/|___._|____|   |__||_____|
+|_________|</code></pre>
+<h2 id="what-is-it">What is it?</h2>
+<p>OVAC/Hubtel-Payment is a comphrensive PHP client for consuming the Hubtel Mobile Money Payment server API. It's a full-on PHP toolbet sugar-coated by an elegant syntax directly inspired by the <a href="http://www.laravel.com">Laravel framework</a>.</p>
+<p>It features a good set of methods and tests for accessing the Hubtel Mobile Money Payment with a <strong>Write as it sounds</strong> syntax. Oh also it's growing all the time.</p>
+<p>What's the cherry on top? It wraps nicely around native Guzzlehttp client and uses most of PHP best practices in relation to usability and security. What does this mean? This meands that <code>Pay::receiveMoney()-&gt;from(0553577261)-&gt;run();</code> actually places a dynamic call behind the scene in a very secure manner using the phone number as the CustomerMsidn as required by the Hubtel's Mobile Money Receive Money api and propts the owner of the phone number as an agent.</p>
+<h2 id="install-ovachubtel-payment">Install OVAC\Hubtel-Payment</h2>
+<p>To install OVAC\HubtelPayment library, simply run </p>
+<pre><code>$ composer require ovac/hubtel-payment</code></pre>
+<h2 id="ovachubtel-payment-basic-usage">OVAC\Hubtel-Payment Basic Usage</h2>
+<p>First Obtain a Hubtel Developer Account Number, ClientID and ClientSecret from <a href="https://unity.hubtel.com/account/api-accounts-add">https://unity.hubtel.com/account/api-accounts-add</a></p>
+<h4 id="the-receivemoney-class-may-be-used-send-a-prompt-to-the-customers-phone-to-receive-money-like-a-mobile-money-agent-as-follows">The ReceiveMoney class may be used send a prompt to the customer's phone to receive money like a mobile-money agent as follows:</h4>
+<pre><code class="language-php">&lt;?php
+require_once __DIR__ . '/vendor/autoload.php';
+
+use OVAC\HubtelPayment\Config;
+use OVAC\HubtelPayment\Api\Transaction\ReceiveMoney;
+
+// First Create configuration with your Hubtel Developer Credentials
+// The Account Number, ClientID and ClientSecret accordingly.
+$config = new Config(Account_Nnumber, ClientId, ClientSecret);
+
+$payment =  ReceiveMoney::from(0553577261)          //- The phone number to send the prompt to.
+                -&gt;amount(100.00)                    //- The exact amount value of the transaction
+                -&gt;desctiption('Online Purchase')    //- Description of the transaction.
+                -&gt;customerName('Ariama Victor')     //- Name of the person making the payment.
+                -&gt;callback('http://ovac4u.com/pay') //- The URL to send callback after payment. 
+                -&gt;channel('mtn-gh')                 //- The mobile network Channel.
+                -&gt;injectConfig($config)             //- Inject the configuration
+                -&gt;run();                            //- Run the transaction after required data.</code></pre>
+<h4 id="the-sendmoney-class-may-also-be-used-send-money-to-any-mobile-money-customer-as-follows">The SendMoney class may also be used send money to any mobile money customer as follows:</h4>
+<pre><code class="language-php">&lt;?php
+require_once __DIR__ . '/vendor/autoload.php';
+
+use OVAC\HubtelPayment\Config;
+use OVAC\HubtelPayment\Api\Transaction\SendMoney;
+
+// First Create configuration with your Hubtel Developer Credentials
+// The Account Number, ClientID and ClientSecret accordingly.
+$config = new Config(Account_Nnumber, ClientId, ClientSecret);
+
+$payment = SendMoney::to(0553577261)                //- The phone number to send the prompt to.
+                -&gt;amount(100.00)                    //- The exact amount value of the transaction
+                -&gt;desctiption('Online Purchase')    //- Description of the transaction.
+                -&gt;customerEmail('admin@ovac4u.com') //- Name of the person making the payment.
+                -&gt;callback('http://ovac4u.com/pay') //- The URL to send callback after payment. 
+                -&gt;channel('mtn-gh')                 //- The mobile network Channel.
+                -&gt;injectConfig($config)             //- Inject the configuration
+                -&gt;run();                            //- Run the transaction after required data.</code></pre>
+<h4 id="the-refund-class-may-also-refund-money-to-a-customer-paid-in-a-previous-transaction">The Refund class may also refund money to a customer paid in a previous transaction:</h4>
+<pre><code class="language-php">&lt;?php
+require_once __DIR__ . '/vendor/autoload.php';
+
+use OVAC\HubtelPayment\Config;
+use OVAC\HubtelPayment\Api\Transaction\Refund;
+
+// First Create configuration with your Hubtel Developer Credentials
+// The Account Number, ClientID and ClientSecret accordingly.
+$config = new Config(Account_Nnumber, ClientId, ClientSecret);
+
+$payment = Refund::transactionId(1234)              //- The ID of the transaction to refund.
+                -&gt;amount(100.00)                    //- The exact amount value of the transaction
+                -&gt;clientReference('#11212')         //- A refeerence on your end.
+                -&gt;desctiption('Useless Purchase')   //- Description of the transaction.
+                -&gt;reason('No longer needs a pen')   //- Name of the person making the payment.
+                -&gt;full()                            //- Full or partial refund.
+                -&gt;injectConfig($config)             //- Inject the configuration
+                -&gt;run();                            //- Run the transaction after required data.</code></pre>
+<h1 id="documentation">Documentation</h1>
+<p>You can find a detailed summary of all classes and methods on the <a href="https://www.ovac4u.com/packages/hubtel-payment">official page</a>. The changelog is available in the CHANGELOG file.</p>
+<p>You can find a detailed summary of all classes and methods in the repo's wiki or the official page. The changelog is available in the CHANGELOG file.</p>
+<h2 id="tests">Tests</h2>
+<p>if you have phpunit installed globally</p>
+<pre><code>$ vendor/bin/phpunit</code></pre>
+<p>or use the composer script</p>
+<pre><code>$ composer phpunit</code></pre>
+<h4 id="code-analysis-tools">Code analysis tools</h4>
+<p><strong><em>lint/checkstyle</em></strong> with phpcs:</p>
+<pre><code>$ composer phpcs</code></pre>
+<p><strong><em>mess detector</em></strong> with phpmd:</p>
+<pre><code>$ composer phpmd</code></pre>
+<p><strong><em>copy &amp; paste detector</em></strong> with phpcpd:</p>
+<pre><code>$ composer phpcpd</code></pre>
+<p><strong><em>phpunit, lint, mess detector</em></strong> in one command:</p>
+<pre><code>$ composer test</code></pre>
+<h2 id="ci">CI</h2>
+<p>A simple ci bash script exists under bin folder</p>
+<pre><code>$ bin/ci.sh</code></pre>
+<h2 id="licence">Licence</h2>
+<ul>
+<li><a href="https://github.com/ovac/hubtel-payment/licence">Licence: MIT</a></li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://www.ovac4u.com/packages/hubtel-payment">Official Page</a></li>
+<li>
+<p><a href="https://www.github.com/ovac/hubtel-payment">Official Repo: Github</a></p>
+</li>
+<li><a href="https://developers.hubtel.com/documentations/merchant-account-api">Hubtel Merchant Payment Reference</a></li>
+<li>
+<p><a href="http://laravel.com">Laravel framework</a></p>
+</li>
+<li><a href="https://github.com/ovac/hubtel-payment/wiki/_pages">Repo's wiki</a></li>
+<li><a href="https://github.com/ovac/hubtel-payment/licence">LICENCE: MIT</a></li>
+<li><a href="https://github.com/ovac/hubtel-payment/blob/master/changelog.html">CHANGELOG</a></li>
+</ul>
+                </section>
+
+            </div>
+        </main>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yandex.st/highlightjs/7.5/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

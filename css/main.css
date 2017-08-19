@@ -21,6 +21,10 @@ li {
     margin-bottom: 3px;
 }
 
+img {
+    max-width: 100%;
+}
+
 header.navbar {
     opacity: 0.9;
 }
@@ -88,4 +92,7 @@ code {
     color: #c5c8c6;
     border: solid 1px #3D5166;
     background-color: #1D2B3A;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    word-wrap: break-word;
 }
