@@ -1,0 +1,283 @@
+<!doctype html>
+
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+
+  <title>OVAC Hubtel Payment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="ovac">
+
+  <link rel="stylesheet" href="https://www.ovac4u.com/projects/hubtel-payment/css/normalize.css">
+  <link rel="stylesheet" href="https://www.ovac4u.com/projects/hubtel-payment/css/milligram.min.css">
+  <link rel="stylesheet" href="https://www.ovac4u.com/projects/hubtel-payment/css/elephantlyCouscous.css">
+  <link rel="stylesheet" href="https://www.ovac4u.com/projects/hubtel-payment/css/emojifyBase.min.css">
+  <link rel="stylesheet" href="https://www.ovac4u.com/projects/hubtel-payment/css/emojify.min.css">
+  <link rel="stylesheet" href="https://www.ovac4u.com/projects/hubtel-payment/css/emojify-emoticons.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+    <nav id="menu" class="panel" role="navigation">
+        <h5>Table of Contents</h5>
+                <ul>
+                            <p class="text-muted">
+                    Introduction
+                </p>
+
+                <ul class="nav nav-pills nav-stacked">
+                                            <li class="">
+                            <a href="https://www.ovac4u.com/projects/hubtel-payment/">
+                                Home
+                            </a>
+                        </li>
+                                    </ul>
+                            <p class="text-muted">
+                    Getting Started
+                </p>
+
+                <ul class="nav nav-pills nav-stacked">
+                                            <li class="">
+                            <a href="https://www.ovac4u.com/projects/hubtel-payment/installation.html">
+                                Installation
+                            </a>
+                        </li>
+                                    </ul>
+                            <p class="text-muted">
+                    Usage
+                </p>
+
+                <ul class="nav nav-pills nav-stacked">
+                                            <li class="">
+                            <a href="https://www.ovac4u.com/projects/hubtel-payment/config.html">
+                                Config
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="https://www.ovac4u.com/projects/hubtel-payment/receivemoney.html">
+                                Receive Money
+                            </a>
+                        </li>
+                                            <li class="">
+                            <a href="https://www.ovac4u.com/projects/hubtel-payment/sendmoney.html">
+                                Send Money
+                            </a>
+                        </li>
+                                    </ul>
+                            <p class="text-muted">
+                    Other topics
+                </p>
+
+                <ul class="nav nav-pills nav-stacked">
+                                    </ul>
+                        
+                    </ul>
+            </nav>
+    <div class="push">
+        <header>
+            <a href="#menu" class="menu-link">&#9776;</a>
+            <h1>OVAC Hubtel Payment</h1>
+            <a class="github" href="http://github.com/ovac/hubtel-payment" title="OVAC Hubtel Payment sur Github" target="blank">
+                <svg width="80" height="80" viewBox="0 0 250 250" class="github">
+                    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+                    <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+                    <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+                </svg>
+            </a>
+        </header>
+        <div class="container">
+                            <h1 id="receivemoney">ReceiveMoney</h1>
+<h1 id="introduction">Introduction</h1>
+<p>The <em>ReceiveMoney</em> class allows you to receive money from your php application by providing a fluent syntax for building the query to be sent to the Hubtel's Api. When configured correctly, it sends a prompt to the intended number making the payment.</p>
+<p>Before getting started, be sure to have a <em>Config</em> object that will be injected into the instance when it will be executed. <a href="/CONFIG.md">Check out this documentation for how to setup the <em>Config</em></a></p>
+<h1 id="using-the-receivemoney-class">Using the ReceiveMoney Class</h1>
+<p>The send money api can be consumed using a configuration instance with valid data from an existing Hubtel account.</p>
+<h2 id="the-receivemoney-class-exposes-several-methods-that-can-be-chained-to-each-other-for-fluent-configuration-of-the-params">The ReceiveMoney class exposes several methods that can be chained to each other for fluent configuration of the params.</h2>
+<ul>
+<li><a href="#method-from">from</a></li>
+<li><a href="#method-amount">amount</a></li>
+<li><a href="#method-desctiption">desctiption</a></li>
+<li><a href="#method-channel">channel</a></li>
+<li><a href="#method-customerEmail">customerEmail</a></li>
+<li><a href="#method-customerName">customerName</a></li>
+<li><a href="#method-setCustomer">setCustomer</a></li>
+<li><a href="#method-callbackOnSuccess">callbackOnSuccess</a></li>
+<li><a href="#method-callbackOnError">callbackOnError</a></li>
+<li><a href="#method-setCallback">setCallback</a></li>
+<li><a href="#method-callback">callback</a></li>
+</ul>
+<h3 id="the-receivemoney-function-must-then-call-the-run-method-after-the-configuration-chain">The ReceiveMoney function must then call the run method after the configuration chain.</h3>
+<ul>
+<li><a href="#method-run">run</a></li>
+</ul>
+<h2 id="putting-it-all-together">Putting it all together.</h2>
+<p>Putting it all together, we will place a call to the Hubtel Api and return a JSON data or throw an error if it was not successful.</p>
+<p>You can checkout the expected response types here.</p>
+<pre><code class="language-php">&lt;?php
+
+use OVAC\HubtelPayment\Config;
+use OVAC\HubtelPayment\Api\Transaction\ReceiveMoney;
+
+public function someClass(Config $config)
+{
+    $receiveMoney = ReceiveMoney::from(0553577261)  //- The phone number to send the prompt to.
+                -&gt;amount(100.00)                    //- The exact amount value of the transaction
+                -&gt;desctiption('Online Purchase')    //- Description of the transaction.
+                -&gt;customerEmail('admin@ovac4u.com') //- Name of the person making the payment.
+                -&gt;callback('http://ovac4u.com/pay') //- The URL to send callback after payment. 
+                -&gt;channel('mtn-gh');                //- The mobile network Channel.
+
+    $receiveMoney-&gt;injectConfig($config)            //- Inject the configuration
+              -&gt;run();                              //- Run the transaction after required data.
+}</code></pre>
+<h2 id="lets-break-it-down">Let's Break it down</h2>
+<hr />
+<p><a name="method-from"></a></p>
+<h4 id="ReceiveMoney-method"><code>from(number)</code></h4>
+<p>The <code>from</code> method can be called statically, thus creates an instance of the receive money class. The <code>from</code> method takes the phone number that is making the payment:</p>
+<pre><code class="language-php">    use OVAC\HubtelPayment\Api\Transaction\ReceiveMoney;
+
+    // Sets the number to bill from.
+    // So that it can be changed to other parameter setup methods.
+    $receiveMoney = ReceiveMoney::from('0553577261');</code></pre>
+<p>The <code>to</code> method can also be chained to an instance that already exists and </p>
+<pre><code class="language-php">    use OVAC\HubtelPayment\Api\Transaction\ReceiveMoney;
+
+    $receiveMoney = ReceiveMoney::from('0553577261');
+
+    // This will set the number that the mobile that will receive the payment prompt
+    // If a number was previously set, it will be updated.
+    $receiveMoney-&gt;from('0553577261');</code></pre>
+<p><a name="method-amount"></a></p>
+<h4 id="ReceiveMoney-method"><code>amount(number)</code></h4>
+<p>The <code>amount</code> method can be called statically, thus creates an instance of the receive money class. The <code>amount</code> method takes the value of the transaction and returns the ReceiveMoney instance:</p>
+<pre><code class="language-php">
+    use OVAC\HubtelPayment\Api\Transaction\ReceiveMoney;
+
+    // Sets the amount of money that will be billed to the client
+    $receiveMoney = ReceiveMoney::amount(100.90);</code></pre>
+<p>The <code>amount</code> method can also be chained to an instance that already exists and </p>
+<pre><code class="language-php">
+    use OVAC\HubtelPayment\Api\Transaction\ReceiveMoney;
+
+    $receiveMoney = ReceiveMoney::amount('0553577261');
+
+    // This will set amount of .
+    // but if a number was previously set, it will be updated.
+    $receiveMoney-&gt;amount('0553577261');</code></pre>
+<p><a name="method-description"></a></p>
+<h4 id="ReceiveMoney-method"><code>description(string)</code></h4>
+<p>The <code>description</code> method takes in a string of the description of the transaction:</p>
+<pre><code class="language-php">    $receiveMoney-&gt;description('Money for rent'); //Describe the transaction</code></pre>
+<p><a name="method-customerEmail"></a></p>
+<h4 id="ReceiveMoney-method"><code>customerEmail(string)</code></h4>
+<p>The <code>customerEmail</code> method takes in a string of the Mobile Money (Payer) Sender's Email address:</p>
+<pre><code class="language-php">    $receiveMoney-&gt;customerEmail('contact@ovac4u.com'); //Email of the Sender (Payer)</code></pre>
+<p><a name="method-customerName"></a></p>
+<!--
+currentMenu: "receivemoney"
+currentSection: "classes"
+title: "Receive Money"
+-->
+<h4 id="ReceiveMoney-method"><code>customerName(string)</code></h4>
+<p>The <code>customerName</code> method takes in a string of the Receiver's Name:</p>
+<pre><code class="language-php">    $receiveMoney-&gt;customerName('John Doe'); //Name of the Sender (Payer)</code></pre>
+<p><a name="method-setCustomer"></a></p>
+<h4 id="ReceiveMoney-method"><code>setCustomer(array)</code></h4>
+<p>The <code>setCustomer</code> The <code>customerName</code> method takes in an <code>array</code> of the key and value of the customer's info
+This can be used instead of calling <code>customerName</code> and <code>customerEmail</code> seperately.</p>
+<pre><code class="language-php">    // This way, all customer details are set at once.
+    $receiveMoney = ReceiveMoney::amount(100.00)-&gt;setCustomer([
+        'name' =&gt; 'Ariama Victor',
+        'email' =&gt; 'contact@ovac4u.com',
+        'phone' =&gt; '0553577261'
+    ]);
+
+    // With this method, you can set only one or two instead of all three, so this will also work
+    $receiveMoney = ReceiveMoney::from(0553577261)
+        -&gt;setCustomer([
+            'name' =&gt; 'Ariama Victor',
+            'email' =&gt; 'contact@ovac4u.com',
+        ]);</code></pre>
+<p><a name="method-callbackOnSuccess"></a></p>
+<h4 id="ReceiveMoney-method"><code>callbackOnSuccess(string)</code></h4>
+<p>The <code>callbackOnSuccess</code> method takes in a url to which Hubtel will send a cllback after a successful payment.</p>
+<pre><code class="language-php">    $receiveMoney-&gt;callbackOnSuccess('http://your_url_for_hubtel_callback_on_success');</code></pre>
+<p><a name="method-callbackOnError"></a></p>
+<h4 id="ReceiveMoney-method"><code>callbackOnError(string)</code></h4>
+<p>The <code>callbackOnError</code> method takes in a url to which Hubtel will send a callback to if a user does not complete the payment.
+or if there is no money or not enough money in the account of the user.</p>
+<pre><code class="language-php">    $receiveMoney-&gt;callbackOnError('http://your_url_for_hubtel_callback_on_error');</code></pre>
+<p><a name="method-setCallback"></a></p>
+<h4 id="ReceiveMoney-method"><code>setCallback(array)</code></h4>
+<p>The <code>setCallback</code> method takes in an <code>array</code> of the key and value of the callback info
+This can be used instead of calling <code>callBackOnError</code> and <code>callBackOnSuccess</code> seperately.</p>
+<pre><code class="language-php">
+    use OVAC\HubtelPayment\Api\Transaction\ReceiveMoney;
+
+    // This way, all customer details are set at once.
+    $receiveMoney = ReceiveMoney::amount(100.00)-&gt;setCallback([
+        'success' =&gt; 'http://your_url_for_hubtel_callback_on_success',
+        'error' =&gt; 'http://your_url_for_hubtel_callback_on_error',
+    ]);</code></pre>
+<p><a name="method-callback"></a></p>
+<h4 id="ReceiveMoney-method"><code>callback(array)</code></h4>
+<p>The <code>callback</code> method takes in a <code>string</code> the url to send callback to both for success and error.
+On the route handling this url, you could use an <code>if</code> statement to determine if the callback was successful or an error occured.</p>
+<pre><code class="language-php">    // This way, all customer details are set at once.
+    $receiveMoney = ReceiveMoney::amount(100.00)-&gt;callback([
+        'success' =&gt; 'http://your_url_for_hubtel_callback_on_success',
+        'error' =&gt; 'http://your_url_for_hubtel_callback_on_error',
+    ]);</code></pre>
+<p><a name="method-run"></a></p>
+<h4 id="ReceiveMoney-method"><code>run(array)</code></h4>
+<p>The <code>run</code> method can be called after all the parameters have been provided. it creates the call to the Hubtel server.
+Note: Some parameters are required by the hubtel server and must be available before the run method is called. The client will throw an error if the required paramseters have not been setup. They have been listed at the bottom of this page. You can also checkout [Hubtel ReceiveMoney Request Params]() for the required and optional params.</p>
+<pre><code class="language-php">    // The call to the ReceiveMoney Run method will return a Json Response from the hubtel API Server.
+    $receiveMoney-&gt;run();</code></pre>
+<h2 id="mass-assignment">Mass Assignment</h2>
+<p>The ReceiveMoney method supports mass assigment upon creating a new instance of the class. The Mass assinable values can be passed into the constructor as an arguement in a cascading array format as follows:</p>
+<pre><code class="language-php">    $receiveMoney = new ReceiveMoney(array(
+        'customer' =&gt; array(
+            'name' =&gt; $this-&gt;customerName,
+            'email' =&gt; $this-&gt;customerEmail,
+            'phone' =&gt; $this-&gt;customerMsisdn,
+        ),
+        'callback' =&gt; array(
+            'success' =&gt; $this-&gt;primaryCallbackURL,
+            'error' =&gt; $this-&gt;secondaryCallbackURL,
+        ),
+        'description' =&gt; $this-&gt;description,
+        'clientReference' =&gt; $this-&gt;clientReference,
+        'channel' =&gt; $this-&gt;channel,
+        'token' =&gt; $this-&gt;token,
+        'feesOnCustomer' =&gt; true,
+    ));
+
+    // This will run the transaction and prompt the phone number as an agent.
+    $receiveMoney-&gt;run();</code></pre>
+<h2 id="generic-methods">Generic Methods</h2>
+<p>This class inherits and implements generic methods</p>
+<p>You can <a href="https://ovac4u.com/packages/ovac-hubtel-payment/api">checkout the full API here</a></p>
+                    </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://www.ovac4u.com/projects/hubtel-payment/js/bigSlide.js"></script>
+    <script src="https://www.ovac4u.com/projects/hubtel-payment/js/emojify.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.menu-link').bigSlide({
+            'easyClose': true
+        });
+    });
+    </script>
+    <script src="https://www.ovac4u.com/projects/hubtel-payment/js/elephantlyCouscous.js"></script>
+</body>
+</html>
