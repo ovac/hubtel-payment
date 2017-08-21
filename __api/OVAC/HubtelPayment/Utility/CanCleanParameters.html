@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow, all" />
+    <title>OVAC\HubtelPayment\Utility\CanCleanParameters | OVAC Hubtel Payment API</title>
+
+            <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/sami.css">
+        <script src="../../../js/jquery-1.11.1.min.js"></script>
+        <script src="../../../js/bootstrap.min.js"></script>
+        <script src="../../../js/typeahead.min.js"></script>
+        <script src="../../../sami.js"></script>
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    
+    
+    </head>
+
+    <body id="class" data-name="class:OVAC_HubtelPayment_Utility_CanCleanParameters" data-root-path="../../../">
+            <div id="content">
+        <div id="left-column">
+                <div id="control-panel">
+                <script>
+            $('option[data-version="'+window.projectVersion+'"]').prop('selected', true);
+        </script>
+        <form id="search-form" action="../../../search.html" method="GET">
+            <span class="glyphicon glyphicon-search"></span>
+            <input name="search"
+                   class="typeahead form-control"
+                   type="search"
+                   placeholder="Search">
+        </form>
+    </div>
+
+                <div id="api-tree"></div>
+
+        </div>
+        <div id="right-column">
+                <nav id="site-nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../../index.html">OVAC Hubtel Payment API</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-elements">
+                <ul class="nav navbar-nav">
+                    <li><a href="../../../classes.html">Classes</a></li>
+                                            <li><a href="../../../namespaces.html">Namespaces</a></li>
+                                        <li><a href="../../../interfaces.html">Interfaces</a></li>
+                    <li><a href="../../../traits.html">Traits</a></li>
+                    <li><a href="../../../doc-index.html">Index</a></li>
+                    <li><a href="../../../search.html">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                        <div class="namespace-breadcrumbs">
+            <ol class="breadcrumb">
+                <li><span class="label label-default">trait</span></li>
+                        <li><a href="../../../OVAC.html">OVAC</a></li><li class="backslash">\</li><li><a href="../../../OVAC/HubtelPayment.html">HubtelPayment</a></li><li class="backslash">\</li><li><a href="../../../OVAC/HubtelPayment/Utility.html">Utility</a></li><li class="backslash">\</li><li>CanCleanParameters</li>
+            </ol>
+        </div>
+                <div id="page-content">
+                
+    <div class="page-header">
+        <h1>
+            CanCleanParameters
+                
+        </h1>
+    </div>
+
+    <p>    trait
+    <strong>CanCleanParameters</strong>        (<a href="https://github.com/OVAC/hubtel-payment/blob/master/src/Utility/CanCleanParameters.php">View source</a>)
+</p>
+
+        
+    
+
+            <div class="description">
+            <p>Trait CanCleanParameters</p>                                </div>
+    
+    
+    
+    
+            <h2>Methods</h2>
+
+            <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    bool
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_propertiesPassRequired">propertiesPassRequired</a>()
+        
+                                            <p>This method checks that all properties marked as
+required have been assigned a value.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_propertiesToArray">propertiesToArray</a>()
+        
+                                            <p>This method picks up all the defined properties the
+$parameterRequired|$parameterOptional property
+array list from the class object and returns
+an array containing each list item name as
+a key and the matching property value from
+the class</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    mixed
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_accessPropertyByKey">accessPropertyByKey</a>(string $key)
+        
+                                            <p>This method calls the accessors for keys passed in
+and returns back the value it receives from the
+class instance</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+            </div>
+
+
+        <h2>Details</h2>
+
+            <div id="method-details">
+                    <div class="method-item">
+                    <h3 id="method_propertiesPassRequired">
+        <div class="location">at         <a href="https://github.com/OVAC/hubtel-payment/blob/master/src/Utility/CanCleanParameters.php#L35">line 35</a></div>
+        <code>            protected        bool
+    <strong>propertiesPassRequired</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>This method checks that all properties marked as
+required have been assigned a value.</p>                    <p>A protected $parametersRequired property must contain the names of
+the required parameters on the class that will use this trait method.
+and all parameters must each have a defined get accessor on the
+class object instance</p>                            </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../OVAC/HubtelPayment/Exception/MissingParameterException.html"><abbr title="OVAC\HubtelPayment\Exception\MissingParameterException">MissingParameterException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_propertiesToArray">
+        <div class="location">at         <a href="https://github.com/OVAC/hubtel-payment/blob/master/src/Utility/CanCleanParameters.php#L60">line 60</a></div>
+        <code>            protected        array
+    <strong>propertiesToArray</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>This method picks up all the defined properties the
+$parameterRequired|$parameterOptional property
+array list from the class object and returns
+an array containing each list item name as
+a key and the matching property value from
+the class</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td>An array of parameters with values</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_accessPropertyByKey">
+        <div class="location">at         <a href="https://github.com/OVAC/hubtel-payment/blob/master/src/Utility/CanCleanParameters.php#L93">line 93</a></div>
+        <code>            protected        mixed
+    <strong>accessPropertyByKey</strong>(string $key)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>This method calls the accessors for keys passed in
+and returns back the value it receives from the
+class instance</p>                    <p>throws an error if a defined parameter in the
+$parameterRequired|$parameterOptional does
+not have a reachable get[PropertyName] accessor
+defined on the class instance.</p>                            </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$key</td>
+                <td>/$parameterRequired[(<em>)]|$parameterOptional[(</em>)]/</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>mixed</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a target="_blank" href="http://php.net/BadMethodCallException">BadMethodCallException</a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+            </div>
+
+    
+            </div>
+                <div id="footer">
+        Generated by <a href="http://sami.sensiolabs.org/">Sami, the API Documentation Generator</a>.
+    </div>
+
+        </div>
+    </div>
+    </body>
+
+</html>
