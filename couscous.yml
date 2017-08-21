@@ -1,5 +1,5 @@
 # Base URL of the published website
-baseUrl: https://www.ovac4u.com/projects/hubtel-payment
+# baseUrl: https://www.ovac4u.com/projects/hubtel-payment
 
 # Used to link to the GitHub project
 github:
@@ -7,12 +7,11 @@ github:
     repo: hubtel-payment
 
 template:
-    url: https://github.com/CouscousPHP/Template-Dark.git
+    directory: ./../ovac-couscous-theme
 
 include:
     - .
-    - docs/coverage/document
-    - docs/sami/master/documentation
+    - docs
 
 exclude:
     - vendor
@@ -23,18 +22,51 @@ subTitle: Write it as it sounds.
 # The left menu bar
 menu:
     sections:
-        main:
-            name: Main documentation
+        introduction:
+            name: Introduction
             items:
                 home:
                     text: Home
                     relativeUrl:
-                foo:
-                    text: Api
-                    relativeUrl: api
-                foo:
-                    text: Coverage
-                    relativeUrl: coverage
-        other:
-            name: Other topics
+        getting-started:
+            name: Getting Started
             items:
+                installation:
+                    text: Installation
+                    relativeUrl: installation.html
+        
+        guide:
+            name: Guide
+            items:
+                config:
+                    text: Config
+                    relativeUrl: config.html
+                
+                receive-money:
+                    text: Receive Money
+                    relativeUrl: receivemoney.html
+                
+                send-money:
+                    text: Send Money
+                    relativeUrl: sendmoney.html
+        
+        api:
+            name: Api
+            items:
+                api:
+                    text: Api
+                    relativeUrl: __api/index.html
+
+                coverage:
+                    text: Coverage
+                    relativeUrl: __coverage/index.html
+        
+        links:
+            name: Links
+            items:
+                hubtel-documentation:
+                    text: Hubtel Official Documentation
+                    absoluteUrl: 
+                
+                hubtel-swagger:
+                    text: Api Swagger UI
