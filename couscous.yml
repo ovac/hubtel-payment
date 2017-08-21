@@ -16,7 +16,7 @@ widgets:
     googletag: GTM-TWFSSDL
 
 template:
-    directory: https://github.com/ovac/ovac-couscous-template
+    url: https://github.com/ovac/ovac-couscous-template
 
 include:
     - .
