@@ -20,7 +20,7 @@ php sami.phar update ./sami.config.php -v;
 php couscous.phar generate --target=./build/couscous;
 
 # clone the project and climb into the directory and switch to the gh-pages branch
-git clone http://www.github.com/ovac/hubtel-payment;
+git clone https://www.github.com/ovac/hubtel-payment;
 
 cd hubtel-payment;
 
@@ -44,3 +44,5 @@ mv  -v ../build/coverage/* ./__/coverage;
 
 # Add all and commit to github if deploy was enabled
 git add --all . && git commit -m 'Documentation Updated' && git push origin gh-pages;
+
+rm -rf ../hubtel-payment;
