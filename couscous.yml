@@ -1,10 +1,15 @@
 # Base URL of the published website
-# baseUrl: https://www.ovac4u.com/projects/hubtel-payment
+baseUrl: https://www.ovac4u.com/projects/hubtel-payment
 
 # Used to link to the GitHub project
 github:
     user: ovac
     repo: hubtel-payment
+
+widgets:
+    addthis: ra-599a2b3ed56dd5f2
+    googleAnalytics: UA-104991685-1
+    googletag: GTM-TWFSSDL
 
 template:
     directory: ./../ovac-couscous-theme

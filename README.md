@@ -170,10 +170,8 @@ $ bin/ci.sh
 ## Reference
 - [Official Page](https://www.ovac4u.com/packages/hubtel-payment)
 - [Official Repo: Github](https://www.github.com/ovac/hubtel-payment)
-
 - [Hubtel Merchant Payment Reference](https://developers.hubtel.com/documentations/merchant-account-api)
 - [Laravel framework](http://laravel.com)
-
 - [Repo's wiki](https://github.com/ovac/hubtel-payment/wiki/_pages)
 - [LICENCE: MIT](https://github.com/ovac/hubtel-payment/blob/licence)
 - [CHANGELOG](https://github.com/ovac/hubtel-payment/blob/master/CHANGELOG.md)
