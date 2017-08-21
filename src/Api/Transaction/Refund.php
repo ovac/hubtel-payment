@@ -76,6 +76,7 @@ class Refund extends Transaction
     }
     /**
      * Sets the transaction ID
+     *
      * @param  string $transactionId the ID of the transaciton
      *                               intended to be returned
      * @return self
@@ -86,6 +87,7 @@ class Refund extends Transaction
     }
     /**
      * Sets the reason for the refund
+     *
      * @param  string $reason The actual reason for the refund
      * @return self
      */
@@ -106,6 +108,7 @@ class Refund extends Transaction
     }
     /**
      * Sets the description of the transaction to be carried out
+     *
      * @param  string $description The description of the transaction
      * @return self
      */
