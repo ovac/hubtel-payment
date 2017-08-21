@@ -1,3 +1,0 @@
-coverage_clover: docs/coverage/logs/phpunit-clover-coverage.xml
-json_path: docs/coverage/logs/phpunit-coveralls-upload.json
-service_name: travis-ci
