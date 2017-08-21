@@ -1,9 +1,9 @@
 /vendor
-/docs
 /.phpintel
-sami.config.php
+/.couscous
 composer.phar
 couscous.phar
+sami.phar
 
 
 # -- Bower -- #

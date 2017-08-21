@@ -19,10 +19,10 @@
     </testsuites>
 
     <logging>
-        <log type="junit" target="docs/coverage/logs/phpunit-junit-report.xml" />
-        <log type="coverage-clover" target="docs/coverage/logs/phpunit-clover-coverage.xml"/>
+        <log type="junit" target="build/phpunit-junit-report.xml" />
+        <log type="coverage-clover" target="build/phpunit-clover-coverage.xml"/>
         <log type="coverage-html"
-             target="docs/coverage/document"
+             target="build/coverage"
              title="ovac/hubtel-payment test suite"
              charset="UTF-8"
              yui="true"
