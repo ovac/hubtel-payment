@@ -1,3 +1,7 @@
+# Wondering what this file is? 
+# See: https://github.com/ovac/ovac-couscous-theme
+# See: http://couscous.io
+
 # Base URL of the published website
 baseUrl: https://www.ovac4u.com/projects/hubtel-payment
 
@@ -12,7 +16,7 @@ widgets:
     googletag: GTM-TWFSSDL
 
 template:
-    directory: ./../ovac-couscous-theme
+    directory: https://github.com/ovac/ovac-couscous-theme
 
 include:
     - .
@@ -60,11 +64,11 @@ menu:
             items:
                 api:
                     text: Api
-                    relativeUrl: __api/index.html
+                    relativeUrl: api/index.html
 
                 coverage:
                     text: Coverage
-                    relativeUrl: __coverage/index.html
+                    relativeUrl: coverage/index.html
         
         links:
             name: Links
@@ -74,4 +78,4 @@ menu:
                     absoluteUrl: 
                 
                 hubtel-swagger:
-                    text: Api Swagger UI
+                    text: Hubtel Official Api Swagger UI
