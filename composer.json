@@ -29,16 +29,15 @@
     "scripts" : {
         "phpunit"  : "vendor/bin/phpunit",
         "phpcpd"   : "vendor/bin/phpcpd src",
-        "phpcs"    : "vendor/bin/phpcs --standard=./vendor/leaphub/phpcs-symfony2-standard/leaphub/phpcs/Symfony2/ --extensions=php src",
+        "phpcs"    : "vendor/bin/phpcs --standard=./vendor/leaphub/phpcs-symfony2-standard/leaphub/phpcs/Symfony2/ --extensions=php ./src",
         "phpcbf"   : "vendor/bin/phpcbf",
         "phpmd"    : "vendor/bin/phpmd ./src text phpmd.xml",
         "phpcpd-ci": "vendor/bin/phpcpd --log-pmd=./build/logs/phpcpd-report.xml  ./src",
-        "phpmd-ci" : "vendor/bin/phpmd ./src xml phpmd.xml --reportfile ./build/logs/phpmd-report.xml",
-        "phpcs-ci" : "vendor/bin/phpcs --standard=./vendor/leaphub/phpcs-symfony2-standard/leaphub/phpcs/Symfony2/ --report=checkstyle --report-file=./build/logs/phpcs-checkstyle-report.xml --extensions=php src",
+        "phpmd-ci" : "vendor/bin/phpmd ./src xml phpmd.xml --reportfile ./build/phpmd-report.xml",
+        "phpcs-ci" : "vendor/bin/phpcs --standard=./vendor/leaphub/phpcs-symfony2-standard/leaphub/phpcs/Symfony2/ --report=checkstyle --report-file=./build/phpcs-checkstyle-report.xml --extensions=php src",
         "test"     : "vendor/bin/phpunit; composer phpcs; composer phpmd; composer phpcpd;",
-        "sami"     : "bin/sami.phar update ./sami.config.php -v",
-        "phpdoc"   : "bin/phpDocumentor.phar -d ./src -t ./docs/phpDocumentor --template=clean",
-        "document" : "composer sami; composer phpdoc;",
+        "sami"     : "bin/sami.phar build ./sami.config.php -v",
+        "document" : "bin/document.sh;",
         "coverage" : "vendor/bin/coveralls -v"
     }
 }

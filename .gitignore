@@ -1,6 +1,7 @@
 /vendor
 /.phpintel
 /.couscous
+/build
 composer.phar
 couscous.phar
 sami.phar
