@@ -1,8 +1,5 @@
 #!/bin/sh
-
-# system infos
-pwd;
-php --version;
+bin/ci.sh
 
 echo ""
 # get sami if it does not exist.
@@ -37,10 +34,10 @@ mkdir -p ./__api && mkdir -p ./__coverage;
 mv  -v ../build/couscous/* ./;
 
 # copy all files from the sami generated folder into the __api folder
-mv  -v ../build/sami/* ./__/api;
+mv  -v ../build/sami/* ./__/api/;
 
 # copy all files from the coverage generated folder into the __coverage folder
-mv  -v ../build/coverage/* ./__/coverage;
+mv  -v ../build/coverage/* ./__/coverage/;
 
 # Add all and commit to github if deploy was enabled
 git add --all . && git commit -m 'Documentation Updated' && git push origin gh-pages;

@@ -32,7 +32,7 @@
         "phpcs"    : "vendor/bin/phpcs --standard=./vendor/leaphub/phpcs-symfony2-standard/leaphub/phpcs/Symfony2/ --extensions=php ./src",
         "phpcbf"   : "vendor/bin/phpcbf",
         "phpmd"    : "vendor/bin/phpmd ./src text phpmd.xml",
-        "phpcpd-ci": "vendor/bin/phpcpd --log-pmd=./build/logs/phpcpd-report.xml  ./src",
+        "phpcpd-ci": "vendor/bin/phpcpd --log-pmd=./build/phpcpd-report.xml  ./src",
         "phpmd-ci" : "vendor/bin/phpmd ./src xml phpmd.xml --reportfile ./build/phpmd-report.xml",
         "phpcs-ci" : "vendor/bin/phpcs --standard=./vendor/leaphub/phpcs-symfony2-standard/leaphub/phpcs/Symfony2/ --report=checkstyle --report-file=./build/phpcs-checkstyle-report.xml --extensions=php src",
         "test"     : "vendor/bin/phpunit; composer phpcs; composer phpmd; composer phpcpd;",
