@@ -25,19 +25,21 @@ git checkout gh-pages;
 
 # Remove all files from the github pages folder
 shopt -s extglob;
+shopt -s dotglob nullglob;
 rm -rf !(*.git);
 
 # Make a directory for the sami generated doc and test coverage
-mkdir -p ./__api && mkdir -p ./__coverage;
+mkdir -p ./api;
+mkdir -p ./coverage;
 
 # copy all files from the couscous generated folder into the empty github-pages branch folder
 mv  -v ../build/couscous/* ./;
 
-# copy all files from the sami generated folder into the __api folder
-mv  -v ../build/sami/* ./__/api/;
+# copy all files from the sami generated folder into the api folder
+mv  -v ../build/sami/* ./api/;
 
-# copy all files from the coverage generated folder into the __coverage folder
-mv  -v ../build/coverage/* ./__/coverage/;
+# copy all files from the coverage generated folder into the coverage folder
+mv  -v ../build/coverage/* ./coverage/;
 
 # Add all and commit to github if deploy was enabled
 git add --all . && git commit -m 'Documentation Updated' && git push origin gh-pages;
