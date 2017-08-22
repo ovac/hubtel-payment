@@ -21,9 +21,9 @@ The best and most comphrensive PHP Client for consuming the Hubtel Payment API a
 
 OVAC/Hubtel-Payment is a comphrensive PHP client for consuming the Hubtel Mobile Money Payment server API. It's a full-on PHP toolbet sugar-coated by an elegant syntax directly inspired by the [Laravel framework](http://www.laravel.com).
 
-It features a good set of methods and tests for accessing the Hubtel Mobile Money Payment with a **Write as it sounds** syntax. Oh also it's growing all the time.
+It features a good set of methods and tests for accessing the Hubtel Mobile Money Payment with a **Write as it sounds** syntax. Oh also it is growing all the time.
 
-What's the cherry on top? It wraps nicely around native Guzzlehttp client and uses most of PHP best practices in relation to usability and security. What does this mean? This meands that `Pay::receiveMoney()->from(0553577261)->run();` actually places a dynamic call behind the scene in a very secure manner using the phone number as the CustomerMsidn as required by the Hubtel's Mobile Money Receive Money api and propts the owner of the phone number as an agent.
+What's the cherry on top? It wraps nicely around native Guzzlehttp client and uses most of PHP best practices in relation to usability and security. What does this mean? This means that `Pay::receiveMoney()->from(0553577261)->run();` actually places a dynamic call behind the scene in a very secure manner using the phone number as the Customer's idn as required by the Hubtel's Mobile Money Receive Money api and prompts the owner of the phone number as an agent.
 
 ## Install OVAC\Hubtel-Payment
 
@@ -36,7 +36,7 @@ $ composer require ovac/hubtel-payment
 
 First Obtain a Hubtel Developer Account Number, ClientID and ClientSecret from https://unity.hubtel.com/account/api-accounts-add
 
-#### The ReceiveMoney class may be used send a prompt to the customer's phone to receive money like a mobile-money agent as follows:
+#### The ReceiveMoney class may be used to send a prompt to the customer's phone to receive money like a mobile-money agent as follows:
 
 ```php
 <?php
@@ -60,7 +60,7 @@ $payment =  ReceiveMoney::from(0553577261)          //- The phone number to send
 ```
 
 
-#### The SendMoney class may also be used send money to any mobile money customer as follows:
+#### The SendMoney class may also be used to send money to any mobile money customer as follows:
 
 ```php
 <?php
@@ -84,7 +84,7 @@ $payment = SendMoney::to(0553577261)                //- The phone number to send
 ```
 
 
-#### The Refund class may also refund money to a customer paid in a previous transaction:
+#### The Refund class may also refund money a customer paid in a previous transaction:
 
 ```php
 <?php
