@@ -23,7 +23,7 @@ OVAC/Hubtel-Payment is a comphrensive PHP client for consuming the Hubtel Mobile
 
 It features a good set of methods and tests for accessing the Hubtel Mobile Money Payment with a **Write as it sounds** syntax. Oh also it is growing all the time.
 
-What's the cherry on top? It wraps nicely around native Guzzlehttp client and uses most of PHP best practices in relation to usability and security. What does this mean? This means that 'Pay::receiveMoney()->from(0553577261)->run();` actually places a dynamic call behind the scene in a very secure manner using the phone number as the Customer's idn as required by the Hubtel's Mobile Money Receive Money api and prompts the owner of the phone number as an agent.
+What's the cherry on top? It wraps nicely around native Guzzlehttp client and uses most of PHP best practices in relation to usability and security. What does this mean? This means that `Pay::receiveMoney()->from(0553577261)->run();` actually places a dynamic call behind the scene in a very secure manner using the phone number as the Customer's idn as required by the Hubtel's Mobile Money Receive Money api and prompts the owner of the phone number as an agent.
 
 ## Install OVAC\Hubtel-Payment
 
