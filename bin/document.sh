@@ -31,6 +31,7 @@ rm -rf !(*.git);
 # Make a directory for the sami generated doc and test coverage
 mkdir -p ./api;
 mkdir -p ./coverage;
+touch .nojekyll;
 
 # copy all files from the couscous generated folder into the empty github-pages branch folder
 mv  -v ../build/couscous/* ./;
@@ -42,6 +43,6 @@ mv  -v ../build/sami/* ./api/;
 mv  -v ../build/coverage/* ./coverage/;
 
 # Add all and commit to github if deploy was enabled
-git add --all . && git commit -m 'Documentation Updated' && git push origin gh-pages;
+git add --all . && git add **/.* && git commit -m 'Documentation Updated' && git push origin gh-pages;
 
 rm -rf ../hubtel-payment;
