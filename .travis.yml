@@ -1,10 +1,10 @@
 language: php
-
 php: 7.1
-
 install:
-  - composer install --prefer-source
-
+- composer install --prefer-source
 script:
-  - composer test
-  - composer coverage
+- composer test
+- composer coverage
+env:
+  global:
+    secure: DIJcMzOTWEmGTMQ0u5WC0BFqfXT+JGoWuKBx+t2zp6cWdub7X9XgcvxMrJpHs92YSRGWpmyvKTpQiK6T4sipnMATmcFEPMWCdhodTIRM94DyuRq+9pBhXvjd0Yr706mD3rP3I5P9NIQULLbZREH9cuZgtjLbtynrddYERiYyvrLV57Fx8O9GeiS6qXTti+yXD1LT/KB+OEuYYgC0xzt38EMxPGy6OrOWz3vYBk9k+2lvpo/0jg5MUivZpG2Q/0bdF5m0qvsyAzhRH2tLH6KFYntUeEA/g5xjntkEZ1o5R/M5Mo4uzMa0nk5ZbKfga3aaELTX/nAGgxq7AlYwYP02oOQHMyKHW/A8EZq+N56X0LWqqM16ayC5b2fTcpqfOOppQhOZWH4jhnEjzPWT7h1iSD+E0opk3lIW0aT52dhCoW1h/fywQ1JPQMUOuRT8Rfw1LHpmO/pg3wNQlRTkVWv4qfXVDUSk5mshMRldd6cg7zIchAe61vpeS7yoAJpHviubuhPUMDIwmRlW1D51Z8cW+Tyi9ZQyc9J9LbIkOHiYdFhiL/vQPyG/84eX+0PBKF33n1mrRqixvAfZsVn1O0UFH+ZYbMDjtpEiVB2T7+lCeIln1h4x93ccwB8NZiptqWNWymSEYO8KvjnrSjmBPeFTu9L3veR+deXxjQ1wwGQNybY=

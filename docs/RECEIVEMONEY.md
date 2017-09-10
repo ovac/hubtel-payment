@@ -245,5 +245,5 @@ The ReceiveMoney method supports mass assigment upon creating a new instance of 
 ## Generic Methods
 This class inherits and implements generic methods
 
-You can [checkout the full API here](https://ovac4u.com/packages/hubtel-payment-api)
+You can [checkout the full API here](https://ovac4u.com/hubtel-payment-api)
 

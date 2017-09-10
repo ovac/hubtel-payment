@@ -109,7 +109,7 @@ $payment = Refund::transactionId(1234)              //- The ID of the transactio
 
 # Documentation
 
-You can find a detailed summary of all classes and methods on the [official page](https://www.ovac4u.com/packages/hubtel-payment). The changelog is available in the CHANGELOG file.
+You can find a detailed summary of all classes and methods on the [official page](https://www.ovac4u.com/hubtel-payment). The changelog is available in the CHANGELOG file.
 
 You can find a detailed summary of all classes and methods in the repo's wiki or the official page. The changelog is available in the CHANGELOG file.
 
@@ -168,7 +168,7 @@ $ bin/ci.sh
 
 
 ## Reference
-- [Official Page](https://www.ovac4u.com/packages/hubtel-payment)
+- [Official Page](https://www.ovac4u.com/hubtel-payment)
 - [Official Repo: Github](https://www.github.com/ovac/hubtel-payment)
 - [Hubtel Merchant Payment Reference](https://developers.hubtel.com/documentations/merchant-account-api)
 - [Laravel framework](http://laravel.com)
