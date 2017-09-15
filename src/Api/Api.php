@@ -151,7 +151,7 @@ abstract class Api implements ApiInterface
         if ($this->config instanceof Config) {
             try {
                 $this->response = $this->getClient()->{$httpMethod}($this->config->getAccountNumber() . $url, [
-                    'query' => $parameters,
+                    'json' => $parameters,
                 ]);
 
                 return json_decode((string) $this->response->getBody(), true);

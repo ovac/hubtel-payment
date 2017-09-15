@@ -186,7 +186,7 @@ class RefundTest extends TestCase
         $this->assertEquals($request->getUri()->getScheme(), 'https', 'it should be a https scheme');
 
         $this->assertContains(
-            "https://api.hubtel.com/v1/merchantaccount/merchants/12345/transactions/refund?",
+            "https://api.hubtel.com/v1/merchantaccount/merchants/12345/transactions/refund",
             $request->getUri()->__toString()
         );
 
