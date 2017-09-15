@@ -75,7 +75,8 @@ menu:
             items:
                 hubtel-documentation:
                     text: Hubtel Official Documentation
-                    absoluteUrl: 
+                    absoluteUrl: https://developers.hubtel.com/documentations/merchant-account-api
                 
                 hubtel-swagger:
                     text: Hubtel Official Api Swagger UI
+                    absoluteUrl: https://api.hubtel.com/v1/merchantaccount/swagger/ui/index
