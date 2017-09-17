@@ -3,7 +3,7 @@
 /.couscous
 /build
 composer.phar
-composer.lock
+/composer.lock
 couscous.phar
 sami.phar
 
