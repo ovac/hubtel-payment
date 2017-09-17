@@ -14,7 +14,7 @@ The send money api can be consumed using a configuration instance with valid dat
 
 - [from](#method-from)
 - [amount](#method-amount)
-- [desctiption](#method-desctiption)
+- [description](#method-description)
 - [channel](#method-channel)
 - [customerEmail](#method-customerEmail)
 - [customerName](#method-customerName)
@@ -45,7 +45,7 @@ public function someClass(Config $config)
 {
     $receiveMoney = ReceiveMoney::from(0553577261)  //- The phone number to send the prompt to.
                 ->amount(100.00)                    //- The exact amount value of the transaction
-                ->desctiption('Online Purchase')    //- Description of the transaction.
+                ->description('Online Purchase')    //- Description of the transaction.
                 ->customerEmail('admin@ovac4u.com') //- Name of the person making the payment.
                 ->callback('http://ovac4u.com/pay') //- The URL to send callback after payment. 
                 ->channel('mtn-gh');                //- The mobile network Channel.
