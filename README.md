@@ -51,7 +51,7 @@ $config = new Config(Account_Nnumber, ClientId, ClientSecret);
 
 $payment =  ReceiveMoney::from(0553577261)          //- The phone number to send the prompt to.
                 ->amount(100.00)                    //- The exact amount value of the transaction
-                ->desctiption('Online Purchase')    //- Description of the transaction.
+                ->description('Online Purchase')    //- Description of the transaction.
                 ->customerName('Ariama Victor')     //- Name of the person making the payment.
                 ->callback('http://ovac4u.com/pay') //- The URL to send callback after payment.	
                 ->channel('mtn-gh')                 //- The mobile network Channel.
@@ -75,7 +75,7 @@ $config = new Config(Account_Nnumber, ClientId, ClientSecret);
 
 $payment = SendMoney::to(0553577261)                //- The phone number to send the prompt to.
                 ->amount(100.00)                    //- The exact amount value of the transaction
-                ->desctiption('Online Purchase')    //- Description of the transaction.
+                ->description('Online Purchase')    //- Description of the transaction.
                 ->customerEmail('admin@ovac4u.com') //- Name of the person making the payment.
                 ->callback('http://ovac4u.com/pay') //- The URL to send callback after payment.	
                 ->channel('mtn-gh')                 //- The mobile network Channel.
@@ -100,7 +100,7 @@ $config = new Config(Account_Nnumber, ClientId, ClientSecret);
 $payment = Refund::transactionId(1234)              //- The ID of the transaction to refund.
                 ->amount(100.00)                    //- The exact amount value of the transaction
                 ->clientReference('#11212')         //- A refeerence on your end.
-                ->desctiption('Useless Purchase')   //- Description of the transaction.
+                ->description('Useless Purchase')   //- Description of the transaction.
                 ->reason('No longer needs a pen')   //- Name of the person making the payment.
                 ->full()                            //- Full or partial refund.
                 ->injectConfig($config)             //- Inject the configuration
