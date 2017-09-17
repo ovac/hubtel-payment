@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow, all" />
+    <title>OVAC\HubtelPayment\Api\Api | OVAC Hubtel Payment API</title>
+
+            <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/sami.css">
+        <script src="../../../js/jquery-1.11.1.min.js"></script>
+        <script src="../../../js/bootstrap.min.js"></script>
+        <script src="../../../js/typeahead.min.js"></script>
+        <script src="../../../sami.js"></script>
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    
+    
+    </head>
+
+    <body id="class" data-name="class:OVAC_HubtelPayment_Api_Api" data-root-path="../../../">
+            <div id="content">
+        <div id="left-column">
+                <div id="control-panel">
+                <script>
+            $('option[data-version="'+window.projectVersion+'"]').prop('selected', true);
+        </script>
+        <form id="search-form" action="../../../search.html" method="GET">
+            <span class="glyphicon glyphicon-search"></span>
+            <input name="search"
+                   class="typeahead form-control"
+                   type="search"
+                   placeholder="Search">
+        </form>
+    </div>
+
+                <div id="api-tree"></div>
+
+        </div>
+        <div id="right-column">
+                <nav id="site-nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../../index.html">OVAC Hubtel Payment API</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-elements">
+                <ul class="nav navbar-nav">
+                    <li><a href="../../../classes.html">Classes</a></li>
+                                            <li><a href="../../../namespaces.html">Namespaces</a></li>
+                                        <li><a href="../../../interfaces.html">Interfaces</a></li>
+                    <li><a href="../../../traits.html">Traits</a></li>
+                    <li><a href="../../../doc-index.html">Index</a></li>
+                    <li><a href="../../../search.html">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                        <div class="namespace-breadcrumbs">
+            <ol class="breadcrumb">
+                <li><span class="label label-default">class</span></li>
+                        <li><a href="../../../OVAC.html">OVAC</a></li><li class="backslash">\</li><li><a href="../../../OVAC/HubtelPayment.html">HubtelPayment</a></li><li class="backslash">\</li><li><a href="../../../OVAC/HubtelPayment/Api.html">Api</a></li><li class="backslash">\</li><li>Api</li>
+            </ol>
+        </div>
+                <div id="page-content">
+                
+    <div class="page-header">
+        <h1>
+            Api
+                
+        </h1>
+    </div>
+
+    <p>    class
+    <strong>Api</strong>        implements
+        <a href="../../../OVAC/HubtelPayment/Api/ApiInterface.html"><abbr title="OVAC\HubtelPayment\Api\ApiInterface">ApiInterface</abbr></a>        (<a href="https://github.com/OVAC/hubtel-payment/blob/master/src/Api/Api.php">View source</a>)
+</p>
+
+        
+    
+
+            <div class="description">
+            <p>Api Class</p>            <p>This class in responsible for making and executing the calls
+to the Hubtel Server.</p>                    </div>
+    
+    
+    
+            <h2>Properties</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td class="type" id="property_config">
+                                        protected                                        <a href="../../../OVAC/HubtelPayment/ConfigInterface.html"><abbr title="OVAC\HubtelPayment\ConfigInterface">ConfigInterface</abbr></a>
+                </td>
+                <td>$config</td>
+                <td class="last">The Config repository instance.</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_baseUrl">
+                                        protected                                        string
+                </td>
+                <td>$baseUrl</td>
+                <td class="last">The Default Hubtel Base url for merchant payment</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_response">
+                                        protected                                        <abbr title="GuzzleHttp\Psr7\Response">Response</abbr>
+                </td>
+                <td>$response</td>
+                <td class="last">This is the response received from the hubtel server
+if no exception was thrown.</td>
+                <td></td>
+            </tr>
+            </table>
+
+    
+            <h2>Methods</h2>
+
+            <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method___construct">__construct</a>(<a href="../../../OVAC/HubtelPayment/Config.html"><abbr title="OVAC\HubtelPayment\Config">Config</abbr></a> $config)
+        
+                                            <p>Constructor.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../OVAC/HubtelPayment/Api/Api.html"><abbr title="OVAC\HubtelPayment\Api\Api">Api</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_injectConfig">injectConfig</a>(<a href="../../../OVAC/HubtelPayment/Config.html"><abbr title="OVAC\HubtelPayment\Config">Config</abbr></a> $config)
+        
+                                            <p>Injects the configuration tot he Api Instance</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../OVAC/HubtelPayment/Api/Api.html"><abbr title="OVAC\HubtelPayment\Api\Api">Api</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setBaseUrl">setBaseUrl</a>(string $baseUrl)
+        
+                                            <p>Change the Default baseUrl defined by hubtel</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getBaseUrl">getBaseUrl</a>()
+        
+                                            <p>Get the Hubtel payment Base Url from the Api Instance</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method__get">_get</a>(string $url = null, array $parameters = [])
+        
+                                            <p>Send a GET request.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method__head">_head</a>(string $url = null, array $parameters = [])
+        
+                                            <p>Send a HEAD request.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method__delete">_delete</a>(string $url = null, array $parameters = [])
+        
+                                            <p>Send a DELETE request.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method__put">_put</a>(string $url = null, array $parameters = [])
+        
+                                            <p>Send a PUT request.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method__patch">_patch</a>(string $url = null, array $parameters = [])
+        
+                                            <p>Send a PATCH request.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method__post">_post</a>(string $url = null, array $parameters = [])
+        
+                                            <p>Send a POST request.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method__options">_options</a>(string $url = null, array $parameters = [])
+        
+                                            <p>Send an OPTIONS request.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_execute">execute</a>(string $httpMethod, string $url, array $parameters = [])
+        
+                                            <p>Executes the HTTP request.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="GuzzleHttp\Client">Client</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getClient">getClient</a>()
+        
+                                            <p>Returns an Http client instance.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="GuzzleHttp\HandlerStack">HandlerStack</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_createHandler">createHandler</a>(<a href="../../../OVAC/HubtelPayment/Config.html"><abbr title="OVAC\HubtelPayment\Config">Config</abbr></a> $config)
+        
+                                            <p>Create the client handler.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../OVAC/HubtelPayment/ConfigInterface.html"><abbr title="OVAC\HubtelPayment\ConfigInterface">ConfigInterface</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getConfig">getConfig</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../OVAC/HubtelPayment/Api/Api.html"><abbr title="OVAC\HubtelPayment\Api\Api">Api</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setConfig">setConfig</a>(<a href="../../../OVAC/HubtelPayment/ConfigInterface.html"><abbr title="OVAC\HubtelPayment\ConfigInterface">ConfigInterface</abbr></a> $config)
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+            </div>
+
+
+        <h2>Details</h2>
+
+            <div id="method-details">
+                    <div class="method-item">
+                    <h3 id="method___construct">
+        <div class="location">at         <a href="https://github.com/OVAC/hubtel-payment/blob/master/src/Api/Api.php#L59">line 59</a></div>
+        <code>                    void
+    <strong>__construct</strong>(<a href="../../../OVAC/HubtelPayment/Config.html"><abbr title="OVAC\HubtelPayment\Config">Config</abbr></a> $config)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Constructor.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../OVAC/HubtelPayment/Config.html"><abbr title="OVAC\HubtelPayment\Config">Config</abbr></a></td>
+                <td>$config</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_injectConfig">
+        <div class="location">at         <a href="https://github.com/OVAC/hubtel-payment/blob/master/src/Api/Api.php#L69">line 69</a></div>
+        <code>                    <a href="../../../OVAC/HubtelPayment/Api/Api.html"><abbr title="OVAC\HubtelPayment\Api\Api">Api</abbr></a>
+    <strong>injectConfig</strong>(<a href="../../../OVAC/HubtelPayment/Config.html"><abbr title="OVAC\HubtelPayment\Config">Config</abbr></a> $config)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Injects the configuration tot he Api Instance</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../OVAC/HubtelPayment/Config.html"><abbr title="OVAC\HubtelPayment\Config">Config</abbr></a></td>
+                <td>$config</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../OVAC/HubtelPayment/Api/Api.html"><abbr title="OVAC\HubtelPayment\Api\Api">Api</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setBaseUrl">
+        <div class="location">at         <a href="https://github.com/OVAC/hubtel-payment/blob/master/src/Api/Api.php#L79">line 79</a></div>
+        <code>                    <a href="../../../OVAC/HubtelPayment/Api/Api.html"><abbr title="OVAC\HubtelPayment\Api\Api">Api</abbr></a>
+    <strong>setBaseUrl</strong>(string $baseUrl)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Change the Default baseUrl defined by hubtel</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$baseUrl</td>
+                <td>The hubtel Resource Base URL</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../OVAC/HubtelPayment/Api/Api.html"><abbr title="OVAC\HubtelPayment\Api\Api">Api</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getBaseUrl">
+        <div class="location">at         <a href="https://github.com/OVAC/hubtel-payment/blob/master/src/Api/Api.php#L90">line 90</a></div>
+        <code>                    string
+    <strong>getBaseUrl</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get the Hubtel payment Base Url from the Api Instance</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method__get">
+        <div class="location">at         <a href="https://github.com/OVAC/hubtel-payment/blob/master/src/Api/Api.php#L97">line 97</a></div>
+        <code>                    array
+    <strong>_get</strong>(string $url = null, array $parameters = [])
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Send a GET request.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$url</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$parameters</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method__head">
+        <div class="location">at         <a href="https://github.com/OVAC/hubtel-payment/blob/master/src/Api/Api.php#L104">line 104</a></div>
+        <code>                    array
+    <strong>_head</strong>(string $url = null, array $parameters = [])
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Send a HEAD request.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$url</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$parameters</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method__delete">
+        <div class="location">at         <a href="https://github.com/OVAC/hubtel-payment/blob/master/src/Api/Api.php#L111">line 111</a></div>
+        <code>                    array
+    <strong>_delete</strong>(string $url = null, array $parameters = [])
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Send a DELETE request.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$url</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$parameters</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method__put">
+        <div class="location">at         <a href="https://github.com/OVAC/hubtel-payment/blob/master/src/Api/Api.php#L118">line 118</a></div>
+        <code>                    array
+    <strong>_put</strong>(string $url = null, array $parameters = [])
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Send a PUT request.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$url</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$parameters</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method__patch">
+        <div class="location">at         <a href="https://github.com/OVAC/hubtel-payment/blob/master/src/Api/Api.php#L125">line 125</a></div>
+        <code>                    array
+    <strong>_patch</strong>(string $url = null, array $parameters = [])
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Send a PATCH request.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$url</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$parameters</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method__post">
+        <div class="location">at         <a href="https://github.com/OVAC/hubtel-payment/blob/master/src/Api/Api.php#L132">line 132</a></div>
+        <code>                    array
+    <strong>_post</strong>(string $url = null, array $parameters = [])
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Send a POST request.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$url</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$parameters</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method__options">
+        <div class="location">at         <a href="https://github.com/OVAC/hubtel-payment/blob/master/src/Api/Api.php#L139">line 139</a></div>
+        <code>                    array
+    <strong>_options</strong>(string $url = null, array $parameters = [])
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Send an OPTIONS request.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$url</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$parameters</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_execute">
+        <div class="location">at         <a href="https://github.com/OVAC/hubtel-payment/blob/master/src/Api/Api.php#L149">line 149</a></div>
+        <code>                    array
+    <strong>execute</strong>(string $httpMethod, string $url, array $parameters = [])
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Executes the HTTP request.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$httpMethod</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$url</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$parameters</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getClient">
+        <div class="location">at         <a href="https://github.com/OVAC/hubtel-payment/blob/master/src/Api/Api.php#L173">line 173</a></div>
+        <code>            protected        <abbr title="GuzzleHttp\Client">Client</abbr>
+    <strong>getClient</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns an Http client instance.</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="GuzzleHttp\Client">Client</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_createHandler">
+        <div class="location">at         <a href="https://github.com/OVAC/hubtel-payment/blob/master/src/Api/Api.php#L189">line 189</a></div>
+        <code>            protected        <abbr title="GuzzleHttp\HandlerStack">HandlerStack</abbr>
+    <strong>createHandler</strong>(<a href="../../../OVAC/HubtelPayment/Config.html"><abbr title="OVAC\HubtelPayment\Config">Config</abbr></a> $config)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Create the client handler.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../OVAC/HubtelPayment/Config.html"><abbr title="OVAC\HubtelPayment\Config">Config</abbr></a></td>
+                <td>$config</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="GuzzleHttp\HandlerStack">HandlerStack</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getConfig">
+        <div class="location">at         <a href="https://github.com/OVAC/hubtel-payment/blob/master/src/Api/Api.php#L197">line 197</a></div>
+        <code>                    <a href="../../../OVAC/HubtelPayment/ConfigInterface.html"><abbr title="OVAC\HubtelPayment\ConfigInterface">ConfigInterface</abbr></a>
+    <strong>getConfig</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../OVAC/HubtelPayment/ConfigInterface.html"><abbr title="OVAC\HubtelPayment\ConfigInterface">ConfigInterface</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setConfig">
+        <div class="location">at         <a href="https://github.com/OVAC/hubtel-payment/blob/master/src/Api/Api.php#L207">line 207</a></div>
+        <code>                    <a href="../../../OVAC/HubtelPayment/Api/Api.html"><abbr title="OVAC\HubtelPayment\Api\Api">Api</abbr></a>
+    <strong>setConfig</strong>(<a href="../../../OVAC/HubtelPayment/ConfigInterface.html"><abbr title="OVAC\HubtelPayment\ConfigInterface">ConfigInterface</abbr></a> $config)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../OVAC/HubtelPayment/ConfigInterface.html"><abbr title="OVAC\HubtelPayment\ConfigInterface">ConfigInterface</abbr></a></td>
+                <td>$config</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../OVAC/HubtelPayment/Api/Api.html"><abbr title="OVAC\HubtelPayment\Api\Api">Api</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+            </div>
+
+    
+            </div>
+                <div id="footer">
+        Generated by <a href="http://sami.sensiolabs.org/">Sami, the API Documentation Generator</a>.
+    </div>
+
+        </div>
+    </div>
+    </body>
+
+</html>

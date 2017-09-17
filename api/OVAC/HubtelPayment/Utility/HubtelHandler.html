@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow, all" />
+    <title>OVAC\HubtelPayment\Utility\HubtelHandler | OVAC Hubtel Payment API</title>
+
+            <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/sami.css">
+        <script src="../../../js/jquery-1.11.1.min.js"></script>
+        <script src="../../../js/bootstrap.min.js"></script>
+        <script src="../../../js/typeahead.min.js"></script>
+        <script src="../../../sami.js"></script>
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    
+    
+    </head>
+
+    <body id="class" data-name="class:OVAC_HubtelPayment_Utility_HubtelHandler" data-root-path="../../../">
+            <div id="content">
+        <div id="left-column">
+                <div id="control-panel">
+                <script>
+            $('option[data-version="'+window.projectVersion+'"]').prop('selected', true);
+        </script>
+        <form id="search-form" action="../../../search.html" method="GET">
+            <span class="glyphicon glyphicon-search"></span>
+            <input name="search"
+                   class="typeahead form-control"
+                   type="search"
+                   placeholder="Search">
+        </form>
+    </div>
+
+                <div id="api-tree"></div>
+
+        </div>
+        <div id="right-column">
+                <nav id="site-nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../../index.html">OVAC Hubtel Payment API</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-elements">
+                <ul class="nav navbar-nav">
+                    <li><a href="../../../classes.html">Classes</a></li>
+                                            <li><a href="../../../namespaces.html">Namespaces</a></li>
+                                        <li><a href="../../../interfaces.html">Interfaces</a></li>
+                    <li><a href="../../../traits.html">Traits</a></li>
+                    <li><a href="../../../doc-index.html">Index</a></li>
+                    <li><a href="../../../search.html">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                        <div class="namespace-breadcrumbs">
+            <ol class="breadcrumb">
+                <li><span class="label label-default">class</span></li>
+                        <li><a href="../../../OVAC.html">OVAC</a></li><li class="backslash">\</li><li><a href="../../../OVAC/HubtelPayment.html">HubtelPayment</a></li><li class="backslash">\</li><li><a href="../../../OVAC/HubtelPayment/Utility.html">Utility</a></li><li class="backslash">\</li><li>HubtelHandler</li>
+            </ol>
+        </div>
+                <div id="page-content">
+                
+    <div class="page-header">
+        <h1>
+            HubtelHandler
+                
+        </h1>
+    </div>
+
+    <p>    class
+    <strong>HubtelHandler</strong>        (<a href="https://github.com/OVAC/hubtel-payment/blob/master/src/Utility/HubtelHandler.php">View source</a>)
+</p>
+
+        
+    
+
+            <div class="description">
+            <p>Hubtel Handler Class</p>            <p>This class holds the hubtel handler and can
+be used with any Guzzle client to queue
+requests and middlewares.</p>                    </div>
+    
+    
+    
+            <h2>Properties</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td class="type" id="property_stack">
+                                        protected                                        <abbr title="GuzzleHttp\HandlerStack">HandlerStack</abbr>
+                </td>
+                <td>$stack</td>
+                <td class="last">Property for holding the handler stack on the instance</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_config">
+                                        protected                                        <a href="../../../OVAC/HubtelPayment/Config.html"><abbr title="OVAC\HubtelPayment\Config">Config</abbr></a>
+                </td>
+                <td>$config</td>
+                <td class="last">Holds the configuration object</td>
+                <td></td>
+            </tr>
+            </table>
+
+    
+            <h2>Methods</h2>
+
+            <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method___construct">__construct</a>(<a href="../../../OVAC/HubtelPayment/Config.html"><abbr title="OVAC\HubtelPayment\Config">Config</abbr></a> $config, <abbr title="GuzzleHttp\HandlerStack">HandlerStack</abbr> $stack = null)
+        
+                                            <p>Constructor for the HubtelHandler class</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="GuzzleHttp\HandlerStack">HandlerStack</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_createHandler">createHandler</a>()
+        
+                                            <p>Create the client handler.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="GuzzleHttp\HandlerStack">HandlerStack</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_pushHeaderMiddleware">pushHeaderMiddleware</a>(callable $header)
+        
+                                            <p>Push the Header Middleware to the Handler Stack</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="GuzzleHttp\HandlerStack">HandlerStack</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_pushBasicAuthMiddleware">pushBasicAuthMiddleware</a>(callable $header)
+        
+                                            <p>Push the Header Middleware to the Handler Stack containing the
+bacic authentication in base64</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="GuzzleHttp\HandlerStack">HandlerStack</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_pushRetryMiddleware">pushRetryMiddleware</a>(callable $decider, callable $delay = null)
+        
+                                            <p>Pushes a Retry Middleware to the Guzzle Client Handler Stack.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;callable
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_decider">decider</a>()
+        
+                                            <p>Function $decider callable</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_delay">delay</a>()
+        
+                                            <p>Function $delay</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+            </div>
+
+
+        <h2>Details</h2>
+
+            <div id="method-details">
+                    <div class="method-item">
+                    <h3 id="method___construct">
+        <div class="location">at         <a href="https://github.com/OVAC/hubtel-payment/blob/master/src/Utility/HubtelHandler.php#L56">line 56</a></div>
+        <code>                    
+    <strong>__construct</strong>(<a href="../../../OVAC/HubtelPayment/Config.html"><abbr title="OVAC\HubtelPayment\Config">Config</abbr></a> $config, <abbr title="GuzzleHttp\HandlerStack">HandlerStack</abbr> $stack = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Constructor for the HubtelHandler class</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../OVAC/HubtelPayment/Config.html"><abbr title="OVAC\HubtelPayment\Config">Config</abbr></a></td>
+                <td>$config</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><abbr title="GuzzleHttp\HandlerStack">HandlerStack</abbr></td>
+                <td>$stack</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_createHandler">
+        <div class="location">at         <a href="https://github.com/OVAC/hubtel-payment/blob/master/src/Utility/HubtelHandler.php#L67">line 67</a></div>
+        <code>                    <abbr title="GuzzleHttp\HandlerStack">HandlerStack</abbr>
+    <strong>createHandler</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Create the client handler.</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="GuzzleHttp\HandlerStack">HandlerStack</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>http://docs.guzzlephp.org/en/stable/handlers-and-middleware.html</td>
+                <td>Guzzle: Handlers and Middlewares.</td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_pushHeaderMiddleware">
+        <div class="location">at         <a href="https://github.com/OVAC/hubtel-payment/blob/master/src/Utility/HubtelHandler.php#L97">line 97</a></div>
+        <code>            protected        <abbr title="GuzzleHttp\HandlerStack">HandlerStack</abbr>
+    <strong>pushHeaderMiddleware</strong>(callable $header)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Push the Header Middleware to the Handler Stack</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>callable</td>
+                <td>$header</td>
+                <td>Function that accepts a Guzzle RequestInterface
+                    and returns a RequestInterface.</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="GuzzleHttp\HandlerStack">HandlerStack</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>http://docs.guzzlephp.org/en/stable/handlers-and-middleware.html</td>
+                <td>Guzzle: Handlers and Middlewares.</td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_pushBasicAuthMiddleware">
+        <div class="location">at         <a href="https://github.com/OVAC/hubtel-payment/blob/master/src/Utility/HubtelHandler.php#L114">line 114</a></div>
+        <code>            protected        <abbr title="GuzzleHttp\HandlerStack">HandlerStack</abbr>
+    <strong>pushBasicAuthMiddleware</strong>(callable $header)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Push the Header Middleware to the Handler Stack containing the
+bacic authentication in base64</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>callable</td>
+                <td>$header</td>
+                <td>Function that accepts a Guzzle RequestInterface
+                    and returns a RequestInterface.</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="GuzzleHttp\HandlerStack">HandlerStack</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>http://docs.guzzlephp.org/en/stable/handlers-and-middleware.html</td>
+                <td>Guzzle: Handlers and Middlewares.</td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_pushRetryMiddleware">
+        <div class="location">at         <a href="https://github.com/OVAC/hubtel-payment/blob/master/src/Utility/HubtelHandler.php#L139">line 139</a></div>
+        <code>            protected        <abbr title="GuzzleHttp\HandlerStack">HandlerStack</abbr>
+    <strong>pushRetryMiddleware</strong>(callable $decider, callable $delay = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Pushes a Retry Middleware to the Guzzle Client Handler Stack.</p>                    <p>Middleware that retries requests based on the boolean result of
+invoking the provided "decider" function.</p>
+
+<p>If no delay function is provided, a simple implementation of exponential
+backoff will be utilized.</p>                            </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>callable</td>
+                <td>$decider</td>
+                <td>Function that accepts the number of retries,
+                         a request, [response], and [exception] and
+                         returns true if the request is to be retried.</td>
+            </tr>
+                    <tr>
+                <td>callable</td>
+                <td>$delay</td>
+                <td>Function that accepts the number of retries and
+                         returns the number of milliseconds to delay.</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="GuzzleHttp\HandlerStack">HandlerStack</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>http://docs.guzzlephp.org/en/stable/handlers-and-middleware.html</td>
+                <td>Guzzle: Handlers and Middlewares.</td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_decider">
+        <div class="location">at         <a href="https://github.com/OVAC/hubtel-payment/blob/master/src/Utility/HubtelHandler.php#L157">line 157</a></div>
+        <code>        static    protected        callable
+    <strong>decider</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Function $decider callable</p>                    <p>Retuens a function that accepts the number of retries,
+a request, [response], and [exception] and
+returns true if the request is to be retried.</p>                            </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>callable</td>
+            <td>$decider</td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>http://docs.guzzlephp.org/en/stable/handlers-and-middleware.html</td>
+                <td>Guzzle: Handlers and Middlewares.</td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_delay">
+        <div class="location">at         <a href="https://github.com/OVAC/hubtel-payment/blob/master/src/Utility/HubtelHandler.php#L197">line 197</a></div>
+        <code>        static    protected        
+    <strong>delay</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Function $delay</p>                    <p>returns a Function that accepts the number of retries and
+returns the number of milliseconds to delay.</p>
+
+<p>The function is passed to the Retry Middleware as the second
+arguement and then pushed into the handler stack.</p>                            </div>
+                <div class="tags">
+            
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>http://docs.guzzlephp.org/en/stable/handlers-and-middleware.html</td>
+                <td>Guzzle: Handlers and Middlewares.</td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+            </div>
+
+    
+            </div>
+                <div id="footer">
+        Generated by <a href="http://sami.sensiolabs.org/">Sami, the API Documentation Generator</a>.
+    </div>
+
+        </div>
+    </div>
+    </body>
+
+</html>
