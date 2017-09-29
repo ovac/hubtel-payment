@@ -42,7 +42,7 @@ use OVAC\HubtelPayment\Api\Transaction\SendMoney;
 
 public function someClass(Config $config)
 {
-    $sendMoney = SendMoney::to(0553577261)          //- The phone number to send the prompt to.
+    $sendMoney = SendMoney::to('0553577261')          //- The phone number to send the prompt to.
                 ->amount(100.00)                    //- The exact amount value of the transaction
                 ->description('Online Purchase')    //- Description of the transaction.
                 ->customerEmail('admin@ovac4u.com') //- Name of the person making the payment.
@@ -146,7 +146,7 @@ This can be used instead of calling `customerName` and `customerEmail` seperatel
 
 
     // With this method, you can set only one or two instead of all three, so this will also work
-    $sendMoney = SendMoney::to(0553577261)
+    $sendMoney = SendMoney::to('0553577261')
         ->setCustomer([
             'name' => 'Ariama Victor',
             'email' => 'contact@ovac4u.com',

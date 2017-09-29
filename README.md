@@ -49,7 +49,7 @@ use OVAC\HubtelPayment\Api\Transaction\ReceiveMoney;
 // The Account Number, ClientID and ClientSecret accordingly.
 $config = new Config(Account_Nnumber, ClientId, ClientSecret);
 
-$payment =  ReceiveMoney::from(0553577261)          //- The phone number to send the prompt to.
+$payment =  ReceiveMoney::from('0553577261')          //- The phone number to send the prompt to.
                 ->amount(100.00)                    //- The exact amount value of the transaction
                 ->description('Online Purchase')    //- Description of the transaction.
                 ->customerName('Ariama Victor')     //- Name of the person making the payment.
@@ -73,7 +73,7 @@ use OVAC\HubtelPayment\Api\Transaction\SendMoney;
 // The Account Number, ClientID and ClientSecret accordingly.
 $config = new Config(Account_Nnumber, ClientId, ClientSecret);
 
-$payment = SendMoney::to(0553577261)                //- The phone number to send the prompt to.
+$payment = SendMoney::to('0553577261')                //- The phone number to send the prompt to.
                 ->amount(100.00)                    //- The exact amount value of the transaction
                 ->description('Online Purchase')    //- Description of the transaction.
                 ->customerEmail('admin@ovac4u.com') //- Name of the person making the payment.

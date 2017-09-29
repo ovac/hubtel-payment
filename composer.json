@@ -27,17 +27,17 @@
         "satooshi/php-coveralls": "^1.0"
     },
     "scripts" : {
-        "phpunit"  : "vendor/bin/phpunit",
-        "phpcpd"   : "vendor/bin/phpcpd src",
-        "phpcs"    : "vendor/bin/phpcs --standard=./vendor/leaphub/phpcs-symfony2-standard/leaphub/phpcs/Symfony2/ --extensions=php ./src",
-        "phpcbf"   : "vendor/bin/phpcbf",
-        "phpmd"    : "vendor/bin/phpmd ./src text phpmd.xml",
-        "phpcpd-ci": "vendor/bin/phpcpd --log-pmd=./build/phpcpd-report.xml  ./src",
-        "phpmd-ci" : "vendor/bin/phpmd ./src xml phpmd.xml --reportfile ./build/phpmd-report.xml",
-        "phpcs-ci" : "vendor/bin/phpcs --standard=./vendor/leaphub/phpcs-symfony2-standard/leaphub/phpcs/Symfony2/ --report=checkstyle --report-file=./build/phpcs-checkstyle-report.xml --extensions=php src",
-        "test"     : "vendor/bin/phpunit; composer phpcs; composer phpmd; composer phpcpd;",
-        "sami"     : "bin/sami.phar build ./sami.config.php -v",
+        "phpunit"  : "phpunit",
+        "phpcpd"   : "phpcpd src",
+        "phpcs"    : "phpcs --standard=./vendor/leaphub/phpcs-symfony2-standard/leaphub/phpcs/Symfony2/ --extensions=php ./src",
+        "phpcbf"   : "phpcbf",
+        "phpmd"    : "phpmd ./src text phpmd.xml",
+        "phpcpd-ci": "phpcpd --log-pmd=./build/phpcpd-report.xml  ./src",
+        "phpmd-ci" : "phpmd ./src xml phpmd.xml --reportfile ./build/phpmd-report.xml",
+        "phpcs-ci" : "phpcs --standard=./vendor/leaphub/phpcs-symfony2-standard/leaphub/phpcs/Symfony2/ --report=checkstyle --report-file=./build/phpcs-checkstyle-report.xml --extensions=php src",
+        "test"     : "phpunit; composer phpcs; composer phpmd; composer phpcpd;",
+        "sami"     : "sami.phar build ./sami.config.php -v",
         "document" : "bin/document.sh;",
-        "coverage" : "vendor/bin/coveralls -v"
+        "coverage" : "coveralls -v"
     }
 }
