@@ -1,7 +1,13 @@
-<p align="center"> 
+<p align="center" style="border: 5px solid #000000">
+<a href="https://developers.hubtel.com/documentations/merchant-account-api" target="_blank"><img src="http://res.cloudinary.com/ovac/image/upload/h_200/v1506824544/4a_Uw7r_ljybq3.jpg"></a>
+<a href="#" target="_blank"><img src="http://res.cloudinary.com/ovac/image/upload/h_120/v1506828786/logo-composer-transparent_zjgal0.png"></a>
+<a href="#" target="_blank"><img src="http://res.cloudinary.com/ovac/image/upload/h_200/v1506828063/brand_pbmsjk.gif"></a>
+<br>
+<a href="http://www.ovac4u.com/hubtel-payment" target="_blank"><img src="http://res.cloudinary.com/ovac/image/upload/v1506828380/logo_size_invert_jelh74.jpg"></a>
+</p>
 
-![Hello](http://res.cloudinary.com/ovac/image/upload/h_100/v1506824688/75esRfPs7jODhD0H-pic_jz3trl.jpg)
-![Hello](http://res.cloudinary.com/ovac/image/upload/h_100/v1506824544/4a_Uw7r_ljybq3.jpg)
+---
+
 # OVAC Hubtel Payment
 The best and most comphrensive PHP Client for consuming the Hubtel Payment API and for sending and receiving Mobile Money Payment from a php application with an elegant **Write as it sounds** syntax.
 
@@ -11,8 +17,6 @@ The best and most comphrensive PHP Client for consuming the Hubtel Payment API a
 [![Total Downloads](https://poser.pugx.org/ovac/hubtel-payment/downloads)](https://packagist.org/packages/ovac/hubtel-payment)
 [![License](https://poser.pugx.org/ovac/hubtel-payment/license)](https://packagist.org/packages/ovac/hubtel-payment)
 [![Dependency Status](https://www.versioneye.com/user/projects/598fccd8368b081653c84e2e/badge.svg)](https://www.versioneye.com/user/projects/598fccd8368b081653c84e2e)
-
-</p>
 
 ```md
  Follow me anywhere @ovac4u                         | GitHub
