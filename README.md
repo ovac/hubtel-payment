@@ -173,6 +173,19 @@ A simple ci bash script exists under bin folder
 $ bin/ci.sh
 ```
 
+## Contributing
+
+Thank you for considering contributing to Laravel Hackathon Starter. The contribution guide can be found in the [Contribution File](https://github.com/ovac/hubtel-payment/blob/master/CONTRIBUTING.md)
+
+## Security
+
+If you discover any security related issues, please email 
+instead of using the issue tracker.
+
+## Credits
+
+- [All contributors](https://github.com/ovac/hubtel-payment/graphs/contributors)
+
 ## Licence
 * [Licence: MIT](https://github.com/ovac/hubtel-payment/licence)
 
@@ -182,6 +195,15 @@ $ bin/ci.sh
 - [Official Repo: Github](https://www.github.com/ovac/hubtel-payment)
 - [Hubtel Merchant Payment Reference](https://developers.hubtel.com/documentations/merchant-account-api)
 - [Laravel framework](http://laravel.com)
-- [Repo's wiki](https://github.com/ovac/hubtel-payment/wiki/_pages)
 - [LICENCE: MIT](https://github.com/ovac/hubtel-payment/blob/licence)
 - [CHANGELOG](https://github.com/ovac/hubtel-payment/blob/master/CHANGELOG.md)
+
+
+## How can I thank you?
+
+Why not star the github repo? I'd love the attention! Why not share the link for this repository on Twitter or HackerNews? Spread the word!
+
+Don't forget to follow me on [instagram](http://www.instagram.com/ovac4u) and [twitter](http://www.twitter.com/ovac4u) 
+
+Thanks!
+Ariama Victor (ovac4u).
