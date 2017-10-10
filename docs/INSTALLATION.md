@@ -1,7 +1,3 @@
-<!--
-currentMenu: "installation"
--->
-
 # Installation
 
 To install OVAC\Hubtel-Payment you need:
@@ -48,7 +44,7 @@ As this package depends on the current stable release of PHPUnit (v6.3+) for tes
  - [PHPUnit](https://phpunit.de) (MIT)
  - [Mockery](http://docs.mockery.io/en/latest/) (BSD-3-CLAUSE)
  - [PHPMD - PHP Mess Detector](https://phpmd.org/) (BSD 3-clause)
- - [PHP-Coveralls)](https://github.com/satooshi/php-coveralls) (MIT)
+ - [PHP-Coveralls](https://github.com/satooshi/php-coveralls) (MIT)
  - [PHP_CodeSniffer](https://www.squizlabs.com/php-codesniffer) (MIT)
  - [PHP Copy/Paste Detector (PHPCPD)](https://github.com/sebastianbergmann/phpcpd) (BSD 3-clause)
  - [Symfony2 PHP_CodeSniffer Coding Standard](https://github.com/leaphub/phpcs-symfony2-standard) (MIT)
