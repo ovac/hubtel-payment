@@ -8,7 +8,7 @@
  * @link        http://ovac4u.com
  *
  * @license     https://github.com/ovac/hubtel-payment/blob/master/LICENSE
- * @copyright   (c) 2017, Rescope Inc
+ * @copyright   (c) 2017, RescopeNet, Inc
  */
 
 namespace OVAC\HubtelPayment\Tests\Unit\Api;
