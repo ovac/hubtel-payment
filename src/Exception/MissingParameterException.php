@@ -8,7 +8,7 @@
  * @link        http://ovac4u.com
  *
  * @license     https://github.com/ovac/hubtel-payment/blob/master/LICENSE
- * @copyright   (c) 2017, RescopeNet, Inc
+ * @copyright   (c) 2017, Rescope Inc
  */
 
 namespace OVAC\HubtelPayment\Exception;
@@ -19,4 +19,9 @@ namespace OVAC\HubtelPayment\Exception;
  */
 class MissingParameterException extends HubtelException
 {
+    public function setMissingParameter($missingParameters)
+    {
+        $this->missingParameter = $missingParameters;
+        $this->message = $this->getMessage() . ' ' . $this->getMissingParameter();
+    }
 }
