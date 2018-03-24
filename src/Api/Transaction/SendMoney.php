@@ -157,9 +157,7 @@ class SendMoney extends Transaction
      */
     public function setCustomerName($recipientName)
     {
-        $this->recipientName = $recipientName;
-
-        return $this;
+        return $this->setRecipientName($recipientName);
     }
 
     /**
@@ -169,7 +167,7 @@ class SendMoney extends Transaction
      */
     public function getCustomerName()
     {
-        return $this->recipientName;
+        return $this->getRecipientName();
     }
 
     /**
@@ -249,7 +247,7 @@ class SendMoney extends Transaction
      */
     public function getCustomerMsisdn()
     {
-        return $this->recipientMsisdn;
+        return $this->getRecipientMsisdn();
     }
 
     /**
@@ -259,8 +257,6 @@ class SendMoney extends Transaction
      */
     public function setCustomerMsisdn($recipientMsisdn)
     {
-        $this->recipientMsisdn = $recipientMsisdn;
-
-        return $this;
+        return $this->setRecipientMsisdn($recipientMsisdn);
     }
 }

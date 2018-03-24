@@ -155,7 +155,7 @@ class SendMoneyTest extends TestCase
             ->to($this->customerMsisdn)
             ->description($this->description)
             ->reference($this->clientReference)
-            ->recipientName($this->customerName)
+            ->customerName($this->customerName)
             ->customerEmail($this->customerEmail)
             ->channel($this->channel)
             ->callbackOnFail($this->secondaryCallbackURL)
