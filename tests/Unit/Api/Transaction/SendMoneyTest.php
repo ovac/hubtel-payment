@@ -149,6 +149,23 @@ class SendMoneyTest extends TestCase
         return $api;
     }
 
+    public function testExpressiveSendMoneyV2()
+    {
+        $api = SendMoney::amount($this->amount)
+            ->to($this->customerMsisdn)
+            ->description($this->description)
+            ->reference($this->clientReference)
+            ->recipientName($this->customerName)
+            ->customerEmail($this->customerEmail)
+            ->channel($this->channel)
+            ->callbackOnFail($this->secondaryCallbackURL)
+            ->callbackOnSuccess($this->primaryCallbackURL);
+
+        $this->checkValues($api);
+
+        return $api;
+    }
+
     /**
      * @covers OVAC\HubtelPayment\Api\Transaction\MassAssignable::massAssign
      */
