@@ -108,6 +108,18 @@ class Transaction extends Api
     protected $parametersOptional = [];
 
     /**
+     * This is the name of the receiver.
+     * @var string
+     */
+    protected $recipientName;
+
+    /**
+     * This is the number for the receiver
+     * @var number
+     */
+    protected $recipientMsisdn;
+
+    /**
      * returnes the name of the give customer
      *
      * @return string the customer name

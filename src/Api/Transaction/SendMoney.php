@@ -53,18 +53,6 @@ class SendMoney extends Transaction
     ];
 
     /**
-     * This is the name of the receiver.
-     * @var string
-     */
-    protected $RecipientName;
-
-    /**
-     * This is the number for the receiver
-     * @var number
-     */
-    protected $RecipientMsisdn;
-
-    /**
      * Construct for creating a new instance of the SendMoney Api class
      *
      * @param array $data An array with configurations for the send money class
@@ -159,31 +147,29 @@ class SendMoney extends Transaction
      */
     public function getRecipientName()
     {
-        return $this->RecipientName;
+        return $this->recipientName;
     }
 
     /**
-     * @param mixed $RecipientName
+     * @param mixed $recipientName
      *
      * @return self
      */
-    public function setCustomerName($RecipientName)
+    public function setCustomerName($recipientName)
     {
-        $this->RecipientName = $RecipientName;
+        $this->recipientName = $recipientName;
 
         return $this;
     }
 
     /**
-     * @param mixed $RecipientName
+     * @param mixed $recipientName
      *
      * @return self
      */
     public function getCustomerName()
     {
-        $this->RecipientName = $RecipientName;
-
-        return $this;
+        return $this->recipientName;
     }
 
     /**
@@ -227,13 +213,13 @@ class SendMoney extends Transaction
     }
 
     /**
-     * @param string $RecipientName
+     * @param string $recipientName
      *
      * @return self
      */
-    public function setRecipientName($RecipientName)
+    public function setRecipientName($recipientName)
     {
-        $this->RecipientName = $RecipientName;
+        $this->recipientName = $recipientName;
 
         return $this;
     }
@@ -243,17 +229,17 @@ class SendMoney extends Transaction
      */
     public function getRecipientMsisdn()
     {
-        return $this->RecipientMsisdn;
+        return $this->recipientMsisdn;
     }
 
     /**
-     * @param number $RecipientMsisdn
+     * @param number $recipientMsisdn
      *
      * @return self
      */
-    public function setRecipientMsisdn($RecipientMsisdn)
+    public function setRecipientMsisdn($recipientMsisdn)
     {
-        $this->RecipientMsisdn = $RecipientMsisdn;
+        $this->recipientMsisdn = $recipientMsisdn;
 
         return $this;
     }
@@ -263,17 +249,17 @@ class SendMoney extends Transaction
      */
     public function getCustomerMsisdn()
     {
-        return $this->RecipientMsisdn;
+        return $this->recipientMsisdn;
     }
 
     /**
-     * @param number $RecipientMsisdn
+     * @param number $recipientMsisdn
      *
      * @return self
      */
-    public function setCustomerMsisdn($RecipientMsisdn)
+    public function setCustomerMsisdn($recipientMsisdn)
     {
-        $this->RecipientMsisdn = $RecipientMsisdn;
+        $this->recipientMsisdn = $recipientMsisdn;
 
         return $this;
     }
