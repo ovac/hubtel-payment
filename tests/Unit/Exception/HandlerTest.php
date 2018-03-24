@@ -165,4 +165,35 @@ class HandlerTest extends TestCase
             throw $e;
         }
     }
+
+    /**
+     * @depreciated
+     * This has been depreciated and will be removed in v2
+     * @return
+     */
+    public function test_4010_missenParameter_request_response_backward_compatibility()
+    {
+        $this->expectException(MissingParameterException::class);
+
+        try {
+
+            $this->useResponse(400, json_encode([
+                'ResponseCode' => 4010,
+                'Error' => [
+                    array('Field' => 'Some Field'),
+                    array('Field' => 'Other Field'),
+                ],
+            ]));
+        } catch (MissingParameterException $e) {
+
+            $this->assertSame(4010, $e->getErrorCode());
+            $this->arrayHasKey('ResponseCode', $e->getRawOutput());
+            $this->assertContains('MissingParameter', $e->getErrorType());
+            $this->assertContains('Some Field', $e->getMissingParameter());
+            $this->assertContains('Other Field', $e->getMissingParameter());
+
+            throw $e;
+        }
+    }
+
 }

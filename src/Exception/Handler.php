@@ -58,7 +58,15 @@ class Handler
         $errorCode = isset($error['ResponseCode']) ? $error['ResponseCode'] : null;
         $errorType = isset($error['type']) ? $error['type'] : null;
         $message = isset($error['Message']) ? $error['Message'] : null;
-        $missingParameter = isset($error['Errors']) ? $this->getMissingParameters($error['Errors']) : null;
+
+        /**
+         * This is depreciated and will be removed in version 2.
+         *
+         * Hubtel changed the 'Error' key to 'Errors'
+         */
+        isset($error['Errors']) ? ($error['Error'] = $error['Errors']) : null;
+
+        $missingParameter = isset($error['Error']) ? $this->getMissingParameters($error['Error']) : null;
 
         $exception = $this->handleException(
             $message, $statusCode, $errorType, $errorCode, $missingParameter, $rawOutput
