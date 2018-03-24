@@ -58,7 +58,7 @@ class Handler
         $errorCode = isset($error['ResponseCode']) ? $error['ResponseCode'] : null;
         $errorType = isset($error['type']) ? $error['type'] : null;
         $message = isset($error['Message']) ? $error['Message'] : null;
-        $missingParameter = isset($error['Error']) ? $this->getMissingParameters($error['Error']) : null;
+        $missingParameter = isset($error['Errors']) ? $this->getMissingParameters($error['Errors']) : null;
 
         $exception = $this->handleException(
             $message, $statusCode, $errorType, $errorCode, $missingParameter, $rawOutput

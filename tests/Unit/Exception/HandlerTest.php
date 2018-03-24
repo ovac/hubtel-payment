@@ -149,7 +149,7 @@ class HandlerTest extends TestCase
 
             $this->useResponse(400, json_encode([
                 'ResponseCode' => 4010,
-                'Error' => [
+                'Errors' => [
                     array('Field' => 'Some Field'),
                     array('Field' => 'Other Field'),
                 ],
