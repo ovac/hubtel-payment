@@ -161,6 +161,8 @@ class HandlerTest extends TestCase
             $this->assertContains('MissingParameter', $e->getErrorType());
             $this->assertContains('Some Field', $e->getMissingParameter());
             $this->assertContains('Other Field', $e->getMissingParameter());
+            $this->assertContains('Other Field', $e->getMessage());
+            $this->assertContains('Some Field', $e->getMessage());
 
             throw $e;
         }

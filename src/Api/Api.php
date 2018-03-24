@@ -154,7 +154,7 @@ abstract class Api implements ApiInterface
                     'json' => $parameters,
                 ]);
 
-                return json_decode((string) $this->response->getBody(), true);
+                return json_decode((string) $this->response->getBody());
 
             } catch (ClientException $e) {
                 throw new Handler($e);

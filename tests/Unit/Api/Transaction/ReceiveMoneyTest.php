@@ -412,7 +412,7 @@ class ReceiveMoneyTest extends TestCase
 
         $result = $mock->run();
 
-        $this->assertEquals($result, ['X-Foo' => 'Bar']);
+        $this->assertEquals($result, json_decode(json_encode(['X-Foo' => 'Bar'])));
 
         $request = $container[0]['request'];
 
