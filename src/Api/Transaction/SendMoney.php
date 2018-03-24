@@ -35,13 +35,14 @@ class SendMoney extends Transaction
      * {@inheritdoc}
      */
     protected $parametersRequired = [
-        'CustomerName',
-        'CustomerMsisdn',
+        'RecipientName',
+        'RecipientMsisdn',
         'CustomerEmail',
         'PrimaryCallbackURL',
         'Amount',
         'Description',
     ];
+
     /**
      * {@inheritdoc}
      */
@@ -50,6 +51,18 @@ class SendMoney extends Transaction
         'ClientReference',
         'Channel',
     ];
+
+    /**
+     * This is the name of the receiver.
+     * @var string
+     */
+    protected $RecipientName;
+
+    /**
+     * This is the number for the receiver
+     * @var number
+     */
+    protected $RecipientMsisdn;
 
     /**
      * Construct for creating a new instance of the SendMoney Api class
@@ -141,4 +154,127 @@ class SendMoney extends Transaction
         return $this->_post('/send/mobilemoney', $this->propertiesToArray());
     }
 
+    /**
+     * @return mixed
+     */
+    public function getRecipientName()
+    {
+        return $this->RecipientName;
+    }
+
+    /**
+     * @param mixed $RecipientName
+     *
+     * @return self
+     */
+    public function setCustomerName($RecipientName)
+    {
+        $this->RecipientName = $RecipientName;
+
+        return $this;
+    }
+
+    /**
+     * @param mixed $RecipientName
+     *
+     * @return self
+     */
+    public function getCustomerName()
+    {
+        $this->RecipientName = $RecipientName;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getParametersRequired()
+    {
+        return $this->parametersRequired;
+    }
+
+    /**
+     * @param mixed $parametersRequired
+     *
+     * @return self
+     */
+    public function setParametersRequired($parametersRequired)
+    {
+        $this->parametersRequired = $parametersRequired;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getParametersOptional()
+    {
+        return $this->parametersOptional;
+    }
+
+    /**
+     * @param mixed $parametersOptional
+     *
+     * @return self
+     */
+    public function setParametersOptional($parametersOptional)
+    {
+        $this->parametersOptional = $parametersOptional;
+
+        return $this;
+    }
+
+    /**
+     * @param string $RecipientName
+     *
+     * @return self
+     */
+    public function setRecipientName($RecipientName)
+    {
+        $this->RecipientName = $RecipientName;
+
+        return $this;
+    }
+
+    /**
+     * @return number
+     */
+    public function getRecipientMsisdn()
+    {
+        return $this->RecipientMsisdn;
+    }
+
+    /**
+     * @param number $RecipientMsisdn
+     *
+     * @return self
+     */
+    public function setRecipientMsisdn($RecipientMsisdn)
+    {
+        $this->RecipientMsisdn = $RecipientMsisdn;
+
+        return $this;
+    }
+
+    /**
+     * @return number
+     */
+    public function getCustomerMsisdn()
+    {
+        return $this->RecipientMsisdn;
+    }
+
+    /**
+     * @param number $RecipientMsisdn
+     *
+     * @return self
+     */
+    public function setCustomerMsisdn($RecipientMsisdn)
+    {
+        $this->RecipientMsisdn = $RecipientMsisdn;
+
+        return $this;
+    }
 }
