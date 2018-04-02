@@ -181,9 +181,7 @@ class SendMoney extends Transaction
      */
     public function getCustomerName()
     {
-        $this->RecipientName = $RecipientName;
-
-        return $this;
+        return $this->RecipientName;
     }
 
     /**
